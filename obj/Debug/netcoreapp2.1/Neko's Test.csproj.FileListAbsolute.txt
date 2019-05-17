@@ -1,0 +1,11 @@
+C:\Users\nekocyan\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\Neko's Test.deps.json
+C:\Users\nekocyan\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\Neko's Test.runtimeconfig.json
+C:\Users\nekocyan\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\Neko's Test.runtimeconfig.dev.json
+C:\Users\nekocyan\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\Neko's Test.dll
+C:\Users\nekocyan\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\obj\Debug\netcoreapp2.1\Neko's Test.csprojAssemblyReference.cache
+C:\Users\nekocyan\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\obj\Debug\netcoreapp2.1\Neko's Test.csproj.CoreCompileInputs.cache
+C:\Users\nekocyan\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\obj\Debug\netcoreapp2.1\Neko's Test.AssemblyInfoInputs.cache
+C:\Users\nekocyan\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\obj\Debug\netcoreapp2.1\Neko's Test.AssemblyInfo.cs
+C:\Users\nekocyan\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\Neko's Test.pdb
+C:\Users\nekocyan\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\obj\Debug\netcoreapp2.1\Neko's Test.dll
+C:\Users\nekocyan\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\obj\Debug\netcoreapp2.1\Neko's Test.pdb
