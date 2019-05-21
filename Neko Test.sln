@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Neko Test", "Neko's Test\Neko Test.csproj", "{79399904-5FD2-4590-A5E2-A77D94414D93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Neko Test", "Neko Test.csproj", "{101A6C7A-4390-4B9F-8D74-923948D62890}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{79399904-5FD2-4590-A5E2-A77D94414D93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{79399904-5FD2-4590-A5E2-A77D94414D93}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{79399904-5FD2-4590-A5E2-A77D94414D93}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{79399904-5FD2-4590-A5E2-A77D94414D93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{101A6C7A-4390-4B9F-8D74-923948D62890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{101A6C7A-4390-4B9F-8D74-923948D62890}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{101A6C7A-4390-4B9F-8D74-923948D62890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{101A6C7A-4390-4B9F-8D74-923948D62890}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AF0533E2-7409-42A1-94EC-6ED5D29FB874}
+		SolutionGuid = {0AAB1060-278F-4200-8D68-0AD7F86CC575}
 	EndGlobalSection
 EndGlobal

@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "d284bc8ad3f95c3a4d5b2d50bd4fcd420ec0020d"
+    "signature": "7bf972a5f9ad73b0a85330561ff087d1e1bbb56d"
   },
   "compilationOptions": {},
   "targets": {
@@ -12,7 +12,9 @@
           "Discord.Net": "2.0.1",
           "Discord.Net.Commands": "2.0.1",
           "Discord.Net.WebSocket": "2.0.1",
-          "Discord.Net.Webhook": "2.0.1"
+          "Discord.Net.Webhook": "2.0.1",
+          "System.Globalization.Calendars": "4.3.0",
+          "System.Windows.Forms.Ribbon35": "3.5.8"
         },
         "runtime": {
           "Neko Test.dll": {}
@@ -153,6 +155,12 @@
           "System.Runtime": "4.3.0"
         }
       },
+      "System.Globalization.Calendars/4.3.0": {
+        "dependencies": {
+          "System.Globalization": "4.3.0",
+          "System.Runtime": "4.3.0"
+        }
+      },
       "System.Interactive.Async/3.1.1": {
         "runtime": {
           "lib/netstandard1.3/System.Interactive.Async.dll": {
@@ -216,6 +224,14 @@
       "System.Threading.Tasks/4.3.0": {
         "dependencies": {
           "System.Runtime": "4.3.0"
+        }
+      },
+      "System.Windows.Forms.Ribbon35/3.5.8": {
+        "runtime": {
+          "lib/net35/System.Windows.Forms.Ribbon35.dll": {
+            "assemblyVersion": "3.5.8.0",
+            "fileVersion": "3.5.8.0"
+          }
         }
       }
     }
@@ -324,6 +340,13 @@
       "path": "system.globalization/4.3.0",
       "hashPath": "system.globalization.4.3.0.nupkg.sha512"
     },
+    "System.Globalization.Calendars/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GUlBtdOWT4LTV3I+9/PJW+56AnnChTaOqqTLFtdmype/L500M2LIyXgmtd9X2P2VOkmJd5c67H5SaC2QcL1bFA==",
+      "path": "system.globalization.calendars/4.3.0",
+      "hashPath": "system.globalization.calendars.4.3.0.nupkg.sha512"
+    },
     "System.Interactive.Async/3.1.1": {
       "type": "package",
       "serviceable": true,
@@ -400,6 +423,13 @@
       "sha512": "sha512-LbSxKEdOUhVe8BezB/9uOGGppt+nZf6e1VFyw6v3DN6lqitm0OSn2uXMOdtP0M3W4iMcqcivm2J6UgqiwwnXiA==",
       "path": "system.threading.tasks/4.3.0",
       "hashPath": "system.threading.tasks.4.3.0.nupkg.sha512"
+    },
+    "System.Windows.Forms.Ribbon35/3.5.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eCT9IcJyU/NDrDA7Obp40Ata7hvPTVrtKjcofJe4LC/qjx7MNpOR0vNDfc5IDEzZi5bP5wGfJpVOWnnFeL2AUQ==",
+      "path": "system.windows.forms.ribbon35/3.5.8",
+      "hashPath": "system.windows.forms.ribbon35.3.5.8.nupkg.sha512"
     }
   }
 }
