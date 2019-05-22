@@ -29,7 +29,7 @@ namespace Neko_Test.Modules
         public static ulong jailed
         {
             get { return jaileds; }
-            set { getalluserr = value; }
+            set { jaileds = value; }
         }
         private static ulong jailers;
         public static ulong jailer

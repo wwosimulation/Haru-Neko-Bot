@@ -8,7 +8,6 @@ using Discord.WebSocket;
 using Discord.Addons.Interactive;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.IO;
@@ -104,7 +103,7 @@ namespace Neko_Test
         }
         [Command("rmall")]
         [RequireBotPermission(Discord.GuildPermission.ManageRoles)]
-        public async Task rmallrolejoining() 
+        public async Task rmallrolejoining(string text = null) 
         {
             SocketGuildUser User1 = Context.User as SocketGuildUser;
             if (!User1.GuildPermissions.ManageRoles)
@@ -140,15 +139,33 @@ namespace Neko_Test
                     }*/
                     //users.Add(x);
                     //var g = Context.Guild.Users.FirstOrDefault(a => a.Username == x + "");
-                    var GetAllUser = Context.Guild.Users;
-                    foreach (var x in GetAllUser)
+                    if (text == null)
                     {
-                        var g = Context.Guild.GetUser(x.Id).Roles.Any(a => a.Name == "Hi");
-                        if (g == true)
+                        var GetAllUser = Context.Guild.Users;
+                        foreach (var x in GetAllUser)
                         {
-                            await Context.Channel.SendMessageAsync("" + g + " (" + x + ")");
-                            x.RemoveRoleAsync(Context.Guild.Roles.FirstOrDefault(c => c.Name == "Hi"));
+                            var g = Context.Guild.GetUser(x.Id).Roles.Any(a => a.Name == "Hi");
+                            if (g == true)
+                            {
+                                await Context.Channel.SendMessageAsync("" + g + " (" + x + ")");
+                                await  x.RemoveRoleAsync(Context.Guild.Roles.FirstOrDefault(c => c.Name == "Hi"));
+                            }
                         }
+
+                    }
+                    else if (text == "owa")
+                    {
+                        var GetAllUser = Context.Client.GetGuild(465795320526274561).Users;
+                        foreach (var x in GetAllUser)
+                        {
+                            var g = Context.Client.GetGuild(465795320526274561).GetUser(x.Id).Roles.Any(a => a.Name == "Joining");
+                            if (g == true)
+                            {
+                                await  x.RemoveRoleAsync(Context.Client.GetGuild(465795320526274561).Roles.FirstOrDefault(c => c.Name == "Joining"));
+                            }
+                        }
+                    }
+                    else return;
                     }
                     //var b = Context.Guild.Users.FirstOrDefault(v => v.Id == users);
                     //await Context.Channel.SendMessageAsync("List: " + b + "");
@@ -173,7 +190,6 @@ namespace Neko_Test
                 //b.RemoveRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Hi"));
                 //await Context.Channel.SendMessageAsync("Executed. ("+users+")");
             }
-        }
         /*[Command("tessst")]
         public async Task abc()
         {

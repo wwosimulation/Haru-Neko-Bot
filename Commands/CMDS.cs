@@ -39,7 +39,7 @@ namespace Neko_Test
                 //embed.WithAuthor($"=== WWO Simulation ===\n");
                 embed.AddField($"WWO Simulation - Commands: -gwhost, -gwcancel, -rwhost, -rwcancel", "Usage: -gwhost <Game Code> to start Host Game (Require: Game Narrator or GN Helper role)\n       -gwcancel to cancel Game (Require: Game Narrator or GN Helper role) \n       -rwhost <Game Code> to start Host Rank Game (Require: Game Narrator role)\n       -rwcancel to cancel Rank Game (Require: Game Narrator role)");
                 //embed.WithTitle($"=== Game Server ===");
-                embed.AddField($"Game Server - Commands: -gnhelper, -gn, -gnarrate, -gnarrator, -add, -show, -addmember", "Usage: -gnhelper to get GN Helper role (Require: GN Helper role in WWO Simulation)\n       -gn to get GN role (Require: Game Narrator role in WWO Simulation)\n       -gnarrate to become Narrator Trainee (Require: GN Helper role)\n       -gnarrator to remove Narrator Trainee (Require: Narrator Trainee role)\n       -add <Text> to add line to Match Result [If text is reset, then remove match result] (Require: Narrator or Narrator Trainee role)\n       -show to Match Result from Command -add (Require: Narrator or Narrator Trainee role)\n       -addmember <Text> to add Member to Game Match (Require: Narrator or Narrator Trainee role)");
+                embed.AddField($"Game Server - Commands: -gnhelper, -gn, -gnarrate, -gnarrator", "Usage: -gnhelper to get GN Helper role (Require: GN Helper role in WWO Simulation)\n       -gn to get GN role (Require: Game Narrator role in WWO Simulation)\n       -gnarrate to become Narrator Trainee (Require: GN Helper role)\n       -gnarrator to remove Narrator Trainee (Require: Narrator Trainee role)");
                 //embed.WithTitle($"=== Another Commands ===");
                 embed.AddField($"Another Commands: -recover, -change, -reset, -stats, -clr", "Usage: -recover <Num> <Text> to change Game's Info (Require: ManageRoles Permission)\n       -change <User> <New Nickname> to change Nick Name of User (Require: ManageNicknames Permission)\n       -reset to reset Status Running in GlobalFunction (Require: Bot Helper or Bot Dev role in WWO Simulation)\n       -stats to show Status Running in GlobalFunction (Require: Bot Helper or Bot Dev role in WWO Simulation)\n       -clr to Bulk Delete Messages channel (Require: ManageMessages Permission)");
                 embed.AddField($"More Soon", "...");
@@ -88,12 +88,10 @@ namespace Neko_Test
                 await Context.Client.GetGuild(465795320526274561).GetTextChannel(549242357741256705).SendMessageAsync("Game Start has been announced.");
                 await Context.Client.GetGuild(472261911526768642).GetTextChannel(549202043517272064).SendMessageAsync("Game Start has been announced.");
                 GlobalFunction.jailerammo = 1;
-                GlobalFunction.daycount = 1;
                 GlobalFunction.gametime = "night";
                 await Context.Client.SetGameAsync("Game Started");
                 if (GlobalFunction.gamestatus != "hosting")
                 {
-                    GlobalFunction.matchresult = "== First Night s==";
                     GlobalFunction.gamestatus = "hosting";
                 }
             }
@@ -129,8 +127,6 @@ namespace Neko_Test
                 if (GlobalFunction.gametime == "day" & GlobalFunction.gamestatus == "hosting" & GlobalFunction.gamecodes != null)
                 {
                     GlobalFunction.gametime = "night";
-                    GlobalFunction.daycount++;
-                    GlobalFunction.matchresult = ""+ GlobalFunction.matchresult +"\n== Night "+ GlobalFunction.daycount +" ==";
                     if (GlobalFunction.jailed != 0)
                     {
                         await Context.Client.GetGuild(465795320526274561).GetUser(GlobalFunction.jailed).AddRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Jailed"));
@@ -178,7 +174,6 @@ namespace Neko_Test
                 if (GlobalFunction.gametime == "night" & GlobalFunction.gamestatus == "hosting" & GlobalFunction.gamecodes != null)
                 {
                     GlobalFunction.gametime = "day";
-                    GlobalFunction.matchresult = "" + GlobalFunction.matchresult + "\n== Day " + GlobalFunction.daycount + " ==";
                     if (GlobalFunction.jailed != 0)
                     {
                         await Context.Client.GetGuild(465795320526274561).GetUser(GlobalFunction.jailed).RemoveRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Jailed"));
@@ -213,7 +208,7 @@ namespace Neko_Test
             {
                 if (GlobalFunction.gametime == "day" & GlobalFunction.gamestatus == "hosting" & GlobalFunction.gamecodes != null)
                 {
-                    GlobalFunction.matchresult = "" + GlobalFunction.matchresult + "\n== Vote of Day " + GlobalFunction.daycount + " ==";
+                    return;
                 }
                 else return;
             }
@@ -247,9 +242,8 @@ namespace Neko_Test
                     await Context.Guild.ModifyAsync(x => x.Icon = pic);
                 }*/
                 var embed = new EmbedBuilder();
-                if (GlobalFunction.gamestatus == "hosting" & GlobalFunction.gamecodes != null & GlobalFunction.wons != null & GlobalFunction.matchmember == null & GlobalFunction.matchresult != null)
+                if (GlobalFunction.gamestatus == "hosting" & GlobalFunction.gamecodes != null & GlobalFunction.wons != null)
                 {
-                    await Context.Guild.GetTextChannel(549202043517272064).SendMessageAsync("Because Match Member is Missing so can't Announce Match Result.");
 
                     await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync("Game " + GlobalFunction.gamecodes + " ended - " + GlobalFunction.wons + " won the match!");
                     GlobalFunction.gamemodes = null;
@@ -264,16 +258,6 @@ namespace Neko_Test
                     GlobalFunction.matchmember = null;
                     await Context.Client.SetGameAsync("No Game Hosting");
 
-                    var GetAllUser = Context.Client.GetGuild(465795320526274561).Users;
-                    foreach (var x in GetAllUser)
-                    {
-                        var g = Context.Client.GetGuild(465795320526274561).GetUser(x.Id).Roles.Any(a => a.Name == "Joining");
-                        if (g == true)
-                        {
-                            x.RemoveRoleAsync(Context.Client.GetGuild(465795320526274561).Roles.FirstOrDefault(c => c.Name == "Joining"));
-                        }
-                    }
-
                     IEnumerable<IMessage> nonPinnedMessages = await Context.Guild.GetTextChannel(559650561981415424).GetMessagesAsync(1000).FlattenAsync();
                     await Context.Guild.GetTextChannel(559650561981415424).DeleteMessagesAsync(nonPinnedMessages.Where(x => x.IsPinned == false));
                     //Bulk Delete Messages Channel #player-commands in Werewolf Online Simulation - Game Server.
@@ -286,7 +270,7 @@ namespace Neko_Test
                     await Context.Guild.GetTextChannel(549202652689596427).DeleteMessagesAsync(nonPinnedMessages3.Where(x => x.IsPinned == false));
                     //Bulk Delete Messages Channel #music-log in Werewolf Online Simulation - Game Server.
                 }
-                else if (GlobalFunction.gamestatus == "hosting" & GlobalFunction.gamecodes != null & GlobalFunction.wons != null)
+                /*else if (GlobalFunction.gamestatus == "hosting" & GlobalFunction.gamecodes != null & GlobalFunction.wons != null)
                 {
                     
                     embed.AddField($"Result of Match "+GlobalFunction.gamecodes+" \n \n", "" + GlobalFunction.matchmember + "\n" + GlobalFunction.matchresult + "");
@@ -327,7 +311,7 @@ namespace Neko_Test
                     IEnumerable<IMessage> nonPinnedMessages3 = await Context.Guild.GetTextChannel(549202652689596427).GetMessagesAsync(1000).FlattenAsync();
                     await Context.Guild.GetTextChannel(549202652689596427).DeleteMessagesAsync(nonPinnedMessages3.Where(x => x.IsPinned == false));
                     //Bulk Delete Messages Channel #music-log in Werewolf Online Simulation - Game Server.
-                }
+                }*/
                 else if (GlobalFunction.gamestatus == "hosting" & GlobalFunction.gamecodes != null & GlobalFunction.wons == null)
                 {
                     await Context.Channel.SendMessageAsync("Can't Announce game end. (Team to Win is Missing)");
@@ -342,7 +326,7 @@ namespace Neko_Test
                     GlobalFunction.daycount = 0;
                     GlobalFunction.matchresult = null;
                     GlobalFunction.matchmember = null;
-                    Context.Client.SetGameAsync("Waiting For Player");
+                    await Context.Client.SetGameAsync("Waiting For Player");
                 }
                 else
                 {
@@ -435,16 +419,16 @@ namespace Neko_Test
 
             if (gc == "del" & Context.User.Id == 454492255932252160)
             {
-                Context.Channel.SendMessageAsync("Game Code removed");
+                await Context.Channel.SendMessageAsync("Game Code removed");
                 GlobalFunction.gamecodes = null;
             }
             else if (gc == "show" & Context.User.Id == 454492255932252160)
             {
-                Context.Channel.SendMessageAsync("Game Code is " + GlobalFunction.gamecodes + "");
+                await Context.Channel.SendMessageAsync("Game Code is " + GlobalFunction.gamecodes + "");
             }
             else if (gc == "test" & Context.User.Id == 454492255932252160)
             {
-                Context.Channel.SendMessageAsync("<#549192241017520140>");
+                await Context.Channel.SendMessageAsync("<#549192241017520140>");
             }
             else if (gc == "start" & Context.User.Id == 454492255932252160)
             {
@@ -461,7 +445,7 @@ namespace Neko_Test
             }
             else if (gc == "status")
             {
-                Context.Channel.SendMessageAsync("Status of Narrator Bot is " + checkbotstatus.Status + "");
+                await Context.Channel.SendMessageAsync("Status of Narrator Bot is " + checkbotstatus.Status + "");
             }
             else if (gc == "aaa" & Context.User.Id == 454492255932252160)
             {
@@ -537,7 +521,7 @@ namespace Neko_Test
                         var g = Context.Guild.GetUser(x.Id).Roles.Any(a => a.Name == "Joining");
                         if (g == true)
                         {
-                            x.RemoveRoleAsync(Context.Guild.Roles.FirstOrDefault(c => c.Name == "Joining"));
+                            await  x.RemoveRoleAsync(Context.Guild.Roles.FirstOrDefault(c => c.Name == "Joining"));
                         }
                     }
                 }
@@ -601,20 +585,14 @@ namespace Neko_Test
                     await Context.Client.GetGuild(472261911526768642).GetTextChannel(549198145779793930).SendMessageAsync("Game Over - Villagers Win!");
                     await Context.Client.SetGameAsync("Game Ended");
                     var embed = new EmbedBuilder();
-                    if (GlobalFunction.matchmember == null & GlobalFunction.matchresult != null)
+                    var GetAllUser = Context.Guild.Users;
+                    foreach (var x in GetAllUser)
                     {
-                        embed.AddField($"Result of Match " + GlobalFunction.gamecodes + " \n \n", "" + GlobalFunction.matchresult + "");
-                        embed.WithColor(new Discord.Color(0, 255, 0));
-                        await Context.Guild.GetTextChannel(551722715715731460).SendMessageAsync("", false, embed.Build());
-                        await Context.Guild.GetTextChannel(551722715715731460).SendMessageAsync(Context.User.Mention+", Match Member is Missing, use -addmember before end the Game or Match will not result in Game Warning.");
-                        return;
-                    }
-                    else
-                    {
-                        embed.AddField($"Result of Match " + GlobalFunction.gamecodes + " \n \n", ""+GlobalFunction.matchmember+"\n" + GlobalFunction.matchresult + "");
-                        embed.WithColor(new Discord.Color(0, 255, 0));
-                        await Context.Guild.GetTextChannel(551722715715731460).SendMessageAsync("", false, embed.Build());
-                        return;
+                        var g = Context.Client.GetGuild(465795320526274561).GetUser(x.Id).Roles.Any(a => a.Name == "Joining");
+                        if (g == true)
+                        {
+                            await x.RemoveRoleAsync(Context.Client.GetGuild(465795320526274561).Roles.FirstOrDefault(c => c.Name == "Joining"));
+                        }
                     }
                 }
             }
@@ -641,20 +619,14 @@ namespace Neko_Test
                     await Context.Client.GetGuild(472261911526768642).GetTextChannel(549198145779793930).SendMessageAsync("Game Over - Werewolves Win!");
                     await Context.Client.SetGameAsync("Game Ended");
                     var embed = new EmbedBuilder();
-                    if (GlobalFunction.matchmember == null & GlobalFunction.matchresult != null)
+                    var GetAllUser = Context.Guild.Users;
+                    foreach (var x in GetAllUser)
                     {
-                        embed.AddField($"Result of Match " + GlobalFunction.gamecodes + " \n \n", "" + GlobalFunction.matchresult + "");
-                        embed.WithColor(new Discord.Color(0, 255, 0));
-                        await Context.Guild.GetTextChannel(551722715715731460).SendMessageAsync("", false, embed.Build());
-                        await Context.Guild.GetTextChannel(551722715715731460).SendMessageAsync(Context.User.Mention + ", Match Member is Missing, use -addmember before end the Game or Match will not result in Game Warning.");
-                        return;
-                    }
-                    else
-                    {
-                        embed.AddField($"Result of Match " + GlobalFunction.gamecodes + " \n \n", "" + GlobalFunction.matchmember + "\n" + GlobalFunction.matchresult + "");
-                        embed.WithColor(new Discord.Color(0, 255, 0));
-                        await Context.Guild.GetTextChannel(551722715715731460).SendMessageAsync("", false, embed.Build());
-                        return;
+                        var g = Context.Client.GetGuild(465795320526274561).GetUser(x.Id).Roles.Any(a => a.Name == "Joining");
+                        if (g == true)
+                        {
+                            await  x.RemoveRoleAsync(Context.Client.GetGuild(465795320526274561).Roles.FirstOrDefault(c => c.Name == "Joining"));
+                        }
                     }
                 }
             }
@@ -684,20 +656,14 @@ namespace Neko_Test
                 await Context.Client.GetGuild(472261911526768642).GetTextChannel(549198145779793930).SendMessageAsync("Game Over - " + team + " Win!");
                 await Context.Client.SetGameAsync("Game Ended");
                 var embed = new EmbedBuilder();
-                if (GlobalFunction.matchmember == null & GlobalFunction.matchresult != null)
+                var GetAllUser = Context.Guild.Users;
+                foreach (var x in GetAllUser)
                 {
-                    embed.AddField($"Result of Match " + GlobalFunction.gamecodes + " \n \n", "" + GlobalFunction.matchresult + "");
-                    embed.WithColor(new Discord.Color(0, 255, 0));
-                    await Context.Guild.GetTextChannel(551722715715731460).SendMessageAsync("", false, embed.Build());
-                    await Context.Guild.GetTextChannel(551722715715731460).SendMessageAsync(Context.User.Mention + ", Match Member is Missing, use -addmember before end the Game or Match will not result in Game Warning.");
-                    return;
-                }
-                else
-                {
-                    embed.AddField($"Result of Match " + GlobalFunction.gamecodes + " \n \n", "" + GlobalFunction.matchmember + "\n" + GlobalFunction.matchresult + "");
-                    embed.WithColor(new Discord.Color(0, 255, 0));
-                    await Context.Guild.GetTextChannel(551722715715731460).SendMessageAsync("", false, embed.Build());
-                    return;
+                    var g = Context.Client.GetGuild(465795320526274561).GetUser(x.Id).Roles.Any(a => a.Name == "Joining");
+                    if (g == true)
+                    {
+                        await  x.RemoveRoleAsync(Context.Client.GetGuild(465795320526274561).Roles.FirstOrDefault(c => c.Name == "Joining"));
+                    }
                 }
             }
             else
@@ -707,21 +673,15 @@ namespace Neko_Test
                 GlobalFunction.wons = team;
                 await Context.Client.GetGuild(472261911526768642).GetTextChannel(549198145779793930).SendMessageAsync("Game Over - " + team + " Win!");
                 await Context.Client.SetGameAsync("Game Ended");
-                    var embed = new EmbedBuilder();
-                    if (GlobalFunction.matchmember == null & GlobalFunction.matchresult != null)
+                var embed = new EmbedBuilder();
+                    var GetAllUser = Context.Guild.Users;
+                    foreach (var x in GetAllUser)
                     {
-                        embed.AddField($"Result of Match " + GlobalFunction.gamecodes + " \n \n", "" + GlobalFunction.matchresult + "");
-                        embed.WithColor(new Discord.Color(0, 255, 0));
-                        await Context.Guild.GetTextChannel(551722715715731460).SendMessageAsync("", false, embed.Build());
-                        await Context.Guild.GetTextChannel(551722715715731460).SendMessageAsync(Context.User.Mention + ", Match Member is Missing, use -addmember before end the Game or Match will not result in Game Warning.");
-                        return;
-                    }
-                    else
-                    {
-                        embed.AddField($"Result of Match " + GlobalFunction.gamecodes + " \n \n", "" + GlobalFunction.matchmember + "\n" + GlobalFunction.matchresult + "");
-                        embed.WithColor(new Discord.Color(0, 255, 0));
-                        await Context.Guild.GetTextChannel(551722715715731460).SendMessageAsync("", false, embed.Build());
-                        return;
+                        var g = Context.Client.GetGuild(465795320526274561).GetUser(x.Id).Roles.Any(a => a.Name == "Joining");
+                        if (g == true)
+                        {
+                            await  x.RemoveRoleAsync(Context.Client.GetGuild(465795320526274561).Roles.FirstOrDefault(c => c.Name == "Joining"));
+                        }
                     }
                 }
             }
@@ -738,11 +698,11 @@ namespace Neko_Test
             }
             else if (GlobalFunction.gamecodes == null)
             {
-                Context.Channel.SendMessageAsync("No game hosting at this time.");
+                await Context.Channel.SendMessageAsync("No game hosting at this time.");
             }
             else if (gamecd == null)
             {
-                Context.Channel.SendMessageAsync("Game Code to join is Missing, Please check Game Code in <#549193422817329156>.");
+                await Context.Channel.SendMessageAsync("Game Code to join is Missing, Please check Game Code in <#549193422817329156>.");
             }
             else if (GlobalFunction.gamecodes != null & gamecd == GlobalFunction.gamecodes)
             {
@@ -757,9 +717,9 @@ namespace Neko_Test
             if (Context.Client.GetGuild(465795320526274561).GetUser(Context.User.Id).Roles.Any(x => x.Name == "Bot Helper") || Context.Client.GetGuild(465795320526274561).GetUser(Context.User.Id).Roles.Any(x => x.Name == "Bot Dev"))
             {
                 GlobalFunction.gamecodes = null;
-                Context.Channel.SendMessageAsync("Game Code has been reseted");
+                await Context.Channel.SendMessageAsync("Game Code has been reseted");
                 GlobalFunction.wons = null;
-                Context.Channel.SendMessageAsync("Team won has been reseted");
+                await Context.Channel.SendMessageAsync("Team won has been reseted");
                 GlobalFunction.gamestatus = null;
                 GlobalFunction.jailed = 0;
                 GlobalFunction.jailer = 0;
@@ -767,8 +727,8 @@ namespace Neko_Test
                 GlobalFunction.daycount = 0;
                 GlobalFunction.matchmember = null;
                 GlobalFunction.matchresult = null;
-                Context.Channel.SendMessageAsync("Game Status has been reseted");
-                Context.Client.SetGameAsync("No Game Hosting");
+                await Context.Channel.SendMessageAsync("Game Status has been reseted");
+                await Context.Client.SetGameAsync("No Game Hosting");
             }
             else
             {
@@ -933,7 +893,7 @@ namespace Neko_Test
                         embed.AddField($"Done!", "Game Async for Me now changed to No Game Hosting");
                         embed.WithColor(new Discord.Color(0, 255, 0));
                         await Context.Channel.SendMessageAsync("", false, embed.Build());
-                        Context.Client.SetGameAsync("No Game Hosting");
+                        await Context.Client.SetGameAsync("No Game Hosting");
                     }
                 }
                 else if (num == 1)
@@ -962,7 +922,7 @@ namespace Neko_Test
                     embed.AddField($"Done!", "Game Async for Me now changed to " + text + "");
                     embed.WithColor(new Discord.Color(0, 255, 0));
                     await Context.Channel.SendMessageAsync("", false, embed.Build());
-                    Context.Client.SetGameAsync(text);
+                    await Context.Client.SetGameAsync(text);
                 }
                 else
                 {
@@ -973,7 +933,7 @@ namespace Neko_Test
                 }
             }
         }
-        [Command("add")]
+        /*[Command("add")]
         public async Task addmatchresult([Remainder] string text = null)
         {
             if (Context.Guild.Id != 472261911526768642)
@@ -1086,24 +1046,6 @@ namespace Neko_Test
             else
             {
                 await Context.Channel.SendMessageAsync("Your Narrator or Narrator Trainee Role is Missing.");
-                return;
-            }
-        }
-        /*[Command("test3")]
-        public async Task removeee()
-        {
-            SocketGuildUser User1 = Context.User as SocketGuildUser;
-            if (!User1.GuildPermissions.ManageRoles)
-            {
-                await Context.Channel.SendMessageAsync("Your Permission is Missing (ManageRoles Permission)");
-                return;
-            }
-            else
-            {
-                List<ulong> users = new List<ulong>();
-                //await Context.Client.GetGuild(465795320526274561).GetUser(Context.Guild.Users).RemoveRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Jailed"));
-                //await (Context.Guild.Users as IGuildUser).RemoveRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Hi"));
-                await Context.Channel.SendMessageAsync(""+Context.Guild.Users+"");
                 return;
             }
         }*/
