@@ -25,8 +25,32 @@ namespace Neko_Test.ModulesMaCun
             get { return gamestatuss; }
             set { gamestatuss = value; }
         }
-        private static ulong plrz;
-        public static ulong plr
+        private static int phesois;
+        public static int phesoi
+        {
+            get { return phesois; }
+            set { phesois = value; }
+        }
+        private static int phedans;
+        public static int phedan
+        {
+            get { return phedans; }
+            set { phedans = value; }
+        }
+        private static int phethu3s;
+        public static int phethu3
+        {
+            get { return phethu3s; }
+            set { phethu3s = value; }
+        }
+        private static int daycounts;
+        public static int daycount
+        {
+            get { return daycounts; }
+            set { daycounts = value; }
+        }
+        private static int plrz;
+        public static int plr
         {
             get { return plrz; }
             set { plrz = value; }
@@ -186,6 +210,114 @@ namespace Neko_Test.ModulesMaCun
         {
             get { return channel13z; }
             set { channel13z = value; }
+        }
+        private static int khienbaove;
+        public static int khien
+        {
+            get { return khienbaove; }
+            set { khienbaove = value; }
+        }
+        private static int thuocbaove;
+        public static int thuoccuu
+        {
+            get { return thuocbaove; }
+            set { thuocbaove = value; }
+        }
+        private static int thuocdocs;
+        public static int thuocdoc
+        {
+            get { return thuocdocs; }
+            set { thuocdocs = value; }
+        }
+        private static int danxathus;
+        public static int danxathu
+        {
+            get { return danxathus; }
+            set { danxathus = value; }
+        }
+        private static int manggialangs;
+        public static int gialang
+        {
+            get { return manggialangs; }
+            set { manggialangs = value; }
+        }
+        private static int thayboisoi;
+        public static int thayboi
+        {
+            get { return thayboisoi; }
+            set { thayboisoi = value; }
+        }
+        private static int tientrisoi;
+        public static int tientri
+        {
+            get { return tientrisoi; }
+            set { tientrisoi = value; }
+        }
+        private static ulong baovedibaove;
+        public static ulong baoveplr
+        {
+            get { return baovedibaove; }
+            set { baovedibaove = value; }
+        }
+        private static int demdaus;
+        public static int demdau
+        {
+            get { return demdaus; }
+            set { demdaus = value; }
+        }
+        private static ulong phupheps;
+        public static ulong phuphep
+        {
+            get { return phupheps; }
+            set { phupheps = value; }
+        }
+        private static ulong dongbangs;
+        public static ulong dongbang
+        {
+            get { return dongbangs; }
+            set { dongbangs = value; }
+        }
+        private static ulong cuus;
+        public static ulong cuu
+        {
+            get { return cuus; }
+            set { cuus = value; }
+        }
+        private static ulong canplrs;
+        public static ulong can
+        {
+            get { return canplrs; }
+            set { canplrs = value; }
+        }
+        private static ulong keos;
+        public static ulong keo
+        {
+            get { return keos; }
+            set { keos = value; }
+        }
+        private static ulong dams;
+        public static ulong dam
+        {
+            get { return dams; }
+            set { dams = value; }
+        }
+        private static int votesongs;
+        public static int votesong
+        {
+            get { return votesongs; }
+            set { votesongs = value; }
+        }
+        private static int votechets;
+        public static int votechet
+        {
+            get { return votesongs; }
+            set { votesongs = value; }
+        }
+        private static ulong bitreos;
+        public static ulong treo
+        {
+            get { return bitreos; }
+            set { bitreos = value; }
         }
     }
 }
