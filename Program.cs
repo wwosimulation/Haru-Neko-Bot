@@ -9,7 +9,6 @@ using Discord.WebSocket;
 using Discord.Addons.Interactive;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using System.Threading.Tasks;
 
 
 namespace Neko_Test
@@ -51,23 +50,26 @@ namespace Neko_Test
             Client.Ready += Client_Ready;
             Client.Log += Client_Log;
 
-            string load = "Token Bot";
+            //string load = "NTQ4NzA0OTQyMzUzODA5NDA5.XOAxnw.t4zVsJZb-xAAJFQanENrb_ySYFs";
 
-            await Client.LoginAsync(TokenType.Bot, load);
+            await Client.LoginAsync(TokenType.Bot, "NTQ4NzA0OTQyMzUzODA5NDA5.XOAxnw.t4zVsJZb-xAAJFQanENrb_ySYFs");
             await Client.StartAsync();
 
             await Task.Delay(-1);
         }
 
+        //public event Func<GuildConfig, Task> JoinedGuild = delegate { return Task.CompletedTask; };
+
         private async Task Client_Log(LogMessage Message)
         {
-            Console.WriteLine($"{DateTime.Now} at {Message.Source}] {Message.Message}");
+            //Console.WriteLine($"{DateTime.Now} at {Message.Source}] {Message.Message}");
+            //Make Spam Console.
         }
 
 
         private async Task Client_Ready()
         {
-            await Client.SetGameAsync("Supporting WWO - Game Server");
+            await Client.SetGameAsync("No Game Hosting");
         }
 
         private async Task Client_MessageReceived(SocketMessage MessageParam)
@@ -100,6 +102,19 @@ namespace Neko_Test
                                 $"An error has occurred {Result.ErrorReason}");
                             break;
                     }
+            }
+            if (Result.IsSuccess)
+            {
+                if (Context.Guild.Id == 465795320526274561)
+                {
+                    var embed = new EmbedBuilder();
+                    {
+                        embed.WithAuthor($"{Context.User.Username}#{Context.User.Discriminator}", Context.User.GetAvatarUrl());
+                        embed.AddField($"Used Command: "+Context.Message+"", ""+DateTime.Now.Hour+ ":" + DateTime.Now.Minute + " • " + DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year + " (GMT +7)");
+                        embed.WithColor(new Discord.Color(0, 255, 0));
+                        await Context.Client.GetGuild(465795320526274561).GetTextChannel(579152173217218570).SendMessageAsync("", false, embed.Build());
+                    }
+                }
             }
         }
     }

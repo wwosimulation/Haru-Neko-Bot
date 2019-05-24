@@ -66,6 +66,9 @@ Ma Cún - Game Server ID: 580555457983152149
 -dongbang (Đã Xong) - 1 Mục - Sáng
 -dam (Đã Xong) - 1 Mục - Đêm
 
+//                      await Context.Guild.GetTextChannel(580564164687298609).SendMessageAsync("" + Context.Guild.GetUser(Context.User.Id).Nickname + " đã bỏ phiếu **__Sống__**.");
+                        return;
+
 
                         if (GlobalFunctionMaCun.danxathu >= 1 )
                         {

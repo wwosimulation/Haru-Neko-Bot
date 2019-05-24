@@ -259,12 +259,6 @@ namespace Neko_Test.ModulesMaCun
             get { return baovedibaove; }
             set { baovedibaove = value; }
         }
-        private static int demdaus;
-        public static int demdau
-        {
-            get { return demdaus; }
-            set { demdaus = value; }
-        }
         private static ulong phupheps;
         public static ulong phuphep
         {
@@ -276,6 +270,12 @@ namespace Neko_Test.ModulesMaCun
         {
             get { return dongbangs; }
             set { dongbangs = value; }
+        }
+        private static ulong lastdongbangs;
+        public static ulong lastdongbang
+        {
+            get { return lastdongbangs; }
+            set { lastdongbangs = value; }
         }
         private static ulong cuus;
         public static ulong cuu
@@ -319,5 +319,6 @@ namespace Neko_Test.ModulesMaCun
             get { return bitreos; }
             set { bitreos = value; }
         }
+
     }
 }
