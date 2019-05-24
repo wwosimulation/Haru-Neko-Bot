@@ -50,7 +50,7 @@ namespace Neko_Test
             Client.Ready += Client_Ready;
             Client.Log += Client_Log;
 
-            //string load = "NTQ4NzA0OTQyMzUzODA5NDA5.XOAxnw.t4zVsJZb-xAAJFQanENrb_ySYFs";
+            //string load = "";
 
             await Client.LoginAsync(TokenType.Bot, "Bot Token");
             await Client.StartAsync();
