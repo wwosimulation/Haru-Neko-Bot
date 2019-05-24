@@ -52,7 +52,7 @@ namespace Neko_Test
 
             //string load = "NTQ4NzA0OTQyMzUzODA5NDA5.XOAxnw.t4zVsJZb-xAAJFQanENrb_ySYFs";
 
-            await Client.LoginAsync(TokenType.Bot, "NTQ4NzA0OTQyMzUzODA5NDA5.XOAxnw.t4zVsJZb-xAAJFQanENrb_ySYFs");
+            await Client.LoginAsync(TokenType.Bot, "Bot Token");
             await Client.StartAsync();
 
             await Task.Delay(-1);
