@@ -84,7 +84,7 @@ namespace Neko_Test
                             await (getall as IGuildUser).RemoveRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Joining"));
                     }
                 }*/
-        [Command("purge")]
+        [Command("clear")]
         [Alias("clr")]
         [RequireBotPermission(Discord.GuildPermission.ManageMessages)]
         public async Task prune()
@@ -97,7 +97,7 @@ namespace Neko_Test
             }
             else
             {
-                IEnumerable<IMessage> nonPinnedMessages = await Context.Guild.GetTextChannel(Context.Channel.Id).GetMessagesAsync(1000).FlattenAsync();
+                IEnumerable<IMessage> nonPinnedMessages = await Context.Guild.GetTextChannel(Context.Channel.Id).GetMessagesAsync(500).FlattenAsync();
                 await Context.Guild.GetTextChannel(Context.Channel.Id).DeleteMessagesAsync(nonPinnedMessages.Where(x => x.IsPinned == false));
             }
         }

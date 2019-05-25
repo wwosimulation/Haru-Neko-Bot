@@ -41,7 +41,7 @@ namespace Neko_Test
                 //embed.WithTitle($"=== Game Server ===");
                 embed.AddField($"Game Server - Commands: -gnhelper, -gn, -gnarrate, -gnarrator", "Usage: -gnhelper to get GN Helper role (Require: GN Helper role in WWO Simulation)\n       -gn to get GN role (Require: Game Narrator role in WWO Simulation)\n       -gnarrate to become Narrator Trainee (Require: GN Helper role)\n       -gnarrator to remove Narrator Trainee (Require: Narrator Trainee role)");
                 //embed.WithTitle($"=== Another Commands ===");
-                embed.AddField($"Another Commands: -recover, -change, -reset, -stats, -clr", "Usage: -recover <Num> <Text> to change Game's Info (Require: ManageRoles Permission)\n       -change <User> <New Nickname> to change Nick Name of User (Require: ManageNicknames Permission)\n       -reset to reset Status Running in GlobalFunction (Require: Bot Helper or Bot Dev role in WWO Simulation)\n       -stats to show Status Running in GlobalFunction (Require: Bot Helper or Bot Dev role in WWO Simulation)\n       -clr to Bulk Delete Messages channel (Require: ManageMessages Permission)");
+                embed.AddField($"Another Commands: -recover, -change, -reset, -stats, -clr", "Usage: -recover <Num> <Text> to change Game's Info (Require: ManageRoles Permission)\n       -change <User> <New Nickname> to change Nick Name of User (Require: ManageNicknames Permission)\n       -reset to reset Status Running in GlobalFunction (Require: Bot Helper or Bot Dev role in WWO Simulation)\n       -stats to show Status Running in GlobalFunction (Require: Game Narrator or GN Helper role in WWO Simulation)\n       -clr to Bulk Delete Messages channel (Require: ManageMessages Permission)");
                 embed.AddField($"More Soon", "...");
 
                 int Re = rnd.Next(0, 255);
@@ -88,12 +88,9 @@ namespace Neko_Test
                 await Context.Client.GetGuild(465795320526274561).GetTextChannel(549242357741256705).SendMessageAsync("Game Start has been announced.");
                 await Context.Client.GetGuild(472261911526768642).GetTextChannel(549202043517272064).SendMessageAsync("Game Start has been announced.");
                 GlobalFunction.jailerammo = 1;
+                GlobalFunction.gamestatus = "hosting";
                 GlobalFunction.gametime = "night";
                 await Context.Client.SetGameAsync("Game Started");
-                if (GlobalFunction.gamestatus != "hosting")
-                {
-                    GlobalFunction.gamestatus = "hosting";
-                }
             }
         }
         [Command("night")]
@@ -127,17 +124,17 @@ namespace Neko_Test
                 if (GlobalFunction.gametime == "day" & GlobalFunction.gamestatus == "hosting" & GlobalFunction.gamecodes != null)
                 {
                     GlobalFunction.gametime = "night";
-                    if (GlobalFunction.jailed != 0)
+                    if (GlobalFunction.jailed != 0 & Context.Guild.Roles.FirstOrDefault(x => x.Name == "Alive").Members.Contains(Context.Guild.GetUser(GlobalFunction.jailed)))
                     {
-                        await Context.Client.GetGuild(465795320526274561).GetUser(GlobalFunction.jailed).AddRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Jailed"));
+                        await Context.Client.GetGuild(465795320526274561).GetUser(GlobalFunction.jailed).AddRoleAsync(Context.Client.GetGuild(465795320526274561).Roles.FirstOrDefault(x => x.Name == "Jailed"));
                     }
                 }
                 else
                 {
                     GlobalFunction.gametime = "night";
-                    if (GlobalFunction.jailed != 0)
+                    if (GlobalFunction.jailed != 0 & Context.Guild.Roles.FirstOrDefault(x => x.Name == "Alive").Members.Contains(Context.Guild.GetUser(GlobalFunction.jailed)))
                     {
-                        await Context.Client.GetGuild(465795320526274561).GetUser(GlobalFunction.jailed).AddRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Jailed"));
+                        await Context.Client.GetGuild(465795320526274561).GetUser(GlobalFunction.jailed).AddRoleAsync(Context.Client.GetGuild(465795320526274561).Roles.FirstOrDefault(x => x.Name == "Jailed"));
                     }
                 }
             }
@@ -176,7 +173,7 @@ namespace Neko_Test
                     GlobalFunction.gametime = "day";
                     if (GlobalFunction.jailed != 0)
                     {
-                        await Context.Client.GetGuild(465795320526274561).GetUser(GlobalFunction.jailed).RemoveRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Jailed"));
+                        await Context.Client.GetGuild(465795320526274561).GetUser(GlobalFunction.jailed).RemoveRoleAsync(Context.Client.GetGuild(465795320526274561).Roles.FirstOrDefault(x => x.Name == "Jailed"));
                     }
                 }
                 else
@@ -184,7 +181,7 @@ namespace Neko_Test
                     GlobalFunction.gametime = "day";
                     if (GlobalFunction.jailed != 0)
                     {
-                        await Context.Client.GetGuild(465795320526274561).GetUser(GlobalFunction.jailed).RemoveRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Jailed"));
+                        await Context.Client.GetGuild(465795320526274561).GetUser(GlobalFunction.jailed).RemoveRoleAsync(Context.Client.GetGuild(465795320526274561).Roles.FirstOrDefault(x => x.Name == "Jailed"));
                     }
                 }
             }
@@ -343,6 +340,62 @@ namespace Neko_Test
                     await Context.Client.SetGameAsync("No Game Hosting");
                 }
             }
+        }
+        [Command("addplayer")]
+        public async Task themvaitrochonguoichoi(IGuildUser user = null, IGuildChannel channel = null)
+        {
+            if (Context.Guild.Id == 472261911526768642)
+            {
+                OverwritePermissions chophep = new OverwritePermissions(viewChannel: PermValue.Allow, sendMessages: PermValue.Allow, readMessageHistory: PermValue.Allow);
+                var embed = new EmbedBuilder();
+                SocketGuildUser User1 = Context.User as SocketGuildUser;
+                if (!User1.GuildPermissions.ManageRoles)
+                {
+                    embed.AddField($"Error!", "User need ManageRoles Permission.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else
+                {
+                    if (user == null)
+                    {
+                        embed.AddField($"Error!", "User to add is Missing.");
+                        embed.WithColor(new Discord.Color(255, 0, 0));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                    else if (channel == null)
+                    {
+                        embed.AddField($"Error!", "Channel to add User is Missing.");
+                        embed.WithColor(new Discord.Color(255, 0, 0));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                    else
+                    {
+                        await Context.Client.GetGuild(472261911526768642).GetTextChannel(channel.Id).AddPermissionOverwriteAsync(user, chophep.Modify());
+                        await Context.Channel.SendMessageAsync("Added " + user.Nickname + " to <#" + channel.Id + ".");
+                    }
+                }
+            }
+            else return;
+        }
+        [Command("dj")]
+        [RequireBotPermission(Discord.GuildPermission.ManageRoles)]
+        public async Task djrole()
+        {
+            var WWO = Context.Client.GetGuild(465795320526274561);
+            var user = WWO.GetUser(Context.User.Id);
+
+            if (Context.Guild.Id != 472261911526768642)
+            {
+                await Context.Channel.SendMessageAsync("This Command is Only work in WWO Simulation - Game Server!");
+                return;
+            }
+            else if (user.Roles.Any(x => x.Name == "DJ"))
+            {
+                await (Context.User as IGuildUser).AddRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "DJ"));
+                await Context.Channel.SendMessageAsync("Role Added!");
+            }
+            else await Context.Channel.SendMessageAsync("Your DJ role is Missing in Main - WWO Simulation!");
         }
         [Command("gnarrate")]
         [RequireBotPermission(Discord.GuildPermission.ManageRoles)]
@@ -585,7 +638,7 @@ namespace Neko_Test
                     await Context.Client.GetGuild(472261911526768642).GetTextChannel(549198145779793930).SendMessageAsync("Game Over - Villagers Win!");
                     await Context.Client.SetGameAsync("Game Ended");
                     var embed = new EmbedBuilder();
-                    var GetAllUser = Context.Guild.Users;
+                    var GetAllUser = Context.Client.GetGuild(465795320526274561).Users;
                     foreach (var x in GetAllUser)
                     {
                         var g = Context.Client.GetGuild(465795320526274561).GetUser(x.Id).Roles.Any(a => a.Name == "Joining");
@@ -619,13 +672,13 @@ namespace Neko_Test
                     await Context.Client.GetGuild(472261911526768642).GetTextChannel(549198145779793930).SendMessageAsync("Game Over - Werewolves Win!");
                     await Context.Client.SetGameAsync("Game Ended");
                     var embed = new EmbedBuilder();
-                    var GetAllUser = Context.Guild.Users;
+                    var GetAllUser = Context.Client.GetGuild(465795320526274561).Users;
                     foreach (var x in GetAllUser)
                     {
                         var g = Context.Client.GetGuild(465795320526274561).GetUser(x.Id).Roles.Any(a => a.Name == "Joining");
                         if (g == true)
                         {
-                            await  x.RemoveRoleAsync(Context.Client.GetGuild(465795320526274561).Roles.FirstOrDefault(c => c.Name == "Joining"));
+                            await x.RemoveRoleAsync(Context.Client.GetGuild(465795320526274561).Roles.FirstOrDefault(c => c.Name == "Joining"));
                         }
                     }
                 }
@@ -656,13 +709,13 @@ namespace Neko_Test
                 await Context.Client.GetGuild(472261911526768642).GetTextChannel(549198145779793930).SendMessageAsync("Game Over - " + team + " Win!");
                 await Context.Client.SetGameAsync("Game Ended");
                 var embed = new EmbedBuilder();
-                var GetAllUser = Context.Guild.Users;
+                var GetAllUser = Context.Client.GetGuild(465795320526274561).Users;
                 foreach (var x in GetAllUser)
                 {
                     var g = Context.Client.GetGuild(465795320526274561).GetUser(x.Id).Roles.Any(a => a.Name == "Joining");
                     if (g == true)
                     {
-                        await  x.RemoveRoleAsync(Context.Client.GetGuild(465795320526274561).Roles.FirstOrDefault(c => c.Name == "Joining"));
+                        await x.RemoveRoleAsync(Context.Client.GetGuild(465795320526274561).Roles.FirstOrDefault(c => c.Name == "Joining"));
                     }
                 }
             }
@@ -674,13 +727,13 @@ namespace Neko_Test
                 await Context.Client.GetGuild(472261911526768642).GetTextChannel(549198145779793930).SendMessageAsync("Game Over - " + team + " Win!");
                 await Context.Client.SetGameAsync("Game Ended");
                 var embed = new EmbedBuilder();
-                    var GetAllUser = Context.Guild.Users;
+                    var GetAllUser = Context.Client.GetGuild(465795320526274561).Users;
                     foreach (var x in GetAllUser)
                     {
                         var g = Context.Client.GetGuild(465795320526274561).GetUser(x.Id).Roles.Any(a => a.Name == "Joining");
                         if (g == true)
                         {
-                            await  x.RemoveRoleAsync(Context.Client.GetGuild(465795320526274561).Roles.FirstOrDefault(c => c.Name == "Joining"));
+                            await x.RemoveRoleAsync(Context.Client.GetGuild(465795320526274561).Roles.FirstOrDefault(c => c.Name == "Joining"));
                         }
                     }
                 }
@@ -783,7 +836,7 @@ namespace Neko_Test
                             if (GlobalFunction.gametime == "night" & Context.Guild.GetUser(Context.User.Id).Roles.Any(x => x.Name == "Alive") & Context.Guild.GetUser(user.Id).Roles.Any(x => x.Name == "Alive"))
                             {
                                 GlobalFunction.jailerammo--;
-                                await Context.Client.GetGuild(465795320526274561).GetUser(GlobalFunction.jailed).RemoveRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Jailed"));
+                                await Context.Client.GetGuild(465795320526274561).GetUser(GlobalFunction.jailed).RemoveRoleAsync(Context.Client.GetGuild(465795320526274561).Roles.FirstOrDefault(x => x.Name == "Jailed"));
                                 GlobalFunction.jailed = 0;
                             }
                             else return;
@@ -798,7 +851,7 @@ namespace Neko_Test
         [Command("stats")]
         public async Task ShowStatsAllGlobalFunction()
         {
-            if (Context.Client.GetGuild(465795320526274561).GetUser(Context.User.Id).Roles.Any(x => x.Name == "Bot Helper") || Context.Client.GetGuild(465795320526274561).GetUser(Context.User.Id).Roles.Any(x => x.Name == "Bot Dev"))
+            if (Context.Client.GetGuild(465795320526274561).GetUser(Context.User.Id).Roles.Any(x => x.Name == "Game Narrator") & Context.Client.GetGuild(465795320526274561).GetUser(Context.User.Id).Roles.Any(x => x.Name == "GN Helper"))
             {
                 var embed = new EmbedBuilder();
                 {
@@ -811,7 +864,7 @@ namespace Neko_Test
             }
             else
             {
-                await Context.Channel.SendMessageAsync("Your Bot Helper or Bot Dev role is Missing in WWO Simulation.");
+                await Context.Channel.SendMessageAsync("Your Game Narrator role is Missing in WWO Simulation.");
                 return;
             }
         }

@@ -310,8 +310,8 @@ namespace Neko_Test.ModulesMaCun
         private static int votechets;
         public static int votechet
         {
-            get { return votesongs; }
-            set { votesongs = value; }
+            get { return votechets; }
+            set { votechets = value; }
         }
         private static ulong bitreos;
         public static ulong treo
