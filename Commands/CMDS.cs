@@ -57,8 +57,9 @@ namespace Neko_Test
         [Command("srole")]
         [Alias("testsrole")]
         [RequireBotPermission(Discord.GuildPermission.ManageGuild)]
-        public async Task morning(String gamemode = null, [Remainder] string check = null)
+        public async Task morning(string gamemode = null, [Remainder] string check = null)
         {
+            gamemode.ToLower();
             SocketGuildUser User1 = Context.User as SocketGuildUser;
             if (Context.Guild.Id != 472261911526768642)
             {
@@ -648,6 +649,7 @@ namespace Neko_Test
                         }
                     }
                 }
+                else return;
             }
         }
         [Command("wwin")]
@@ -682,6 +684,7 @@ namespace Neko_Test
                         }
                     }
                 }
+                else return;
             }
         }
         [Command("win")]
@@ -737,6 +740,7 @@ namespace Neko_Test
                         }
                     }
                 }
+                else return;
             }
         }
         [Command("join")]
@@ -757,7 +761,7 @@ namespace Neko_Test
             {
                 await Context.Channel.SendMessageAsync("Game Code to join is Missing, Please check Game Code in <#549193422817329156>.");
             }
-            else if (GlobalFunction.gamecodes != null & gamecd == GlobalFunction.gamecodes)
+            else if (gamecd.ToLower() == (GlobalFunction.gamecodes).ToLower())
             {
                 await (Context.User as IGuildUser).AddRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Joining"));
             }
@@ -851,7 +855,7 @@ namespace Neko_Test
         [Command("stats")]
         public async Task ShowStatsAllGlobalFunction()
         {
-            if (Context.Client.GetGuild(465795320526274561).GetUser(Context.User.Id).Roles.Any(x => x.Name == "Game Narrator") & Context.Client.GetGuild(465795320526274561).GetUser(Context.User.Id).Roles.Any(x => x.Name == "GN Helper"))
+            if (Context.Client.GetGuild(465795320526274561).GetUser(Context.User.Id).Roles.Any(x => x.Name == "Game Narrator") || Context.Client.GetGuild(465795320526274561).GetUser(Context.User.Id).Roles.Any(x => x.Name == "GN Helper"))
             {
                 var embed = new EmbedBuilder();
                 {
@@ -864,13 +868,13 @@ namespace Neko_Test
             }
             else
             {
-                await Context.Channel.SendMessageAsync("Your Game Narrator role is Missing in WWO Simulation.");
+                await Context.Channel.SendMessageAsync("Your Game Narrator or GN Helper role is Missing in WWO Simulation.");
                 return;
             }
         }
         [Command("change")]
         [RequireBotPermission(Discord.GuildPermission.ManageNicknames)]
-        public async Task changenickname(IGuildUser user = null, string nickname = null)
+        public async Task changenickname(IGuildUser user = null, [Remainder] string nickname = null)
         {
             SocketGuildUser User1 = Context.User as SocketGuildUser;
             if (!User1.GuildPermissions.ManageNicknames)
