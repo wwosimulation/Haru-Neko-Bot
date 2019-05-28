@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
@@ -50,9 +51,9 @@ namespace Neko_Test
             Client.Ready += Client_Ready;
             Client.Log += Client_Log;
 
-            //string load = "";
+            string load = File.ReadAllText("TokenBot.txt");
 
-            await Client.LoginAsync(TokenType.Bot, "Bot Token");
+            await Client.LoginAsync(TokenType.Bot, load);
             await Client.StartAsync();
 
             await Task.Delay(-1);
@@ -90,18 +91,65 @@ namespace Neko_Test
                 Console.WriteLine($"{DateTime.Now} at Commands] Something went wrong with executing a command. Text: {Context.Message.Content} | Error {Result.ErrorReason}");
 
                 if (Result.Error != null)
-                    switch (Result.Error)
+                { 
+                    if (Context.Guild.Id == 580555457983152149)
                     {
-
-                        case CommandError.UnknownCommand:
-                            break;
-                        case CommandError.BadArgCount:
-                            break;
-                        default:
-                            await Context.Channel.SendMessageAsync(
-                                $"An error has occurred {Result.ErrorReason}");
-                            break;
+                        var embed = new EmbedBuilder();
+                        {
+                            if (CommandError.ObjectNotFound == Result.Error)
+                            {
+                                embed.AddField($"Lỗi!", "Không tìm thấy người chơi.");
+                                embed.WithColor(new Discord.Color(255, 0, 0));
+                                await Context.Channel.SendMessageAsync("", false, embed.Build());
+                            }
+                            if (CommandError.BadArgCount == Result.Error)
+                            {
+                                embed.AddField($"Lỗi!", Result.ErrorReason);
+                                embed.WithColor(new Discord.Color(255, 0, 0));
+                                await Context.Channel.SendMessageAsync("", false, embed.Build());
+                            }
+                            if (CommandError.Exception == Result.Error)
+                            {
+                                embed.AddField($"Lỗi!", "Bị phá vỡ hoặc thiếu, thường thì giống như là không tim thấy mục tiêu, mục tiêu là Người Chơi hay hơn nữa.");
+                                embed.WithColor(new Discord.Color(255, 0, 0));
+                                await Context.Channel.SendMessageAsync("", false, embed.Build());
+                            }
+                            if (CommandError.MultipleMatches == Result.Error)
+                            {
+                                embed.AddField($"Lỗi!", "Nickname, Username hoặc ID của Người Chơi bị trùng lặp.");
+                                embed.WithColor(new Discord.Color(255, 0, 0));
+                                await Context.Channel.SendMessageAsync("", false, embed.Build());
+                            }
+                            if (CommandError.ParseFailed == Result.Error)
+                            {
+                                embed.AddField($"Lỗi!", "Chỉ chấp nhận số, không chấp nhận chữ.");
+                                embed.WithColor(new Discord.Color(255, 0, 0));
+                                await Context.Channel.SendMessageAsync("", false, embed.Build());
+                            }
+                            if (CommandError.UnmetPrecondition == Result.Error)
+                            {
+                                embed.AddField($"Lỗi!", Result.ErrorReason);
+                                embed.WithColor(new Discord.Color(255, 0, 0));
+                                await Context.Channel.SendMessageAsync("", false, embed.Build());
+                            }
+                        }
                     }
+                    else
+                    {
+                        switch (Result.Error)
+                        {
+
+                            case CommandError.UnknownCommand:
+                                break;
+                            case CommandError.BadArgCount:
+                                break;
+                            default:
+                                await Context.Channel.SendMessageAsync(
+                                    $"An error has occurred {Result.ErrorReason}");
+                                break;
+                        }
+                    }
+                }
             }
             if (Result.IsSuccess)
             {

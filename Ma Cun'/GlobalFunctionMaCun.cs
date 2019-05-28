@@ -319,6 +319,12 @@ namespace Neko_Test.ModulesMaCun
             get { return bitreos; }
             set { bitreos = value; }
         }
+        private static string mogames;
+        public static string mogame
+        {
+            get { return mogames; }
+            set { mogames = value; }
+        }
 
     }
 }

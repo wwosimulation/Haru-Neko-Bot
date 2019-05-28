@@ -48,6 +48,52 @@ namespace Neko_Test.Ma_Cun_
             }
             else return;
         }
+        [Command("mogame")]
+        public async Task mogame()
+        {
+            if (Context.Guild.Id == 580555457983152149)
+            {
+                var embed = new EmbedBuilder();
+                SocketGuildUser User1 = Context.User as SocketGuildUser;
+                if (!User1.GuildPermissions.ManageRoles)
+                {
+                    embed.AddField($"Lỗi!", "Người sử dụng cần có Quyền Điều Hành Role.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else
+                {
+                    GlobalFunctionMaCun.mogame = "damo";
+                    embed.AddField("Hệ Thống!", "Đã cho phép người chơi tham gia đăng ký Game.");
+                    embed.WithColor(new Discord.Color(0, 255, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+            }
+            else return;
+        }
+        [Command("donggame")]
+        public async Task donggame()
+        {
+            if (Context.Guild.Id == 580555457983152149)
+            {
+                var embed = new EmbedBuilder();
+                SocketGuildUser User1 = Context.User as SocketGuildUser;
+                if (!User1.GuildPermissions.ManageRoles)
+                {
+                    embed.AddField($"Lỗi!", "Người sử dụng cần có Quyền Điều Hành Role.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else
+                {
+                    GlobalFunctionMaCun.mogame = "donggame";
+                    embed.AddField("Hệ Thống!", "Đã hủy cho phép người chơi tham gia đăng ký Game.");
+                    embed.WithColor(new Discord.Color(0, 255, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+            }
+            else return;
+        }
         [Command("thamgia")]
         [RequireBotPermission(Discord.GuildPermission.ManageRoles)]
         public async Task thamgia()
@@ -55,7 +101,25 @@ namespace Neko_Test.Ma_Cun_
             var embed = new EmbedBuilder();
             if (Context.Guild.Id == 580555457983152149 & Context.Channel.Id == 580555887324954635)
             {
-                if (GlobalFunctionMaCun.gamestatus == 0 & !Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống").Members.Contains(Context.User) & !Context.Guild.Roles.FirstOrDefault(x => x.Name == "Chết").Members.Contains(Context.User))
+                if (GlobalFunctionMaCun.gamestatus != 0)
+                {
+                    embed.AddField($"Lỗi!", "Game đã bắt đầu nên bạn không thể Tham Gia (Dùng -khangia nếu bạn muốn xem).");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else if (GlobalFunctionMaCun.mogame == null)
+                {
+                    embed.AddField($"Lỗi!", "Không có game nào được mở nên không bạn thể tham gia.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else if (GlobalFunctionMaCun.mogame == "donggame")
+                {
+                    embed.AddField($"Lỗi!", "Quản Trò đã chốt người tham gia nên không bạn thể đăng ký tham gia.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else if (GlobalFunctionMaCun.gamestatus == 0 & !Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống").Members.Contains(Context.User) & !Context.Guild.Roles.FirstOrDefault(x => x.Name == "Chết").Members.Contains(Context.User))
                 {
                     int checkplayer = Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống").Members.Count();
                     checkplayer++;
@@ -77,12 +141,7 @@ namespace Neko_Test.Ma_Cun_
                         await Context.Channel.SendMessageAsync("", false, embed.Build());
                     }
                 }
-                else
-                {
-                    embed.AddField($"Lỗi!", "Game đã bắt đầu nên bạn không thể Tham Gia (Dùng -khangia nếu bạn muốn xem).");
-                    embed.WithColor(new Discord.Color(255, 0, 0));
-                    await Context.Channel.SendMessageAsync("", false, embed.Build());
-                }
+                else return;
             }
             else return;
         }
@@ -137,6 +196,7 @@ namespace Neko_Test.Ma_Cun_
                     GlobalFunctionMaCun.gialang = 1;
                     GlobalFunctionMaCun.thayboi = 1;
                     GlobalFunctionMaCun.tientri = 1;
+                    GlobalFunctionMaCun.lastdongbang = 1;
                     await Context.Client.GetGuild(580555457983152149).GetTextChannel(580563096544739331).SendMessageAsync("Đêm thứ Nhất Bắt Đầu!");
                 }
             }
@@ -851,28 +911,31 @@ namespace Neko_Test.Ma_Cun_
                         GlobalFunctionMaCun.votesong = 0;
                         GlobalFunctionMaCun.votechet = 0;
                         GlobalFunctionMaCun.daycount++;
-                        GlobalFunctionMaCun.lastdongbang = GlobalFunctionMaCun.dongbang;
-                        if (GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr1)
+                        if (GlobalFunctionMaCun.dongbang != 0)
+                        {
+                            GlobalFunctionMaCun.lastdongbang = GlobalFunctionMaCun.dongbang;
+                        }
+                        if (GlobalFunctionMaCun.dongbang != 0 & GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr1)
                         {
                             await Context.Guild.GetTextChannel(580574363930198021).SendMessageAsync("Bạn đã bị đóng băng nên bạn không thể sử dụng lệnh vào đêm nay.");
                         }
-                        else if (GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr2)
+                        else if (GlobalFunctionMaCun.dongbang != 0 & GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr2)
                         {
                             await Context.Guild.GetTextChannel(580574739391578112).SendMessageAsync("Bạn đã bị đóng băng nên bạn không thể sử dụng lệnh vào đêm nay.");
                         }
-                        else if (GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr7)
+                        else if (GlobalFunctionMaCun.dongbang != 0 & GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr7)
                         {
                             await Context.Guild.GetTextChannel(580574545606475782).SendMessageAsync("Bạn đã bị đóng băng nên bạn không thể sử dụng lệnh vào đêm nay.");
                         }
-                        else if (GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr9)
+                        else if (GlobalFunctionMaCun.dongbang != 0 & GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr9)
                         {
                             await Context.Guild.GetTextChannel(580574598677135390).SendMessageAsync("Bạn đã bị đóng băng nên bạn không thể sử dụng lệnh vào đêm nay.");
                         }
-                        else if (GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr12)
+                        else if (GlobalFunctionMaCun.dongbang != 0 & GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr12)
                         {
                             await Context.Guild.GetTextChannel(580574414660435982).SendMessageAsync("Bạn đã bị đóng băng nên bạn không thể sử dụng lệnh vào đêm nay.");
                         }
-                        else if (GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr13)
+                        else if (GlobalFunctionMaCun.dongbang != 0 & GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr13)
                         {
                             await Context.Guild.GetTextChannel(580574812662136836).SendMessageAsync("Bạn đã bị đóng băng nên bạn không thể sử dụng lệnh vào đêm nay.");
                         }
@@ -911,28 +974,31 @@ namespace Neko_Test.Ma_Cun_
                             GlobalFunctionMaCun.thayboi = 1;
                             GlobalFunctionMaCun.tientri = 1;
                             GlobalFunctionMaCun.daycount++;
-                            GlobalFunctionMaCun.lastdongbang = GlobalFunctionMaCun.dongbang;
-                            if (GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr1)
+                            if (GlobalFunctionMaCun.dongbang != 0)
+                            {
+                                GlobalFunctionMaCun.lastdongbang = GlobalFunctionMaCun.dongbang;
+                            }
+                            if (GlobalFunctionMaCun.dongbang != 0 & GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr1)
                             {
                                 await Context.Guild.GetTextChannel(580574363930198021).SendMessageAsync("Bạn đã bị đóng băng nên bạn không thể sử dụng lệnh vào đêm nay.");
                             }
-                            else if (GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr2)
+                            else if (GlobalFunctionMaCun.dongbang != 0 & GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr2)
                             {
                                 await Context.Guild.GetTextChannel(580574739391578112).SendMessageAsync("Bạn đã bị đóng băng nên bạn không thể sử dụng lệnh vào đêm nay.");
                             }
-                            else if (GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr7)
+                            else if (GlobalFunctionMaCun.dongbang != 0 & GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr7)
                             {
                                 await Context.Guild.GetTextChannel(580574545606475782).SendMessageAsync("Bạn đã bị đóng băng nên bạn không thể sử dụng lệnh vào đêm nay.");
                             }
-                            else if (GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr9)
+                            else if (GlobalFunctionMaCun.dongbang != 0 & GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr9)
                             {
                                 await Context.Guild.GetTextChannel(580574598677135390).SendMessageAsync("Bạn đã bị đóng băng nên bạn không thể sử dụng lệnh vào đêm nay.");
                             }
-                            else if (GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr12)
+                            else if (GlobalFunctionMaCun.dongbang != 0 & GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr12)
                             {
                                 await Context.Guild.GetTextChannel(580574414660435982).SendMessageAsync("Bạn đã bị đóng băng nên bạn không thể sử dụng lệnh vào đêm nay.");
                             }
-                            else if (GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr13)
+                            else if (GlobalFunctionMaCun.dongbang != 0 & GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr13)
                             {
                                 await Context.Guild.GetTextChannel(580574812662136836).SendMessageAsync("Bạn đã bị đóng băng nên bạn không thể sử dụng lệnh vào đêm nay.");
                             }
@@ -1043,27 +1109,27 @@ namespace Neko_Test.Ma_Cun_
                                 await Context.Guild.GetUser(GlobalFunctionMaCun.treo).AddRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Chết"));
                                 GlobalFunctionMaCun.phedan--;
                             }
-                            if (GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr1)
+                            if (GlobalFunctionMaCun.dongbang != 0 & GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr1)
                             {
                                 await Context.Guild.GetTextChannel(580574363930198021).SendMessageAsync("Bạn đã bị đóng băng nên bạn không thể sử dụng lệnh vào đêm nay.");
                             }
-                            else if (GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr2)
+                            else if (GlobalFunctionMaCun.dongbang != 0 & GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr2)
                             {
                                 await Context.Guild.GetTextChannel(580574739391578112).SendMessageAsync("Bạn đã bị đóng băng nên bạn không thể sử dụng lệnh vào đêm nay.");
                             }
-                            else if (GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr7)
+                            else if (GlobalFunctionMaCun.dongbang != 0 & GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr7)
                             {
                                 await Context.Guild.GetTextChannel(580574545606475782).SendMessageAsync("Bạn đã bị đóng băng nên bạn không thể sử dụng lệnh vào đêm nay.");
                             }
-                            else if (GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr9)
+                            else if (GlobalFunctionMaCun.dongbang != 0 & GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr9)
                             {
                                 await Context.Guild.GetTextChannel(580574598677135390).SendMessageAsync("Bạn đã bị đóng băng nên bạn không thể sử dụng lệnh vào đêm nay.");
                             }
-                            else if (GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr12)
+                            else if (GlobalFunctionMaCun.dongbang != 0 & GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr12)
                             {
                                 await Context.Guild.GetTextChannel(580574414660435982).SendMessageAsync("Bạn đã bị đóng băng nên bạn không thể sử dụng lệnh vào đêm nay.");
                             }
-                            else if (GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr13)
+                            else if (GlobalFunctionMaCun.dongbang != 0 & GlobalFunctionMaCun.dongbang == GlobalFunctionMaCun.plr13)
                             {
                                 await Context.Guild.GetTextChannel(580574812662136836).SendMessageAsync("Bạn đã bị đóng băng nên bạn không thể sử dụng lệnh vào đêm nay.");
                             }
@@ -1088,7 +1154,10 @@ namespace Neko_Test.Ma_Cun_
                             GlobalFunctionMaCun.thayboi = 1;
                             GlobalFunctionMaCun.tientri = 1;
                             GlobalFunctionMaCun.daycount++;
-                            GlobalFunctionMaCun.lastdongbang = GlobalFunctionMaCun.dongbang;
+                            if (GlobalFunctionMaCun.dongbang != 0)
+                            {
+                                GlobalFunctionMaCun.lastdongbang = GlobalFunctionMaCun.dongbang;
+                            }
                         }
                     }
                     else return;
@@ -2395,6 +2464,7 @@ namespace Neko_Test.Ma_Cun_
                 GlobalFunctionMaCun.phethu3 = 0;
                 GlobalFunctionMaCun.phesoi = 0;
                 GlobalFunctionMaCun.phedan = 0;
+                GlobalFunctionMaCun.mogame = null;
 
                 await Task.Delay(10000);
                 while (GlobalFunctionMaCun.plr > 0)
