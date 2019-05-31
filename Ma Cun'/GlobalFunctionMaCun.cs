@@ -133,6 +133,120 @@ namespace Neko_Test.ModulesMaCun
             get { return plr13z; }
             set { plr13z = value; }
         }
+        private static ulong plr14z;
+        public static ulong plr14
+        {
+            get { return plr14z; }
+            set { plr14z = value; }
+        }
+        private static ulong plr15z;
+        public static ulong plr15
+        {
+            get { return plr15z; }
+            set { plr15z = value; }
+        }
+        private static ulong plr16z;
+        public static ulong plr16
+        {
+            get { return plr16z; }
+            set { plr16z = value; }
+        }
+        private static int plr1pp;
+        public static int plr1p
+        {
+            get { return plr1pp; }
+            set { plr1pp = value; }
+        }
+        private static int plr2pp;
+        public static int plr2p
+        {
+            get { return plr2pp; }
+            set { plr2pp = value; }
+        }
+        private static int plr3pp;
+        public static int plr3p
+        {
+            get { return plr3pp; }
+            set { plr3pp = value; }
+        }
+        private static int plr4pp;
+        public static int plr4p
+        {
+            get { return plr4pp; }
+            set { plr4pp = value; }
+        }
+        private static int plr5pp;
+        public static int plr5p
+        {
+            get { return plr5pp; }
+            set { plr5pp = value; }
+        }
+        private static int plr6pp;
+        public static int plr6p
+        {
+            get { return plr6pp; }
+            set { plr6pp = value; }
+        }
+        private static int plr7pp;
+        public static int plr7p
+        {
+            get { return plr7pp; }
+            set { plr7pp = value; }
+        }
+        private static int plr8pp;
+        public static int plr8p
+        {
+            get { return plr8pp; }
+            set { plr8pp = value; }
+        }
+        private static int plr9pp;
+        public static int plr9p
+        {
+            get { return plr9pp; }
+            set { plr9pp = value; }
+        }
+        private static int plr10pp;
+        public static int plr10p
+        {
+            get { return plr10pp; }
+            set { plr10pp = value; }
+        }
+        private static int plr11pp;
+        public static int plr11p
+        {
+            get { return plr11pp; }
+            set { plr11pp = value; }
+        }
+        private static int plr12pp;
+        public static int plr12p
+        {
+            get { return plr12pp; }
+            set { plr13pp = value; }
+        }
+        private static int plr13pp;
+        public static int plr13p
+        {
+            get { return plr13pp; }
+            set { plr13pp = value; }
+        }
+        private static int plr14pp;
+        public static int plr14p
+        {
+            get { return plr14pp; }
+            set { plr14pp = value; }
+        }
+        private static int plr15pp;
+        public static int plr15p
+        {
+            get { return plr15pp; }
+            set { plr15pp = value; }
+        }
+        private static int plr16pp;
+        public static int plr16p
+        {
+            get { return plr16pp; }
+            set { plr16pp = value; }
+        }
         private static int channel1z;
         public static int channel1
         {
@@ -210,6 +324,24 @@ namespace Neko_Test.ModulesMaCun
         {
             get { return channel13z; }
             set { channel13z = value; }
+        }
+        private static int channel14z;
+        public static int channel14
+        {
+            get { return channel14z; }
+            set { channel14z = value; }
+        }
+        private static int channel15z;
+        public static int channel15
+        {
+            get { return channel15z; }
+            set { channel15z = value; }
+        }
+        private static int channel16z;
+        public static int channel16
+        {
+            get { return channel16z; }
+            set { channel16z = value; }
         }
         private static int khienbaove;
         public static int khien
@@ -325,6 +457,53 @@ namespace Neko_Test.ModulesMaCun
             get { return mogames; }
             set { mogames = value; }
         }
-
+        private static int soitris;
+        public static int soitri
+        {
+            get { return soitris; }
+            set { soitris = value; }
+        }
+        private static int luothoisinhs;
+        public static int luothoisinh
+        {
+            get { return luothoisinhs; }
+            set { luothoisinhs = value; }
+        }
+        private static ulong hoisinhs;
+        public static ulong hoisinh
+        {
+            get { return hoisinhs; }
+            set { hoisinhs = value; }
+        }
+        private static ulong mois;
+        public static ulong moi
+        {
+            get { return mois; }
+            set { mois = value; }
+        }
+        private static ulong lastmois;
+        public static ulong lastmoi
+        {
+            get { return lastmois; }
+            set { lastmois = value; }
+        }
+        private static int chucnangphupheps;
+        public static int chucnangphuphep
+        {
+            get { return chucnangphupheps; }
+            set { chucnangphupheps = value; }
+        }
+        private static int chucnangdongbangs;
+        public static int chucnangdongbang
+        {
+            get { return chucnangdongbangs; }
+            set { chucnangdongbangs = value; }
+        }
+        private static int chucnangsois;
+        public static int chucnangsoi
+        {
+            get { return chucnangsois; }
+            set { chucnangsois = value; }
+        }
     }
 }

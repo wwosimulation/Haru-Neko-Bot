@@ -240,7 +240,7 @@ namespace Neko_Test
                     await Context.Guild.ModifyAsync(x => x.Icon = pic);
                 }*/
                 var embed = new EmbedBuilder();
-                if (GlobalFunction.gamestatus == "hosting" & GlobalFunction.gamecodes != null & GlobalFunction.wons != null)
+                if (GlobalFunction.gamecodes != null & GlobalFunction.wons != null)
                 {
 
                     await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync("Game " + GlobalFunction.gamecodes + " ended - " + GlobalFunction.wons + " won the match!");
@@ -267,6 +267,16 @@ namespace Neko_Test
                     IEnumerable<IMessage> nonPinnedMessages3 = await Context.Guild.GetTextChannel(549202652689596427).GetMessagesAsync(1000).FlattenAsync();
                     await Context.Guild.GetTextChannel(549202652689596427).DeleteMessagesAsync(nonPinnedMessages3.Where(x => x.IsPinned == false));
                     //Bulk Delete Messages Channel #music-log in Werewolf Online Simulation - Game Server.
+
+                    var GetAllUser = Context.Client.GetGuild(465795320526274561).Users;
+                    foreach (var x in GetAllUser)
+                    {
+                        var g = Context.Client.GetGuild(465795320526274561).GetUser(x.Id).Roles.Any(a => a.Name == "Joining");
+                        if (g == true)
+                        {
+                            x.RemoveRoleAsync(Context.Client.GetGuild(465795320526274561).Roles.FirstOrDefault(c => c.Name == "Joining"));
+                        }
+                    }
                 }
                 /*else if (GlobalFunction.gamestatus == "hosting" & GlobalFunction.gamecodes != null & GlobalFunction.wons != null)
                 {
@@ -373,7 +383,7 @@ namespace Neko_Test
                     else
                     {
                         await Context.Client.GetGuild(472261911526768642).GetTextChannel(channel.Id).AddPermissionOverwriteAsync(user, chophep.Modify());
-                        await Context.Channel.SendMessageAsync("Added " + user.Nickname + " to <#" + channel.Id + ".");
+                        await Context.Channel.SendMessageAsync("Added " + user.Nickname + " to <#" + channel.Id + ">.");
                     }
                 }
             }
@@ -610,7 +620,7 @@ namespace Neko_Test
                 else if (GlobalFunction.gamecodes == null)
                 {
                     GlobalFunction.gamecodes = "RS.2[" + gc + "]";
-                    await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Ranked Warn").Mention + ", we are now starting game RS.2[" + GlobalFunction.gamecodes + "]! Our host will be " + Context.User.Mention + ". Type `-join RS.2[" + GlobalFunction.gamecodes + "]` to enter the game in <#549193241367543838>.");
+                    await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Ranked Warn").Mention + ", we are now starting game RS.2[" + gc + "]! Our host will be " + Context.User.Mention + ". Type `-join RS.2[" + gc + "]` to enter the game in <#549193241367543838>.");
                     await Context.Client.SetGameAsync("Waiting For Player");
                 }
                 else await Context.Channel.SendMessageAsync("Game Code `" + GlobalFunction.gamecodes + "` has been hosted, so can't change game code until game end!");
@@ -793,7 +803,7 @@ namespace Neko_Test
                 return;
             }
         }
-        [Command("jail")]
+/*        [Command("jail")]
         public async Task jailplayer(IGuildUser user)
         {
             if (Context.Guild.Id != 472261911526768642)
@@ -851,7 +861,7 @@ namespace Neko_Test
                 }
                 else return;
             }
-        }
+        }*/
         [Command("stats")]
         public async Task ShowStatsAllGlobalFunction()
         {

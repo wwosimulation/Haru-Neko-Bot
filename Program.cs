@@ -108,12 +108,6 @@ namespace Neko_Test
                                 embed.WithColor(new Discord.Color(255, 0, 0));
                                 await Context.Channel.SendMessageAsync("", false, embed.Build());
                             }
-                            if (CommandError.Exception == Result.Error)
-                            {
-                                embed.AddField($"Lỗi!", "Bị phá vỡ hoặc thiếu, thường thì giống như là không tim thấy mục tiêu, mục tiêu là Người Chơi hay hơn nữa.");
-                                embed.WithColor(new Discord.Color(255, 0, 0));
-                                await Context.Channel.SendMessageAsync("", false, embed.Build());
-                            }
                             if (CommandError.MultipleMatches == Result.Error)
                             {
                                 embed.AddField($"Lỗi!", "Nickname, Username hoặc ID của Người Chơi bị trùng lặp.");
