@@ -131,7 +131,7 @@ namespace Neko_Test.Ma_Cun_
                         await (Context.User as IGuildUser).RemoveRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Quản Trò - Game"));
                         var guild = Context.Client.GetGuild(580555457983152149);
                         var user = guild.GetUser(Context.User.Id);
-                        Task.Delay(1000);
+                        await Task.Delay(1000);
                         await user.ModifyAsync(x => x.Nickname = checkplayer.ToString());
                     }
                     else
@@ -184,6 +184,8 @@ namespace Neko_Test.Ma_Cun_
                 {
                     OverwritePermissions chophep = new OverwritePermissions(viewChannel: PermValue.Allow, sendMessages: PermValue.Allow, readMessageHistory: PermValue.Allow);
                     OverwritePermissions khongchophep = new OverwritePermissions(viewChannel: PermValue.Deny, sendMessages: PermValue.Deny, readMessageHistory: PermValue.Deny);
+                    OverwritePermissions khongchophep2 = new OverwritePermissions(viewChannel: PermValue.Allow, connect: PermValue.Allow, speak: PermValue.Deny);
+                    await Context.Client.GetGuild(580555457983152149).GetVoiceChannel(580566264171331597).AddPermissionOverwriteAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống"), khongchophep2.Modify());
                     await Context.Client.GetGuild(580555457983152149).GetTextChannel(580557883931099138).AddPermissionOverwriteAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống"), khongchophep.Modify());
                     GlobalFunctionMaCun.gamestatus = 1;
                     int checkplayer = Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống").Members.Count();
@@ -239,13 +241,13 @@ namespace Neko_Test.Ma_Cun_
                         embed.WithColor(new Discord.Color(255, 0, 0));
                         await Context.Channel.SendMessageAsync("", false, embed.Build());
                     }
-                    else if (num <= 0 || num >= 14)
+                    else if (num <= 0 || num >= 17)
                     {
-                        embed.AddField($"Lỗi!", "Vai Trò nằm trong khoảng 1 đến 13 (Sử dụng -danhsachvaitro để hiện ra số của từng vai trò).");
+                        embed.AddField($"Lỗi!", "Vai Trò nằm trong khoảng 1 đến 16 (Sử dụng -danhsachvaitro để hiện ra số của từng vai trò).");
                         embed.WithColor(new Discord.Color(255, 0, 0));
                         await Context.Channel.SendMessageAsync("", false, embed.Build());
                     }
-                    else if (GlobalFunctionMaCun.plr1 == user.Id || GlobalFunctionMaCun.plr2 == user.Id || GlobalFunctionMaCun.plr3 == user.Id || GlobalFunctionMaCun.plr4 == user.Id || GlobalFunctionMaCun.plr5 == user.Id || GlobalFunctionMaCun.plr6 == user.Id || GlobalFunctionMaCun.plr7 == user.Id || GlobalFunctionMaCun.plr8 == user.Id || GlobalFunctionMaCun.plr9 == user.Id || GlobalFunctionMaCun.plr10 == user.Id || GlobalFunctionMaCun.plr11 == user.Id || GlobalFunctionMaCun.plr12 == user.Id || GlobalFunctionMaCun.plr13 == user.Id)
+                    else if (GlobalFunctionMaCun.plr1 == user.Id || GlobalFunctionMaCun.plr2 == user.Id || GlobalFunctionMaCun.plr3 == user.Id || GlobalFunctionMaCun.plr4 == user.Id || GlobalFunctionMaCun.plr5 == user.Id || GlobalFunctionMaCun.plr6 == user.Id || GlobalFunctionMaCun.plr7 == user.Id || GlobalFunctionMaCun.plr8 == user.Id || GlobalFunctionMaCun.plr9 == user.Id || GlobalFunctionMaCun.plr10 == user.Id || GlobalFunctionMaCun.plr11 == user.Id || GlobalFunctionMaCun.plr12 == user.Id || GlobalFunctionMaCun.plr13 == user.Id || GlobalFunctionMaCun.plr14 == user.Id || GlobalFunctionMaCun.plr15 == user.Id || GlobalFunctionMaCun.plr16 == user.Id)
                     {
                         embed.AddField($"Lỗi", "Người Chơi đã có Vai Trò.");
                         embed.WithColor(new Discord.Color(255, 0, 0));
@@ -477,7 +479,6 @@ namespace Neko_Test.Ma_Cun_
                 {
                     int checkplayer = Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống").Members.Count();
                     var number = checkplayer;
-                    GlobalFunctionMaCun.plr = number;
                     Random a = new Random();
                     Random j = new Random();
                     List<int> randomList = new List<int>();
@@ -565,6 +566,7 @@ namespace Neko_Test.Ma_Cun_
                                         var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
                                         embed.AddField($"" + n + " - Bảo Vệ.", "" + user.Username + "");
                                         await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574363930198021).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                        GlobalFunctionMaCun.plr1 = user.Id;
                                         GlobalFunctionMaCun.channel1 = 1;
                                         GlobalFunctionMaCun.phedan++;
                                     }
@@ -899,11 +901,13 @@ namespace Neko_Test.Ma_Cun_
                                         GlobalFunctionMaCun.phesoi++;
                                     }
                                 }
-                                await Context.Guild.GetTextChannel(580699915156455424).SendMessageAsync("", false, embed.Build());
+                                
                             }
                         }
                     }
                 }
+                embed.WithColor(new Discord.Color(0, 255, 255));
+                await Context.Guild.GetTextChannel(580699915156455424).SendMessageAsync("", false, embed.Build());
             }
             else return;
         }
@@ -954,14 +958,14 @@ namespace Neko_Test.Ma_Cun_
                     {
                         if (user.Id == GlobalFunctionMaCun.treo)
                         {
-                            Context.Guild.GetTextChannel(580563096544739331).SendMessageAsync("Do Quản Trò có sự nhầm lẫn nên đã bỏ treo " + Context.Guild.GetUser(GlobalFunctionMaCun.treo).Nickname + ".");
+                            await Context.Guild.GetTextChannel(580563096544739331).SendMessageAsync("Do Quản Trò có sự nhầm lẫn nên đã bỏ treo " + Context.Guild.GetUser(GlobalFunctionMaCun.treo).Nickname + ".");
                             GlobalFunctionMaCun.treo = 0;
                             GlobalFunctionMaCun.gamestatus = 3;
                         }
                         else
                         {
                             GlobalFunctionMaCun.treo = user.Id;
-                            Context.Guild.GetTextChannel(580563096544739331).SendMessageAsync("Dân Làng đã đưa " + user.Mention + " lên giá treo, Bây giờ " + user.Mention + " phải đưa ra lý do để không bị giết.");
+                            await Context.Guild.GetTextChannel(580563096544739331).SendMessageAsync("Dân Làng đã đưa " + user.Mention + " lên giá treo, Bây giờ " + user.Mention + " phải đưa ra lý do để không bị giết.");
                         }
                     }
                     else
@@ -1419,6 +1423,8 @@ namespace Neko_Test.Ma_Cun_
                     {
                         OverwritePermissions chophep = new OverwritePermissions(viewChannel: PermValue.Allow, sendMessages: PermValue.Allow);
                         OverwritePermissions khongchophep = new OverwritePermissions(viewChannel: PermValue.Allow, sendMessages: PermValue.Deny);
+                        OverwritePermissions khongchophep2 = new OverwritePermissions(viewChannel: PermValue.Allow, connect: PermValue.Allow, speak: PermValue.Deny);
+                        await Context.Client.GetGuild(580555457983152149).GetVoiceChannel(580566264171331597).AddPermissionOverwriteAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống"), khongchophep2.Modify());
                         await Context.Client.GetGuild(580555457983152149).GetTextChannel(580563096544739331).AddPermissionOverwriteAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống"), khongchophep.Modify());
                         await Context.Guild.GetTextChannel(580563096544739331).SendMessageAsync("Vì Dân làng không chọn người để treo hoặc phiếu bị hòa nên cả làng đi ngủ.");
                         GlobalFunctionMaCun.channel1 = 1;
@@ -1525,6 +1531,8 @@ namespace Neko_Test.Ma_Cun_
                         if (GlobalFunctionMaCun.votesong >= GlobalFunctionMaCun.votechet)
                         {
                             OverwritePermissions khongchophep = new OverwritePermissions(viewChannel: PermValue.Allow, sendMessages: PermValue.Deny);
+                            OverwritePermissions khongchophep2 = new OverwritePermissions(viewChannel: PermValue.Allow, connect: PermValue.Allow, speak: PermValue.Deny);
+                            await Context.Client.GetGuild(580555457983152149).GetVoiceChannel(580566264171331597).AddPermissionOverwriteAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống"), khongchophep2.Modify());
                             await Context.Client.GetGuild(580555457983152149).GetTextChannel(580563096544739331).AddPermissionOverwriteAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống"), khongchophep.Modify());
                             await Context.Guild.GetTextChannel(580563096544739331).SendMessageAsync("Vì số phiếu Sống nhiều hơn số phiếu Chết hoặc cả 2 bằng nhau nên cả làng đi ngủ.");
                             GlobalFunctionMaCun.channel1 = 1;
@@ -1624,6 +1632,8 @@ namespace Neko_Test.Ma_Cun_
                         else
                         {
                             OverwritePermissions khongchophep = new OverwritePermissions(viewChannel: PermValue.Allow, sendMessages: PermValue.Deny);
+                            OverwritePermissions khongchophep2 = new OverwritePermissions(viewChannel: PermValue.Allow, connect: PermValue.Allow, speak: PermValue.Deny);
+                            await Context.Client.GetGuild(580555457983152149).GetVoiceChannel(580566264171331597).AddPermissionOverwriteAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống"), khongchophep2.Modify());
                             await Context.Client.GetGuild(580555457983152149).GetTextChannel(580563096544739331).AddPermissionOverwriteAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống"), khongchophep.Modify());
                             if (GlobalFunctionMaCun.treo == GlobalFunctionMaCun.plr1)
                             {
@@ -1817,7 +1827,7 @@ namespace Neko_Test.Ma_Cun_
                             {
                                 await Context.Guild.GetTextChannel(583828385659355147).SendMessageAsync("Bạn đã bị Gái Điếm mời ngủ chung nên bạn không thể sử dụng lệnh vào đêm nay.");
                             }
-                            Task.Delay(1000);
+                            await Task.Delay(1000);
                             GlobalFunctionMaCun.channel1 = 1;
                             GlobalFunctionMaCun.channel2 = 1;
                             GlobalFunctionMaCun.channel3 = 1;
@@ -1872,7 +1882,7 @@ namespace Neko_Test.Ma_Cun_
                 }
                 else if (!Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống").Members.Contains(Context.Guild.GetUser(GlobalFunctionMaCun.can)) & !Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống").Members.Contains(Context.Guild.GetUser(GlobalFunctionMaCun.dam)))
                 {
-                    OverwritePermissions chophep = new OverwritePermissions(viewChannel: PermValue.Allow, sendMessages: PermValue.Allow);
+                    OverwritePermissions chophep = new OverwritePermissions(viewChannel: PermValue.Allow, sendMessages: PermValue.Allow, attachFiles: PermValue.Deny);
                     await Context.Client.GetGuild(580555457983152149).GetTextChannel(580563096544739331).AddPermissionOverwriteAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống"), chophep.Modify());
                     await Context.Client.GetGuild(580555457983152149).GetTextChannel(580563096544739331).SendMessageAsync("Ngày Thứ " + GlobalFunctionMaCun.daycount + " bắt đầu, " + Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống").Mention + " dậy thảo luận.");
                     await Context.Client.GetGuild(580555457983152149).GetTextChannel(580563096544739331).SendMessageAsync("Đêm qua không ai bị giết bởi Ma Sói.");
@@ -1889,7 +1899,9 @@ namespace Neko_Test.Ma_Cun_
                 {
                     var song = Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống");
                     var chet = Context.Guild.Roles.FirstOrDefault(x => x.Name == "Chết");
-                    OverwritePermissions chophep = new OverwritePermissions(viewChannel: PermValue.Allow, sendMessages: PermValue.Allow);
+                    OverwritePermissions chophep = new OverwritePermissions(viewChannel: PermValue.Allow, sendMessages: PermValue.Allow, attachFiles: PermValue.Deny);
+                    OverwritePermissions chophep2 = new OverwritePermissions(viewChannel: PermValue.Allow, connect: PermValue.Allow, speak: PermValue.Allow);
+                    await Context.Client.GetGuild(580555457983152149).GetVoiceChannel(580566264171331597).AddPermissionOverwriteAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống"), chophep2.Modify());
                     await Context.Client.GetGuild(580555457983152149).GetTextChannel(580563096544739331).AddPermissionOverwriteAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống"), chophep.Modify());
                     await Context.Client.GetGuild(580555457983152149).GetTextChannel(580563096544739331).SendMessageAsync("Ngày Thứ " + GlobalFunctionMaCun.daycount + " bắt đầu, " + Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống").Mention + " dậy thảo luận.");
                     if (GlobalFunctionMaCun.dam != 0)
@@ -3736,6 +3748,22 @@ namespace Neko_Test.Ma_Cun_
                 GlobalFunctionMaCun.plr14 = 0;
                 GlobalFunctionMaCun.plr15 = 0;
                 GlobalFunctionMaCun.plr16 = 0;
+                GlobalFunctionMaCun.plr1p = 0;
+                GlobalFunctionMaCun.plr2p = 0;
+                GlobalFunctionMaCun.plr3p = 0;
+                GlobalFunctionMaCun.plr4p = 0;
+                GlobalFunctionMaCun.plr5p = 0;
+                GlobalFunctionMaCun.plr6p = 0;
+                GlobalFunctionMaCun.plr7p = 0;
+                GlobalFunctionMaCun.plr8p = 0;
+                GlobalFunctionMaCun.plr9p = 0;
+                GlobalFunctionMaCun.plr10p = 0;
+                GlobalFunctionMaCun.plr11p = 0;
+                GlobalFunctionMaCun.plr12p = 0;
+                GlobalFunctionMaCun.plr13p = 0;
+                GlobalFunctionMaCun.plr14p = 0;
+                GlobalFunctionMaCun.plr15p = 0;
+                GlobalFunctionMaCun.plr16p = 0;
                 GlobalFunctionMaCun.treo = 0;
                 GlobalFunctionMaCun.thayboi = 0;
                 GlobalFunctionMaCun.tientri = 0;
@@ -3870,6 +3898,8 @@ namespace Neko_Test.Ma_Cun_
             else
             {
                 OverwritePermissions chophep = new OverwritePermissions(viewChannel: PermValue.Allow, sendMessages: PermValue.Allow);
+                OverwritePermissions chophep2 = new OverwritePermissions(viewChannel: PermValue.Allow, connect: PermValue.Allow, speak: PermValue.Allow);
+                await Context.Client.GetGuild(580555457983152149).GetVoiceChannel(580566264171331597).AddPermissionOverwriteAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống"), chophep2.Modify());
                 await Context.Client.GetGuild(580555457983152149).GetTextChannel(580563096544739331).AddPermissionOverwriteAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống"), chophep.Modify());
                 await Context.Client.GetGuild(580555457983152149).GetTextChannel(580563096544739331).SendMessageAsync("Game kết thúc, " + phe + " thắng.");
             }

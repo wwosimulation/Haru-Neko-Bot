@@ -69,10 +69,6 @@
             "System.Globalization.Calendars": {
               "target": "Package",
               "version": "[4.3.0, )"
-            },
-            "System.Windows.Forms.Ribbon35": {
-              "target": "Package",
-              "version": "[3.5.8, )"
             }
           },
           "imports": [

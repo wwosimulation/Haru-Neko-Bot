@@ -221,7 +221,7 @@ namespace Neko_Test.ModulesMaCun
         public static int plr12p
         {
             get { return plr12pp; }
-            set { plr13pp = value; }
+            set { plr12pp = value; }
         }
         private static int plr13pp;
         public static int plr13p

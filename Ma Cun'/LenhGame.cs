@@ -1504,7 +1504,7 @@ namespace Neko_Test
         [Command("hoisinh")]
         public async Task donghoisinh(IGuildUser user = null)
         {
-            if (Context.Guild.Id == 580555457983152149 & Context.Channel.Id == 583828253681254400)
+            if (Context.Guild.Id == 580555457983152149 & Context.Channel.Id == 583828359394492427)
             {
                 var embed = new EmbedBuilder();
                 if (Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống").Members.Contains(Context.User))
@@ -1517,7 +1517,7 @@ namespace Neko_Test
                     }
                     else if (Context.Guild.Roles.FirstOrDefault(x => x.Name == "Chết").Members.Contains(user))
                     {
-                        if (GlobalFunctionMaCun.gamestatus != 1)
+                        if (GlobalFunctionMaCun.gamestatus == 1)
                         {
                             if (user.Id == Context.User.Id)
                             {
@@ -1619,6 +1619,16 @@ namespace Neko_Test
             {
                 int checkplayer = Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống").Members.Count();
                 GlobalFunctionMaCun.plr = checkplayer;
+            }
+            else if (text == "camnoi")
+            {
+                OverwritePermissions khongchophep2 = new OverwritePermissions(viewChannel: PermValue.Allow, connect: PermValue.Allow, speak: PermValue.Deny);
+                await Context.Client.GetGuild(580555457983152149).GetVoiceChannel(580566264171331597).AddPermissionOverwriteAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống"), khongchophep2.Modify());
+            }
+            else if (text == "dcnoi")
+            {
+                OverwritePermissions chophep2 = new OverwritePermissions(viewChannel: PermValue.Allow, connect: PermValue.Allow, speak: PermValue.Allow);
+                await Context.Client.GetGuild(580555457983152149).GetVoiceChannel(580566264171331597).AddPermissionOverwriteAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống"), chophep2.Modify());
             }
 
             else return;

@@ -274,7 +274,7 @@ namespace Neko_Test
                         var g = Context.Client.GetGuild(465795320526274561).GetUser(x.Id).Roles.Any(a => a.Name == "Joining");
                         if (g == true)
                         {
-                            x.RemoveRoleAsync(Context.Client.GetGuild(465795320526274561).Roles.FirstOrDefault(c => c.Name == "Joining"));
+                            await x.RemoveRoleAsync(Context.Client.GetGuild(465795320526274561).Roles.FirstOrDefault(c => c.Name == "Joining"));
                         }
                     }
                 }
@@ -527,7 +527,7 @@ namespace Neko_Test
             await Context.Channel.SendMessageAsync("ID " + user.Id + " - " + user.Nickname + "#"+user.Discriminator+"");
         }
         [Command("gwhost")]
-        public async Task gwhostcode([Remainder] string gc = null)
+        public async Task gwhostcode(string mn = null, [Remainder] string gc = null)
         {
             var WWO = Context.Client.GetGuild(465795320526274561);
             var user = WWO.GetUser(Context.User.Id);
@@ -545,16 +545,33 @@ namespace Neko_Test
             }
             else if (user.Roles.Any(x => x.Name == "Game Narrator") || user.Roles.Any(x => x.Name == "GN Helper"))
             {
-                if (gc == null)
+                if (mn == null)
                 {
                     await Context.Channel.SendMessageAsync("Game Code is Missing, Please write your Game Code to start Host Game.");
                     return;
                 }
-                else if (GlobalFunction.gamecodes == null)
+                else if (mn.ToLower() != "manual")
                 {
-                    GlobalFunction.gamecodes = gc;
+                    if (gc == null)
+                    {
+                        GlobalFunction.gamecodes = mn;
+                    }
+                    else GlobalFunction.gamecodes = "" + mn + " " + gc + "";
                     await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync(Context.Guild.Roles.FirstOrDefault(x=> x.Name== "Player").Mention+", we are now starting game " + GlobalFunction.gamecodes + "! Our host will be " + Context.User.Mention + ". Type `-join " + GlobalFunction.gamecodes + "` to enter the game in <#549193241367543838>. If you don't want to get pinged for future games, come to <#578997340019490826> and reaction icon :video_game:.");
                     await Context.Client.SetGameAsync("Waiting For Player");
+                }
+                else if (mn.ToLower() == "manual")
+                {
+                    if (gc == null)
+                    {
+                        await Context.Channel.SendMessageAsync("Game Code is Missing, Please write your Game Code to start Host Game.");
+                    }
+                    else
+                    {
+                        await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Player").Mention + ", we are now starting game " + GlobalFunction.gamecodes + "! Our host will be " + Context.User.Mention + ". Type `-join " + GlobalFunction.gamecodes + "` to enter the game in <#549193241367543838>. If you don't want to get pinged for future games, come to <#578997340019490826> and reaction icon :video_game:.");
+                        await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync("Game start with Manual.");
+                        await Context.Client.SetGameAsync("Waiting For Player");
+                    }
                 }
                 else await Context.Channel.SendMessageAsync("Game Code `" + GlobalFunction.gamecodes + "` has been hosted, so can't change game code until game end!");
             }
@@ -919,7 +936,7 @@ namespace Neko_Test
                     await Context.Channel.SendMessageAsync("Your Permissions is Missing (ManageRoles Permission).");
                     return;
                 }
-                else if (num <= 0 || num > 4 || num == null)
+                else if (num <= 0 || num > 4 || num == 0)
                 {
                     embed.WithAuthor($"Recover Game Config. \n \n ");
                     embed.AddField($"Commands: -recover <Num> <Text>", "1 - Game Code.\n2 - Game Status (default when hosting is: hosting).\n3 - Game Time (day or night).\n4 - Game Async for Me (default when not host is: No Game Hosting).");
