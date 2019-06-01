@@ -114,6 +114,12 @@ namespace Neko_Test
                                 embed.WithColor(new Discord.Color(255, 0, 0));
                                 await Context.Channel.SendMessageAsync("", false, embed.Build());
                             }
+                            if (CommandError.Exception == Result.Error)
+                            {
+                                embed.AddField($"Lỗi!", "Bị thiếu hoặc phá vỡ! Thông thường là người chơi và hơn thế nữa.");
+                                embed.WithColor(new Discord.Color(255, 0, 0));
+                                await Context.Channel.SendMessageAsync("", false, embed.Build());
+                            }
                             if (CommandError.ParseFailed == Result.Error)
                             {
                                 embed.AddField($"Lỗi!", "Chỉ chấp nhận số, không chấp nhận chữ.");

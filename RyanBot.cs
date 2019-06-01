@@ -29,6 +29,9 @@ namespace Neko_Test
                                 embed.WithColor(new Discord.Color(255, 0, 0));
                                 await Context.Channel.SendMessageAsync("", false, embed.Build());
 
+            Xu: {Emote.Parse("<:coin:584231931835580419>")}
+            Hoa: {Emote.Parse("<:rose:584250710284304384>")}
+
 #bảo-vệ : 580574363930198021
 #tiên-tri : 580574414660435982
 #dân : 580574427712847872
@@ -45,6 +48,7 @@ namespace Neko_Test
 #gái-điếm : 583828253681254400
 #thầy-đồng : 583828359394492427
 #sói-tri : 583828385659355147
+
 #khu-đăng-ký : 580555887324954635
 #sảnh-đợi : 580557883931099138
 #buổi-sáng-thảo-luận : 580563096544739331
