@@ -1,12 +1,150 @@
 [
   {
     "ID": 454492255932252160,
+    "roses": 8,
+    "plrroses": 1,
+    "points": 137
+  },
+  {
+    "ID": 457956885748908034,
     "roses": 0,
     "plrroses": 0,
     "points": 0
   },
   {
-    "ID": 457956885748908034,
+    "ID": 347270552291115008,
+    "roses": 0,
+    "plrroses": 0,
+    "points": 118
+  },
+  {
+    "ID": 531662657690927105,
+    "roses": 0,
+    "plrroses": 0,
+    "points": 92
+  },
+  {
+    "ID": 523140055125196800,
+    "roses": 1,
+    "plrroses": 0,
+    "points": 21
+  },
+  {
+    "ID": 286089091303342080,
+    "roses": 0,
+    "plrroses": 0,
+    "points": 38
+  },
+  {
+    "ID": 553560889073336360,
+    "roses": 0,
+    "plrroses": 0,
+    "points": 42
+  },
+  {
+    "ID": 527753511199571968,
+    "roses": 0,
+    "plrroses": 0,
+    "points": 10
+  },
+  {
+    "ID": 559062523169734656,
+    "roses": 0,
+    "plrroses": 0,
+    "points": 90
+  },
+  {
+    "ID": 580596443581251605,
+    "roses": 0,
+    "plrroses": 0,
+    "points": 74
+  },
+  {
+    "ID": 576978587983282177,
+    "roses": 0,
+    "plrroses": 0,
+    "points": 32
+  },
+  {
+    "ID": 558293522743296001,
+    "roses": 0,
+    "plrroses": 0,
+    "points": 130
+  },
+  {
+    "ID": 582510114473246720,
+    "roses": 0,
+    "plrroses": 0,
+    "points": 32
+  },
+  {
+    "ID": 582503548596781056,
+    "roses": 0,
+    "plrroses": 0,
+    "points": 22
+  },
+  {
+    "ID": 548704942353809409,
+    "roses": 0,
+    "plrroses": 0,
+    "points": 9999999
+  },
+  {
+    "ID": 469340067207315457,
+    "roses": 0,
+    "plrroses": 0,
+    "points": 10
+  },
+  {
+    "ID": 477652987758641153,
+    "roses": 0,
+    "plrroses": 0,
+    "points": 30
+  },
+  {
+    "ID": 581646149333549065,
+    "roses": 0,
+    "plrroses": 0,
+    "points": 40
+  },
+  {
+    "ID": 545626357741256715,
+    "roses": 0,
+    "plrroses": 0,
+    "points": 22
+  },
+  {
+    "ID": 583834635675631616,
+    "roses": 0,
+    "plrroses": 0,
+    "points": 10
+  },
+  {
+    "ID": 477423685330796601,
+    "roses": 0,
+    "plrroses": 0,
+    "points": 61
+  },
+  {
+    "ID": 308593628086009858,
+    "roses": 0,
+    "plrroses": 0,
+    "points": 50
+  },
+  {
+    "ID": 529601772675661835,
+    "roses": 0,
+    "plrroses": 0,
+    "points": 43
+  },
+  {
+    "ID": 429869027511500810,
+    "roses": 0,
+    "plrroses": 0,
+    "points": 24
+  },
+  {
+    "ID": 438851750829490189,
     "roses": 0,
     "plrroses": 0,
     "points": 0

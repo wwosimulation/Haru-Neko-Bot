@@ -73,6 +73,29 @@ namespace Neko_Test.Ma_Cun_
                 await Context.User.SendMessageAsync("", false, embed.Build());
             }
         }
+        [Command("danhsachlenh")]
+        [Alias("cmds", "lenh")]
+        private async Task danhsachlenh()
+        {
+            if (Context.Guild.Id == 530689610313891840)
+            {
+                var embed = new EmbedBuilder();
+
+                embed.WithAuthor($"Danh Sách Lệnh - Ma Sói Online - Ma Cún\n \n ");
+                embed.WithDescription("[]-Tùy chọn ()-Yêu Cầu");
+                embed.AddField($"-cuahang [Số trang]", $"Danh sách cửa hàng mua bằng xu và hoa.");
+                embed.AddField($"-hangngay", $"Để nhận điểm danh nhận 10 xu hàng ngày!");
+                embed.AddField($"-tien [Người Chơi]", $"Để kiểm tra túi đồ của người chơi!");
+                embed.AddField($"-chotien (Người Chơi) (Số tiền)", $"Để cho người chơi xu!");
+                embed.AddField($"-tanghoa (Người Chơi)", $"Để tặng một bông hoa cho người chơi (Chỉ dùng ở Trong khi chơi - Game Server)!");
+                embed.AddField($"-trochoi", $"Để kiểm tra danh sách trò chơi của Ma Cún");
+                embed.AddField($"-mua (Vật phẩm) [soluong] [Số lượng nếu là hoa]", $"Mua vật phẩm ở cửa hàng!");
+
+                embed.WithColor(new Discord.Color(255, 255, 0));
+                await Context.Channel.SendMessageAsync("", false, embed.Build());
+            }
+            else return;
+        }
 
         [Command("testcheck")]
         public async Task testcheckid()

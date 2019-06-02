@@ -445,6 +445,7 @@ namespace Neko_Test.Ma_Cun_
                             GlobalFunctionMaCun.phesoi++;
                             await Context.Guild.GetTextChannel(580699915156455424).SendMessageAsync("" + user.Nickname + " - Sói Tri.");
                             await Context.Client.GetGuild(580555457983152149).GetTextChannel(583828385659355147).AddPermissionOverwriteAsync(user, chophep.Modify());
+                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580564753982816256).AddPermissionOverwriteAsync(user, chophep.Modify());
 
                             embed.AddField($"Hệ Thống!", "Đã đưa vai trò Sói Tri cho " + user + "");
                             embed.WithColor(new Discord.Color(0, 255, 0));
@@ -887,6 +888,7 @@ namespace Neko_Test.Ma_Cun_
                                         var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
                                         embed.AddField($"" + n + " - Sói Tri.", "" + user.Username + "");
                                         await Context.Client.GetGuild(580555457983152149).GetTextChannel(583828385659355147).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580564753982816256).AddPermissionOverwriteAsync(user, chophep.Modify());
                                         GlobalFunctionMaCun.plr16 = user.Id;
                                         GlobalFunctionMaCun.channel16 = 1;
                                         GlobalFunctionMaCun.phesoi++;
@@ -896,6 +898,7 @@ namespace Neko_Test.Ma_Cun_
                                         var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr16p + "");
                                         embed.AddField($"" + GlobalFunctionMaCun.plr16p + " - Sói Tri.", "" + user.Username + "");
                                         await Context.Client.GetGuild(580555457983152149).GetTextChannel(583828385659355147).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580564753982816256).AddPermissionOverwriteAsync(user, chophep.Modify());
                                         GlobalFunctionMaCun.plr16 = user.Id;
                                         GlobalFunctionMaCun.channel16 = 1;
                                         GlobalFunctionMaCun.phesoi++;

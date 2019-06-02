@@ -71,31 +71,6 @@ namespace Neko_Test
             }
         }
 
-        [Command("PM")]
-        public async Task PMSOMEONE(IGuildUser user = null, [Remainder] string text = null)
-        {
-            var embed = new EmbedBuilder();
-            if (Context.User.Id == 454492255932252160)
-            {
-                if (user == null)
-                {
-                    embed.AddField($"Error!", "User is Missing.");
-                    embed.WithColor(new Discord.Color(255, 0, 0));
-                    await Context.Channel.SendMessageAsync("", false, embed.Build());
-                }
-                else if (text == null)
-                {
-                    embed.AddField($"Error!", "Text is Missing.");
-                    embed.WithColor(new Discord.Color(255, 0, 0));
-                    await Context.Channel.SendMessageAsync("", false, embed.Build());
-                }
-                else
-                {
-                    await Context.Client.GetUser(user.Id).SendMessageAsync("" + text + "");
-                }
-            }
-            else return;
-        }
         [Command("chat")]
         public async Task PMTOCHANNEL(IGuildChannel channel = null, [Remainder] string text = null)
         {
