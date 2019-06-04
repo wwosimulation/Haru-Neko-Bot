@@ -2,6 +2,7 @@
 using Discord.Commands;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -173,6 +174,35 @@ namespace Neko_Test.Ma_Cun_
                 UserAccounts.SaveAccounts();
             }
             else return;
+            /*{
+                var embed = new EmbedBuilder();
+                if (DataStorage.paircount(Context.User + DateTime.Now.ToLongDateString()) == true)
+                {
+                    DataStorage.addpairs(Context.User + DateTime.Now.ToLongDateString(), "Oof");
+                    var accounts = UserAccounts.GetAccount(Context.User);
+                    ulong daily = 10;
+                    accounts.points = accounts.points + daily;
+                    embed.AddField($"Daily!", $"Welcome Back {Context.User.Username}, You get {daily}{Emote.Parse("<:coin:584231931835580419>")} for daily.");
+                    embed.WithColor(new Discord.Color(0, 255, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else
+                {
+                    if (60 - DateTime.Now.Minute == 60 || 60 - DateTime.Now.Minute == 0)
+                    {
+                        embed.AddField($"Error!", $"You already got your daily, come back later in {23 - DateTime.Now.Hour} hours.");
+                        embed.WithColor(new Discord.Color(255, 0, 0));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                    else if (24 - DateTime.Now.Hour != 0 || 24 - DateTime.Now.Hour != 24 || 60 - DateTime.Now.Minute != 60 || 60 - DateTime.Now.Minute != 0)
+                    {
+                        embed.AddField($"Error!", $"You already got your daily, come back later in {23 - DateTime.Now.Hour} Hours {60 - DateTime.Now.Minute} Minutes.");
+                        embed.WithColor(new Discord.Color(255, 0, 0));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                }
+                UserAccounts.SaveAccounts();
+            }*/
         }
         [Command("chotien")]
         public async Task givemoneyforplayer(SocketUser user = null, ulong number = 0)
@@ -453,6 +483,56 @@ namespace Neko_Test.Ma_Cun_
                 }
             }
             else return;
+        }
+
+        [Command("bangxephang")]
+        [Alias("leaderboard")]
+        public async Task leaderboard()
+        {
+            if (Context.Guild.Id == 580555457983152149)
+            {
+                /*ArrayList newarray = new ArrayList(10);
+
+                IEnumerable<UserAccount> accounts = UserAccounts.accounts;
+                accounts.OrderByDescending(x => x.points).ToArray();
+
+                newarray.Add(accounts);
+
+                string[] stringArray = new string[5] { newarray };
+                Array.Sort(stringArray);*/
+
+                /*accounts.OrderByDescending(x => x.points).ToArray();
+                //Array.Sort(accounts);
+                List<ulong> c = new List<ulong>();
+
+
+                foreach (var b in accounts)
+                {
+                    c.Add(b);
+                }*/
+                /*var accounts = UserAccounts.accounts;
+                var result = accounts.OrderByDescending(x => x.points).ToArray();
+                UserAccount[] top10 =
+                {
+                    result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8], result[9], result[10], result[11], result[12], result[13], result[14], result[15]
+                };
+                var top1 = UserAccounts.GetAccount(top10);
+                return top10;
+                var result = accounts.OrderByDescending(x => x.points).ToArray();*/
+     
+                /*var top1 = UserAccounts.topcoins();
+                ArrayList a = new ArrayList(UserAccounts.topcoins());
+                IEnumerable<UserAccount> accounts = new List<UserAccount>();
+                a.Add(accounts);*/
+                //var accounts2 = UserAccounts.GetAccount((UserAccounts.topcoins() as SocketUser));
+                var embed = new EmbedBuilder();
+                //embed.AddField($"Test!", $"{UserAccounts.topcoins2(1)}");
+                embed.AddField($"Test!", $"{UserAccounts.topcoins()}");
+                embed.WithColor(new Discord.Color(0, 255, 0));
+                await Context.Channel.SendMessageAsync("", false, embed.Build());
+                //await Context.Channel.SendMessageAsync("" + accounts + "");
+                UserAccounts.SaveAccounts();
+            }
         }
 
     }

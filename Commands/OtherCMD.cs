@@ -14,6 +14,7 @@ using System.IO;
 using System.Diagnostics;
 using Neko_Test.CommandHandler;
 using Neko_Test.Modules;
+using Neko_Test.Core.UserAccounts10;
 
 namespace Neko_Test
 {
@@ -248,5 +249,109 @@ namespace Neko_Test
                     //await Context.Client.GetGuild(465795320526274561).GetUser(alluser).RemoveRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Jailed"));
                     //await Context.Channel. 
                 }*/
+
+        [Command("listemotes")]
+        [Alias("emotelist", "listemote")]
+        private async Task showlistofemote([Optional]int num)
+        {
+            var check = UserAccounts10.GetAccount((Context.User as SocketUser));
+            if (check.emote == true)
+            {
+                var embed = new EmbedBuilder();
+                if (num > 1)
+                {
+                    embed.AddField($"Error!", "List only 1 page.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else if (num < 0)
+                {
+                    embed.AddField($"Error!", "Page Nunber can't be lower than 0.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else
+                {
+                    if (num == 1 || num == 0)
+                    {
+                        num = 1;
+                        embed.WithAuthor($"Haru Neko - Emote List!\n \n");
+                        embed.WithDescription($"Use -emote <Number> to use that emote.\n1 - {Emote.Parse("<:TohruWeary:585492969025568799>")}\n2 - {Emote.Parse("<:remsleepy:585492968182644758>")}\n3 - {Emote.Parse("<:remBlush:585492968228519937>")}\n4 - {Emote.Parse("<:LoveHeart:585492967880523821>")}\n5 - {Emote.Parse("<:Kya:585507397993234556>")}\n6 - {Emote.Parse("<:kannaWave:585492969008791580>")}\n7 - {Emote.Parse("<:kannaPeek:585492968807464984>")}\n8 - {Emote.Parse("<:kannanom:585492968962523160>")}\n9 - {Emote.Parse("<:pillowYes:585492967649837197>")}\n10 - {Emote.Parse("<:pillowNo:585492968274657300>")}\n");
+                        embed.WithFooter($"Requested by {Context.User.Username} - Page 1/1", Context.User.GetAvatarUrl());
+
+                        embed.WithColor(new Discord.Color(255, 50, 255));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                }
+            }
+            UserAccounts10.SaveAccounts();
+        }
+
+        [Command("emote")]
+        [Alias("é")]
+        private async Task emotetime(int num = 0)
+        {
+            var check = UserAccounts10.GetAccount((Context.User as SocketUser));
+            if (check.emote == true)
+            {
+                var embed = new EmbedBuilder();
+                if (num == 0)
+                {
+                    embed.AddField($"Emote!", "-emote <Number Emote>");
+                    embed.WithColor(new Discord.Color(255, 50, 255));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else
+                {
+                    if (num == 1)
+                    {
+                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:TohruWeary:585492969025568799>")}");
+                    }
+                    else if (num == 2)
+                    {
+                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:remsleepy:585492968182644758>")}");
+                    }
+                    else if (num == 3)
+                    {
+                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:remBlush:585492968228519937>")}");
+                    }
+                    else if (num == 4)
+                    {
+                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:LoveHeart:585492967880523821>")}");
+                    }
+                    else if (num == 5)
+                    {
+                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:Kya:585507397993234556>")}");
+                    }
+                    else if (num == 6)
+                    {
+                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:kannaWave:585492969008791580>")}");
+                    }
+                    else if (num == 7)
+                    {
+                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:kannaPeek:585492968807464984>")}");
+                    }
+                    else if (num == 8)
+                    {
+                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:kannanom:585492968962523160>")}");
+                    }
+                    else if (num == 9)
+                    {
+                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:pillowYes:585492967649837197>")}");
+                    }
+                    else if (num == 10)
+                    {
+                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:pillowNo:585492968274657300>")}");
+                    }
+                    else
+                    {
+                        embed.AddField($"Error!", "Emote Number doesn't exist, use -listemote to get list of emotes.");
+                        embed.WithColor(new Discord.Color(255, 0, 0));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                }
+            }
+            UserAccounts10.SaveAccounts();
+        }
     }
 }

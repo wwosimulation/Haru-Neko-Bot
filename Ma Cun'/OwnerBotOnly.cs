@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Drawing;
 using Neko_Test.Core.UserAccounts;
+using Neko_Test.Core.UserAccounts10;
 using System.Globalization;
 using System.Windows.Forms;
 
@@ -129,6 +130,57 @@ namespace Neko_Test.Ma_Cun_
                 else
                 {
                     await Context.Client.GetUser(user.Id).SendMessageAsync("" + text + "");
+                }
+            }
+            else return;
+        }
+
+
+        [Command("perm")]
+        public async Task permissionforuser(SocketUser User = null, int Number1 = 0, int Number2 = 0)
+        {
+            if (Context.User.Id == 454492255932252160)
+            {
+                var embed = new EmbedBuilder();
+                if (User == null)
+                {
+                    embed.AddField($"Permission!", "-perm (User) (Number1) (Number2)");
+                    embed.WithColor(new Discord.Color(255, 50, 255));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else if (Number1 == 0)
+                {
+                    embed.AddField($"Error - Number1 is Missing!", "1 - Emote.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else
+                {
+                    var config = UserAccounts10.GetAccount(User);
+                    if (Number1 == 1)
+                    {
+                        if (Number2 == 0)
+                        {
+                            embed.AddField($"Error - Number2 is Missing!", "1 - Allow.\n2 - Not Allow.");
+                            embed.WithColor(new Discord.Color(255, 0, 0));
+                            await Context.Channel.SendMessageAsync("", false, embed.Build());
+                        }
+                        if (Number2 == 1)
+                        {
+                            config.emote = true;
+                            embed.AddField($"Permission!", "Allowed "+User.Username+" to use Emotes.");
+                            embed.WithColor(new Discord.Color(0, 255, 0));
+                            await Context.Channel.SendMessageAsync("", false, embed.Build());
+                        }
+                        if (Number2 == 2)
+                        {
+                            config.emote = false;
+                            embed.AddField($"Permission!", "Removed Allow " + User.Username + " to use Emotes.");
+                            embed.WithColor(new Discord.Color(0, 255, 0));
+                            await Context.Channel.SendMessageAsync("", false, embed.Build());
+                        }
+                    }
+                    UserAccounts10.SaveAccounts();
                 }
             }
             else return;

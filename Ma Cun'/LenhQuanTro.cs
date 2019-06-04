@@ -3669,7 +3669,6 @@ namespace Neko_Test.Ma_Cun_
                                     await Context.Client.GetGuild(580555457983152149).GetTextChannel(580564753982816256).SendMessageAsync("Mục Tiêu của bạn không thể bị tiêu diệt.");
                                 }
                             }
-                            else return;
                             }
                         }
                         if (GlobalFunctionMaCun.can == 0)
@@ -3795,6 +3794,9 @@ namespace Neko_Test.Ma_Cun_
                 GlobalFunctionMaCun.luothoisinh = 0;
                 GlobalFunctionMaCun.hoisinh = 0;
                 GlobalFunctionMaCun.mogame = null;
+                GlobalFunctionMaCun.chucnangphuphep = 0;
+                GlobalFunctionMaCun.chucnangdongbang = 0;
+                GlobalFunctionMaCun.chucnangsoi = 0;
 
                 await Task.Delay(10000);
                 while (GlobalFunctionMaCun.plr > 0)

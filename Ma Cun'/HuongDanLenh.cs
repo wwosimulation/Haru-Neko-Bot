@@ -58,7 +58,7 @@ namespace Neko_Test.Ma_Cun_
                 embed.AddField($"-sang", "Dùng để bắt đầu buổi sáng cho Game - Dân Làng dậy.");
                 embed.AddField($"-vote", "Để bắt đầu bỏ phiếu - Có 2 đợt.\nĐợt 1: Bắt đầu bỏ phiếu treo (Nếu không có ai bị treo thì vào thẳng -dem).\nĐợt 2: Sau khi có người bị treo thì sẽ bắt đầu vào bỏ phiếu sống chết (Đợi người chơi bỏ phiếu xong sẽ -dem).");
                 embed.AddField($"-treo (Số Người Chơi Nhiếu Phiếu Nhất)", "Dùng để treo người chơi bị nhiều phiếu nhất sau khi có hiệu lệnh của đợt 1 (Cẩn thận với phiếu lặp của người chơi).");
-                embed.AddField($"-dem","Dùng để bắt đầu vào ban đêm cho Game - Dân Làng ngủ.");
+                embed.AddField($"-dem", "Dùng để bắt đầu vào ban đêm cho Game - Dân Làng ngủ.");
                 embed.AddField($"-thang (Phe hoặc Người Thứ 3)", "Dùng khi game gần kết thúc và đã có phe hoặc người thắng.");
                 embed.AddField($"-ketthuc", "Dùng để kết thúc 1 Game: Người chơi tự động kick sau 10 giây, tự động dọn dẹp khu vực Game.");
 
@@ -102,10 +102,17 @@ namespace Neko_Test.Ma_Cun_
         {
             var embed = new EmbedBuilder();
             {
-                await Context.Channel.SendMessageAsync($"{Emote.Parse("<:coin:584231931835580419>")}");
+                /*await Context.Channel.SendMessageAsync($"{Emote.Parse("<:coin:584231931835580419>")}");
                 embed.AddField($"Lỗi!", $"{Emote.Parse("<:coin:584231931835580419>")} nè :)))");
                 embed.WithColor(new Discord.Color(255, 0, 0));
+                await Context.Channel.SendMessageAsync("", false, embed.Build());*/
+                embed.WithAuthor($"Profile of {Context.User.Username}");
+                embed.WithThumbnailUrl(Context.User.GetAvatarUrl());
+                embed.WithDescription($"{Context.User.Mention}");
+                embed.AddField("Join at", $"{Context.Guild.GetUser(Context.User.Id).JoinedAt}");
+                embed.WithColor(new Discord.Color(255, 50, 255));
                 await Context.Channel.SendMessageAsync("", false, embed.Build());
+                await Context.Channel.SendMessageAsync($"{Emote.Parse("<:Cry_Baby:583564748873007114>")}");
             }
         }
         [Command("reboots")]
@@ -113,6 +120,74 @@ namespace Neko_Test.Ma_Cun_
         {
             Process.Start(Application.ExecutablePath);
             Environment.Exit(0);
+        }
+
+        [Command("cry")]
+        public async Task crytroll()
+        {
+            if (Context.User.Id == 454492255932252160)
+            {
+                await Context.Channel.SendMessageAsync($"{Emote.Parse("<:Cry_Baby:583564748873007114>")}");
+            }
+            else return;
+        }
+
+        [Command("maytinh")]
+        [Alias("cal", "calculator")]
+        public async Task maytinh(float num1 = 0, string pheptinh = null, float num2 = 0)
+        {
+            var embed = new EmbedBuilder();
+            {
+                if (num1 == 0)
+                {
+                    embed.AddField("Command!", $"-maytinh [Number1] [+ or - or x or /] [Number2].");
+                    embed.WithColor(new Discord.Color(255, 50, 255));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else if (pheptinh == null)
+                {
+                    embed.AddField("Command!", $"-maytinh [Number1] [+ or - or x or /] [Number2].");
+                    embed.WithColor(new Discord.Color(255, 50, 255));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else
+                {
+                    if (pheptinh.ToLower() == "cong" || pheptinh.ToLower() == "cộng" || pheptinh == "+")
+                    {
+                        var tinh = num1 + num2;
+                        embed.AddField("Command!", $"{num1} + {num2} = {tinh}");
+                        embed.WithColor(new Discord.Color(0, 255, 0));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                    else if (pheptinh.ToLower() == "tru" || pheptinh.ToLower() == "trừ" || pheptinh == "-")
+                    {
+                        var tinh = num1 - num2;
+                        embed.AddField("Command!", $"{num1} - {num2} = {tinh}");
+                        embed.WithColor(new Discord.Color(0, 255, 0));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                    else if (pheptinh.ToLower() == "nhan" || pheptinh.ToLower() == "nhân" || pheptinh == "x" || pheptinh == "×")
+                    {
+                        var tinh = num1 * num2;
+                        embed.AddField("Command!", $"{num1} x {num2} = {tinh}");
+                        embed.WithColor(new Discord.Color(0, 255, 0));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                    else if (pheptinh.ToLower() == "chia" || pheptinh == "/" || pheptinh == ":")
+                    {
+                        var tinh = num1 / num2;
+                        embed.AddField("Command!", $"{num1} / {num2} = {tinh}");
+                        embed.WithColor(new Discord.Color(0, 255, 0));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                    else
+                    {
+                        embed.AddField($"Error!", "Something wrong in your command.");
+                        embed.WithColor(new Discord.Color(255, 0, 0));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                }
+            }
         }
 
     }
