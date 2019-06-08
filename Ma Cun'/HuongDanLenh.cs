@@ -22,6 +22,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
+using Neko_Test.Core.UserAccounts10;
 
 using System.Diagnostics;
 
@@ -121,15 +122,29 @@ namespace Neko_Test.Ma_Cun_
             Process.Start(Application.ExecutablePath);
             Environment.Exit(0);
         }
+        /*[Command("a")]
+        public async Task b()
+        {
+            await ReplyAsync("Started Count!");
+            for (int i = 20; i > 0; i = i - 10)
+            {
+                await Task.(10000);
+                if (i <= 0)
+                {
+                    await ReplyAsync("End");
+                }
+            }
+        }*/
 
         [Command("cry")]
         public async Task crytroll()
         {
-            if (Context.User.Id == 454492255932252160)
+            var check = UserAccounts10.GetAccount((Context.User as SocketUser));
+            if (check.emote == true)
             {
                 await Context.Channel.SendMessageAsync($"{Emote.Parse("<:Cry_Baby:583564748873007114>")}");
             }
-            else return;
+            UserAccounts10.SaveAccounts();
         }
 
         [Command("maytinh")]

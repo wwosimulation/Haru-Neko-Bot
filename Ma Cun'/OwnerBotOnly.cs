@@ -58,7 +58,7 @@ namespace Neko_Test.Ma_Cun_
                         if (Number1 == 1)
                         {
                             user.points = user.points + Number3;
-                            embed.AddField($"Console!", "Added "+Number3+" Coins to Account "+User.Username+"");
+                            embed.AddField($"Console!", "Added " + Number3 + " Coins to Account " + User.Username + "");
                             embed.WithColor(new Discord.Color(0, 255, 0));
                             await Context.Channel.SendMessageAsync("", false, embed.Build());
                         }
@@ -168,7 +168,7 @@ namespace Neko_Test.Ma_Cun_
                         if (Number2 == 1)
                         {
                             config.emote = true;
-                            embed.AddField($"Permission!", "Allowed "+User.Username+" to use Emotes.");
+                            embed.AddField($"Permission!", "Allowed " + User.Username + " to use Emotes.");
                             embed.WithColor(new Discord.Color(0, 255, 0));
                             await Context.Channel.SendMessageAsync("", false, embed.Build());
                         }
@@ -179,6 +179,83 @@ namespace Neko_Test.Ma_Cun_
                             embed.WithColor(new Discord.Color(0, 255, 0));
                             await Context.Channel.SendMessageAsync("", false, embed.Build());
                         }
+                    }
+                    UserAccounts10.SaveAccounts();
+                }
+            }
+            else return;
+        }
+
+
+
+        [Command("cam")]
+        public async Task bannedplayerfromwerewolfgame(SocketUser User = null, [Remainder] string Reason = null)
+        {
+            if (Context.User.Id == 454492255932252160)
+            {
+                var embed = new EmbedBuilder();
+                if (User == null)
+                {
+                    embed.AddField($"Error!", "User to Ban is Missing.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else if (Reason == null)
+                {
+                    embed.AddField($"Error!", "Reason to Ban is Missing.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else
+                {
+                    var user = UserAccounts10.GetAccount(User);
+                    if (user.None1 == null)
+                    {
+                        user.None1 = Reason;
+                        embed.AddField($"Banned!", "Ban Successfully!\nUser name: "+User.Username+"\nUser ID: "+User.Id+"\nReason: "+Reason+"");
+                        embed.WithColor(new Discord.Color(0, 255, 0));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                    else
+                    {
+                        embed.AddField($"Error!", "That User is already banned.");
+                        embed.WithColor(new Discord.Color(255, 0, 0));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                    UserAccounts10.SaveAccounts();
+                }
+            }
+            else return;
+        }
+
+
+        [Command("bocam")]
+        public async Task unbannedplayerfromwerewolfgame(SocketUser User = null)
+        {
+            if (Context.User.Id == 454492255932252160)
+            {
+                var embed = new EmbedBuilder();
+                if (User == null)
+                {
+                    embed.AddField($"Error!", "User to Un-Ban is Missing.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else
+                {
+                    var user = UserAccounts10.GetAccount(User);
+                    if (user.None1 != null)
+                    {
+                        user.None1 = null;
+                        embed.AddField($"Un-Banned!", "Un-Ban Successfully!\nUser name: " + User.Username + "\nUser ID: " + User.Id + "");
+                        embed.WithColor(new Discord.Color(0, 255, 0));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                    else
+                    {
+                        embed.AddField($"Error!", "That User is not banned.");
+                        embed.WithColor(new Discord.Color(255, 0, 0));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
                     }
                     UserAccounts10.SaveAccounts();
                 }

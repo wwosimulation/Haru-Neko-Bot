@@ -73,6 +73,7 @@ namespace Neko_Test
             await Client.SetGameAsync("No Game Hosting");
         }
 
+
         private async Task Client_MessageReceived(SocketMessage MessageParam)
         {
             var Message = MessageParam as SocketUserMessage;
@@ -158,7 +159,8 @@ namespace Neko_Test
                     var embed = new EmbedBuilder();
                     {
                         embed.WithAuthor($"{Context.User.Username}#{Context.User.Discriminator}", Context.User.GetAvatarUrl());
-                        embed.AddField($"Used Command: "+Context.Message+"", ""+DateTime.Now.Hour+ ":" + DateTime.Now.Minute + " • " + DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year + " (GMT +7)");
+                        embed.WithDescription($"Used Command: "+Context.Message+"");
+                        embed.WithFooter("" + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " • " + DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year + " (GMT +7)");
                         embed.WithColor(new Discord.Color(0, 255, 0));
                         await Context.Client.GetGuild(465795320526274561).GetTextChannel(579152173217218570).SendMessageAsync("", false, embed.Build());
                     }

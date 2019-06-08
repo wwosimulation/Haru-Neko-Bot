@@ -20,11 +20,11 @@ namespace Neko_Test.Core.UserAccounts
 
     {
 
-        private static List<UserAccount> accounts;
+        public static List<UserAccount> accounts;
 
 
 
-        private static string accountsFile = "UserAccounts.json";
+        public static string accountsFile = "UserAccounts.json";
 
 
 

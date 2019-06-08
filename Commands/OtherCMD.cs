@@ -21,6 +21,7 @@ namespace Neko_Test
     public class OtherCMD : ModuleBase<SocketCommandContext>
     {
         Random rnd = new Random();
+
         [Command("copy"), Alias("say")]
         [RequireBotPermission(Discord.GuildPermission.ManageMessages)]
         public async Task copy([Remainder] string message = null)
@@ -62,13 +63,24 @@ namespace Neko_Test
                 await Context.Message.DeleteAsync();
                 var embed = new EmbedBuilder();
                 {
-                    embed.WithTitle($""+message+"");
+                    embed.WithTitle(""+message+"");
                     int Re = rnd.Next(0, 255);
                     int Ge = rnd.Next(0, 255);
                     int Be = rnd.Next(0, 255);
                     embed.WithColor(new Discord.Color(Re, Ge, Be));
                     await Context.Channel.SendMessageAsync("", false, embed.Build());
                 }
+            }
+        }
+
+        [Command("ping"), Alias("latency")]
+        public async Task pong()
+        {
+            var embed = new EmbedBuilder();
+            {
+                embed.AddField($"Pong!", $"My latency {Context.Client.Latency}ms");
+                embed.WithColor(new Discord.Color(0, 255, 255));
+                await Context.Channel.SendMessageAsync("", false, embed.Build());
             }
         }
 
@@ -288,7 +300,7 @@ namespace Neko_Test
         }
 
         [Command("emote")]
-        [Alias("é")]
+        [Alias("e")]
         private async Task emotetime(int num = 0)
         {
             var check = UserAccounts10.GetAccount((Context.User as SocketUser));
@@ -353,5 +365,11 @@ namespace Neko_Test
             }
             UserAccounts10.SaveAccounts();
         }
+
+
+
+
+
+
     }
 }
