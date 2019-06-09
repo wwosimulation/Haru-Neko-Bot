@@ -6,6 +6,13 @@ namespace Neko_Test.ModulesMaCun
 {
     class GlobalFunctionMaCun
     {
+        private static string blockinggames;
+        public static string game
+        {
+            get { return blockinggames; }
+            set { blockinggames = value; }
+        }
+
         internal static object gamemodes;
         private static string gamecode;
         public static string gamecodes

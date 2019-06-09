@@ -488,29 +488,53 @@ namespace Neko_Test.Ma_Cun_
 
         [Command("bangxephang")]
         [Alias("leaderboard", "bxh")]
-        public async Task leaderboard()
+        public async Task leaderboard(string text = null)
         {
             if (Context.Guild.Id == 530689610313891840)
             {
+                if (text == null || text.ToLower() == "xu" || text.ToLower() == "tien")
+                {
+                    var embed = new EmbedBuilder();
+                    var abc = File.ReadAllText("UserAccounts.json");
+                    var another = JsonConvert.DeserializeObject<List<UserAccount>>(abc);
+                    var result = another.OrderByDescending(x => x.points).ToArray();
+                    var top1 = "Top 1: " + Context.Client.GetUser(result[0].ID).Username + " - " + result[0].points + "" + Emote.Parse("<:coin:584231931835580419>") + "";
+                    var top2 = "Top 2: " + Context.Client.GetUser(result[1].ID).Username + " - " + result[1].points + "" + Emote.Parse("<:coin:584231931835580419>") + "";
+                    var top3 = "Top 3: " + Context.Client.GetUser(result[2].ID).Username + " - " + result[2].points + "" + Emote.Parse("<:coin:584231931835580419>") + "";
+                    var top4 = "Top 4: " + Context.Client.GetUser(result[3].ID).Username + " - " + result[3].points + "" + Emote.Parse("<:coin:584231931835580419>") + "";
+                    var top5 = "Top 5: " + Context.Client.GetUser(result[4].ID).Username + " - " + result[4].points + "" + Emote.Parse("<:coin:584231931835580419>") + "";
+                    var top6 = "Top 6: " + Context.Client.GetUser(result[5].ID).Username + " - " + result[5].points + "" + Emote.Parse("<:coin:584231931835580419>") + "";
+                    var top7 = "Top 7: " + Context.Client.GetUser(result[6].ID).Username + " - " + result[6].points + "" + Emote.Parse("<:coin:584231931835580419>") + "";
+                    var top8 = "Top 8: " + Context.Client.GetUser(result[7].ID).Username + " - " + result[7].points + "" + Emote.Parse("<:coin:584231931835580419>") + "";
+                    var top9 = "Top 9: " + Context.Client.GetUser(result[8].ID).Username + " - " + result[8].points + "" + Emote.Parse("<:coin:584231931835580419>") + "";
+                    var top10 = "Top 10: " + Context.Client.GetUser(result[9].ID).Username + " - " + result[9].points + "" + Emote.Parse("<:coin:584231931835580419>") + "";
 
-                var embed = new EmbedBuilder();
-                var abc = File.ReadAllText("UserAccounts.json");
-                var another = JsonConvert.DeserializeObject<List<UserAccount>>(abc);
-                var result = another.OrderByDescending(x => x.points).ToArray();
-                var top1 = "Top 1: "+Context.Client.GetUser(result[0].ID).Username+ " - "+result[0].points+""+ Emote.Parse("<:coin:584231931835580419>")+"";
-                var top2 = "Top 2: " + Context.Client.GetUser(result[1].ID).Username + " - " + result[1].points + "" + Emote.Parse("<:coin:584231931835580419>") + "";
-                var top3 = "Top 3: " + Context.Client.GetUser(result[2].ID).Username + " - " + result[2].points + "" + Emote.Parse("<:coin:584231931835580419>") + "";
-                var top4 = "Top 4: " + Context.Client.GetUser(result[3].ID).Username + " - " + result[3].points + "" + Emote.Parse("<:coin:584231931835580419>") + "";
-                var top5 = "Top 5: " + Context.Client.GetUser(result[4].ID).Username + " - " + result[4].points + "" + Emote.Parse("<:coin:584231931835580419>") + "";
-                var top6 = "Top 6: " + Context.Client.GetUser(result[5].ID).Username + " - " + result[5].points + "" + Emote.Parse("<:coin:584231931835580419>") + "";
-                var top7 = "Top 7: " + Context.Client.GetUser(result[6].ID).Username + " - " + result[6].points + "" + Emote.Parse("<:coin:584231931835580419>") + "";
-                var top8 = "Top 8: " + Context.Client.GetUser(result[7].ID).Username + " - " + result[7].points + "" + Emote.Parse("<:coin:584231931835580419>") + "";
-                var top9 = "Top 9: " + Context.Client.GetUser(result[8].ID).Username + " - " + result[8].points + "" + Emote.Parse("<:coin:584231931835580419>") + "";
-                var top10 = "Top 10: " + Context.Client.GetUser(result[9].ID).Username + " - " + result[9].points + "" + Emote.Parse("<:coin:584231931835580419>") + "";
+                    embed.AddField("Bảng Xếp Hạng - Top 10 Xu - Ma Cún!", $"{top1}\n{top2}\n{top3}\n{top4}\n{top5}\n{top6}\n{top7}\n{top8}\n{top9}\n{top10}");
+                    embed.WithColor(new Discord.Color(0, 255, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else if (text.ToLower() == "hoa" || text.ToLower() == "rose" || text.ToLower() == "roses")
+                {
+                    var embed = new EmbedBuilder();
+                    var abc = File.ReadAllText("UserAccounts.json");
+                    var another = JsonConvert.DeserializeObject<List<UserAccount>>(abc);
+                    var result = another.OrderByDescending(x => x.plrroses).ToArray();
+                    var top1 = "Top 1: " + Context.Client.GetUser(result[0].ID).Username + " - " + result[0].plrroses + "" + Emote.Parse("<:rose:584250710284304384>") + "";
+                    var top2 = "Top 2: " + Context.Client.GetUser(result[1].ID).Username + " - " + result[1].plrroses + "" + Emote.Parse("<:rose:584250710284304384>") + "";
+                    var top3 = "Top 3: " + Context.Client.GetUser(result[2].ID).Username + " - " + result[2].plrroses + "" + Emote.Parse("<:rose:584250710284304384>") + "";
+                    var top4 = "Top 4: " + Context.Client.GetUser(result[3].ID).Username + " - " + result[3].plrroses + "" + Emote.Parse("<:rose:584250710284304384>") + "";
+                    var top5 = "Top 5: " + Context.Client.GetUser(result[4].ID).Username + " - " + result[4].plrroses + "" + Emote.Parse("<:rose:584250710284304384>") + "";
+                    var top6 = "Top 6: " + Context.Client.GetUser(result[5].ID).Username + " - " + result[5].plrroses + "" + Emote.Parse("<:rose:584250710284304384>") + "";
+                    var top7 = "Top 7: " + Context.Client.GetUser(result[6].ID).Username + " - " + result[6].plrroses + "" + Emote.Parse("<:rose:584250710284304384>") + "";
+                    var top8 = "Top 8: " + Context.Client.GetUser(result[7].ID).Username + " - " + result[7].plrroses + "" + Emote.Parse("<:rose:584250710284304384>") + "";
+                    var top9 = "Top 9: " + Context.Client.GetUser(result[8].ID).Username + " - " + result[8].plrroses + "" + Emote.Parse("<:rose:584250710284304384>") + "";
+                    var top10 = "Top 10: " + Context.Client.GetUser(result[9].ID).Username + " - " + result[9].plrroses + "" + Emote.Parse("<:rose:584250710284304384>") + "";
 
-                embed.AddField("Bảng Xếp Hạng - Top 10 Xu - Ma Cún!", $"{top1}\n{top2}\n{top3}\n{top4}\n{top5}\n{top6}\n{top7}\n{top8}\n{top9}\n{top10}");
-                embed.WithColor(new Discord.Color(0, 255, 0));
-                await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    embed.AddField("Bảng Xếp Hạng - Top 10 Hoa - Ma Cún!", $"{top1}\n{top2}\n{top3}\n{top4}\n{top5}\n{top6}\n{top7}\n{top8}\n{top9}\n{top10}");
+                    embed.WithColor(new Discord.Color(0, 255, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else return;
             }
         }
 

@@ -244,7 +244,6 @@ namespace Neko_Test
                 {
 
                     await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync("Game " + GlobalFunction.gamecodes + " ended - " + GlobalFunction.wons + " won the match!");
-                    GlobalFunction.gamemodes = null;
                     GlobalFunction.wons = null;
                     GlobalFunction.gamestatus = null;
                     GlobalFunction.gametime = null;
@@ -254,6 +253,7 @@ namespace Neko_Test
                     GlobalFunction.daycount = 0;
                     GlobalFunction.matchresult = null;
                     GlobalFunction.matchmember = null;
+                    GlobalFunction.gamemodes = null;
                     await Context.Client.SetGameAsync("No Game Hosting");
 
                     IEnumerable<IMessage> nonPinnedMessages = await Context.Guild.GetTextChannel(559650561981415424).GetMessagesAsync(1000).FlattenAsync();

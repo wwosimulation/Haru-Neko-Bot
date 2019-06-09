@@ -139,7 +139,6 @@ namespace Neko_Test.Ma_Cun_
                         await (Context.User as IGuildUser).RemoveRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Quản Trò - Game"));
                         var guild = Context.Client.GetGuild(580555457983152149);
                         var user = guild.GetUser(Context.User.Id);
-                        await Task.Delay(1000);
                         await user.ModifyAsync(x => x.Nickname = checkplayer.ToString());
                     }
                     else
@@ -263,7 +262,32 @@ namespace Neko_Test.Ma_Cun_
                     }
                     else
                     {
-                        if (GlobalFunctionMaCun.channel1 == 0 & num == 1 & Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống").Members.Contains(user))//580574363930198021
+                        GlobalFunctionMaCun.game = "ok";
+                        int numberofplayer = Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống").Members.Count();
+                        while (numberofplayer > 0)
+                        {
+                            var g = Context.Guild.Users.FirstOrDefault(x => x.Nickname == numberofplayer + "");
+                            if (g != null)
+                            {
+                                var User = UserAccounts10.GetAccount((Context.Guild.Users.FirstOrDefault(x => x.Nickname == numberofplayer + "")) as SocketUser);
+                                if (User.None1 != null)
+                                {
+                                    GlobalFunctionMaCun.game = "notok";
+                                    embed.AddField($"Lỗi!", $"Người chơi {numberofplayer} đã bị cấm chơi nên không thể thêm vai trò cho người chơi khác.");
+                                }
+                            }
+                            numberofplayer--;
+                            if (numberofplayer <= 0 & GlobalFunctionMaCun.game == "notok")
+                            {
+                                embed.WithColor(new Discord.Color(255, 0, 0));
+                                await Context.Guild.GetTextChannel(580558295023222784).SendMessageAsync("", false, embed.Build());
+                            }
+                        }
+                        if ( GlobalFunctionMaCun.game == "notok" )
+                        {
+                            return;
+                        }
+                        else if (GlobalFunctionMaCun.channel1 == 0 & num == 1 & Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống").Members.Contains(user))//580574363930198021
                         {
                             GlobalFunctionMaCun.plr1 = user.Id;
                             GlobalFunctionMaCun.channel1 = 1;
@@ -486,439 +510,465 @@ namespace Neko_Test.Ma_Cun_
                 }
                 else
                 {
-                    int checkplayer = Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống").Members.Count();
-                    var number = checkplayer;
-                    Random a = new Random();
-                    Random j = new Random();
-                    List<int> randomList = new List<int>();
-                    int n = 1;
-                    int i = 1;
-                    number++;
-                    if (GlobalFunctionMaCun.plr1p != 0)
+                    GlobalFunctionMaCun.game = "ok";
+                    int numberofplayer = Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống").Members.Count();
+                    while (numberofplayer > 0)
                     {
-                        randomList.Add(GlobalFunctionMaCun.plr1p);
-                    }
-                    if (GlobalFunctionMaCun.plr2p != 0)
-                    {
-                        randomList.Add(GlobalFunctionMaCun.plr2p);
-                    }
-                    if (GlobalFunctionMaCun.plr3p != 0)
-                    {
-                        randomList.Add(GlobalFunctionMaCun.plr3p);
-                    }
-                    if (GlobalFunctionMaCun.plr4p != 0)
-                    {
-                        randomList.Add(GlobalFunctionMaCun.plr4p);
-                    }
-                    if (GlobalFunctionMaCun.plr5p != 0)
-                    {
-                        randomList.Add(GlobalFunctionMaCun.plr5p);
-                    }
-                    if (GlobalFunctionMaCun.plr6p != 0)
-                    {
-                        randomList.Add(GlobalFunctionMaCun.plr6p);
-                    }
-                    if (GlobalFunctionMaCun.plr7p != 0)
-                    {
-                        randomList.Add(GlobalFunctionMaCun.plr7p);
-                    }
-                    if (GlobalFunctionMaCun.plr8p != 0)
-                    {
-                        randomList.Add(GlobalFunctionMaCun.plr8p);
-                    }
-                    if (GlobalFunctionMaCun.plr9p != 0)
-                    {
-                        randomList.Add(GlobalFunctionMaCun.plr9p);
-                    }
-                    if (GlobalFunctionMaCun.plr10p != 0)
-                    {
-                        randomList.Add(GlobalFunctionMaCun.plr10p);
-                    }
-                    if (GlobalFunctionMaCun.plr11p != 0)
-                    {
-                        randomList.Add(GlobalFunctionMaCun.plr11p);
-                    }
-                    if (GlobalFunctionMaCun.plr12p != 0)
-                    {
-                        randomList.Add(GlobalFunctionMaCun.plr12p);
-                    }
-                    if (GlobalFunctionMaCun.plr13p != 0)
-                    {
-                        randomList.Add(GlobalFunctionMaCun.plr13p);
-                    }
-                    if (GlobalFunctionMaCun.plr14p != 0)
-                    {
-                        randomList.Add(GlobalFunctionMaCun.plr14p);
-                    }
-                    if (GlobalFunctionMaCun.plr15p != 0)
-                    {
-                        randomList.Add(GlobalFunctionMaCun.plr15p);
-                    }
-                    if (GlobalFunctionMaCun.plr16p != 0)
-                    {
-                        randomList.Add(GlobalFunctionMaCun.plr16p);
-                    }
-
-                    if (number <= 17 & number > 4)
-                    {
-                        while (i < number)
+                        var g = Context.Guild.Users.FirstOrDefault(x => x.Nickname == numberofplayer + "");
+                        if (g != null)
                         {
-                            n = a.Next(1, number);
-                            if (!randomList.Contains(n))
+                            var User = UserAccounts10.GetAccount((Context.Guild.Users.FirstOrDefault(x => x.Nickname == numberofplayer + "")) as SocketUser);
+                            if (User.None1 != null)
                             {
-                                randomList.Add(n);
-                                i++;
-                                if (i == 2)
-                                {
-                                    if (GlobalFunctionMaCun.plr1p == 0)
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
-                                        embed.AddField($"" + n + " - Bảo Vệ.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574363930198021).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr1 = user.Id;
-                                        GlobalFunctionMaCun.channel1 = 1;
-                                        GlobalFunctionMaCun.phedan++;
-                                    }
-                                    else
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr1p + "");
-                                        embed.AddField($"" + GlobalFunctionMaCun.plr1p + " - Bảo Vệ.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574363930198021).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr1 = user.Id;
-                                        GlobalFunctionMaCun.channel1 = 1;
-                                        GlobalFunctionMaCun.phedan++;
-                                    }
-                                }
-                                if (i == 3)
-                                {
-                                    if (GlobalFunctionMaCun.plr2p == 0)
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
-                                        embed.AddField($"" + n + " - Thầy Bói.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574739391578112).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr2 = user.Id;
-                                        GlobalFunctionMaCun.channel2 = 1;
-                                        GlobalFunctionMaCun.phedan++;
-                                    }
-                                    else
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr2p + "");
-                                        embed.AddField($"" + GlobalFunctionMaCun.plr2p + " - Thầy Bói.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574739391578112).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr2 = user.Id;
-                                        GlobalFunctionMaCun.channel2 = 1;
-                                        GlobalFunctionMaCun.phedan++;
-                                    }
-                                }
-                                if (i == 4)
-                                {
-                                    if (GlobalFunctionMaCun.plr3p == 0)
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
-                                        embed.AddField($"" + n + " - Dân Làng.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574427712847872).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr3 = user.Id;
-                                        GlobalFunctionMaCun.channel3 = 1;
-                                        GlobalFunctionMaCun.phedan++;
-                                    }
-                                    else
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr3p + "");
-                                        embed.AddField($"" + GlobalFunctionMaCun.plr3p + " - Dân Làng.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574427712847872).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr3 = user.Id;
-                                        GlobalFunctionMaCun.channel3 = 1;
-                                        GlobalFunctionMaCun.phedan++;
-                                    }
-                                }
-                                if (i == 5)
-                                {
-                                    if (GlobalFunctionMaCun.plr4p == 0)
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
-                                        embed.AddField($"" + n + " - Sói Thường.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574451834290176).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580564753982816256).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr4 = user.Id;
-                                        GlobalFunctionMaCun.channel4 = 1;
-                                        GlobalFunctionMaCun.phesoi++;
-                                    }
-                                    else
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr4p + "");
-                                        embed.AddField($"" + GlobalFunctionMaCun.plr4p + " - Sói Thường.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574451834290176).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580564753982816256).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr4 = user.Id;
-                                        GlobalFunctionMaCun.channel4 = 1;
-                                        GlobalFunctionMaCun.phesoi++;
-                                    }
-                                }
-                                if (i == 6)
-                                {
-                                    if (GlobalFunctionMaCun.plr5p == 0)
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
-                                        embed.AddField($"" + n + " - Già Làng.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574497514586137).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr5 = user.Id;
-                                        GlobalFunctionMaCun.channel5 = 1;
-                                        GlobalFunctionMaCun.phedan++;
-                                    }
-                                    else
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr5p + "");
-                                        embed.AddField($"" + GlobalFunctionMaCun.plr5p + " - Già Làng.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574497514586137).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr5 = user.Id;
-                                        GlobalFunctionMaCun.channel5 = 1;
-                                        GlobalFunctionMaCun.phedan++;
-                                    }
-                                }
-                                if (i == 7)
-                                {
-                                    if (GlobalFunctionMaCun.plr6p == 0)
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
-                                        embed.AddField($"" + n + " - Sói Phù Thủy.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574522361774081).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580564753982816256).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr6 = user.Id;
-                                        GlobalFunctionMaCun.channel6 = 1;
-                                        GlobalFunctionMaCun.phesoi++;
-                                    }
-                                    else
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr6p + "");
-                                        embed.AddField($"" + GlobalFunctionMaCun.plr6p + " - Sói Phù Thủy.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574522361774081).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580564753982816256).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr6 = user.Id;
-                                        GlobalFunctionMaCun.channel6 = 1;
-                                        GlobalFunctionMaCun.phesoi++;
-                                    }
-                                }
-                                if (i == 8)
-                                {
-                                    if (GlobalFunctionMaCun.plr7p == 0)
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
-                                        embed.AddField($"" + n + " - Thợ Săn.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574545606475782).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr7 = user.Id;
-                                        GlobalFunctionMaCun.channel7 = 1;
-                                        GlobalFunctionMaCun.phedan++;
-                                    }
-                                    else
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr7p + "");
-                                        embed.AddField($"" + GlobalFunctionMaCun.plr7p + " - Thợ Săn.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574545606475782).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr7 = user.Id;
-                                        GlobalFunctionMaCun.channel7 = 1;
-                                        GlobalFunctionMaCun.phedan++;
-                                    }
-                                }
-                                if (i == 9)
-                                {
-                                    if (GlobalFunctionMaCun.plr8p == 0)
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
-                                        embed.AddField($"" + n + " - Thằng Ngố.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574572483706891).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr8 = user.Id;
-                                        GlobalFunctionMaCun.channel8 = 1;
-                                        GlobalFunctionMaCun.phedan++;
-                                    }
-                                    else
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr8p + "");
-                                        embed.AddField($"" + GlobalFunctionMaCun.plr8p + " - Thằng Ngố.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574572483706891).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr8 = user.Id;
-                                        GlobalFunctionMaCun.channel8 = 1;
-                                        GlobalFunctionMaCun.phedan++;
-                                    }
-                                }
-                                if (i == 10)
-                                {
-                                    if (GlobalFunctionMaCun.plr9p == 0)
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
-                                        embed.AddField($"" + n + " - Phù Thủy.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574598677135390).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr9 = user.Id;
-                                        GlobalFunctionMaCun.channel9 = 1;
-                                        GlobalFunctionMaCun.phedan++;
-                                    }
-                                    else
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr9p + "");
-                                        embed.AddField($"" + GlobalFunctionMaCun.plr9p + " - Phù Thủy.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574598677135390).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr9 = user.Id;
-                                        GlobalFunctionMaCun.channel9 = 1;
-                                        GlobalFunctionMaCun.phedan++;
-                                    }
-                                }
-                                if (i == 11)
-                                {
-                                    if (GlobalFunctionMaCun.plr10p == 0)
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
-                                        embed.AddField($"" + n + " - Xạ Thủ.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574616645402656).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr10 = user.Id;
-                                        GlobalFunctionMaCun.channel10 = 1;
-                                        GlobalFunctionMaCun.phedan++;
-                                    }
-                                    else
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr10p + "");
-                                        embed.AddField($"" + GlobalFunctionMaCun.plr10p + " - Xạ Thủ.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574616645402656).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr10 = user.Id;
-                                        GlobalFunctionMaCun.channel10 = 1;
-                                        GlobalFunctionMaCun.phedan++;
-                                    }
-                                }
-                                if (i == 12)
-                                {
-                                    if (GlobalFunctionMaCun.plr11p == 0)
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
-                                        embed.AddField($"" + n + " - Sói Băng.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574634811064342).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580564753982816256).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr11 = user.Id;
-                                        GlobalFunctionMaCun.channel11 = 1;
-                                        GlobalFunctionMaCun.phesoi++;
-                                    }
-                                    else
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr11p + "");
-                                        embed.AddField($"" + GlobalFunctionMaCun.plr11p + " - Sói Băng.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574634811064342).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580564753982816256).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr11 = user.Id;
-                                        GlobalFunctionMaCun.channel11 = 1;
-                                        GlobalFunctionMaCun.phesoi++;
-                                    }
-                                }
-                                if (i == 13)
-                                {
-                                    if (GlobalFunctionMaCun.plr12p == 0)
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
-                                        embed.AddField($"" + n + " - Tiên Tri.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574414660435982).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr12 = user.Id;
-                                        GlobalFunctionMaCun.channel12 = 1;
-                                        GlobalFunctionMaCun.phedan++;
-                                    }
-                                    else
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr12p + "");
-                                        embed.AddField($"" + GlobalFunctionMaCun.plr12p + " - Tiên Tri.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574414660435982).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr12 = user.Id;
-                                        GlobalFunctionMaCun.channel12 = 1;
-                                        GlobalFunctionMaCun.phedan++;
-                                    }
-                                }
-                                if (i == 14)
-                                {
-                                    if (GlobalFunctionMaCun.plr13p == 0)
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
-                                        embed.AddField($"" + n + " - Sát Nhân.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574812662136836).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr13 = user.Id;
-                                        GlobalFunctionMaCun.channel13 = 1;
-                                        GlobalFunctionMaCun.phethu3++;
-                                    }
-                                    else
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr13p + "");
-                                        embed.AddField($"" + GlobalFunctionMaCun.plr13p + " - Sát Nhân.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574812662136836).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr13 = user.Id;
-                                        GlobalFunctionMaCun.channel13 = 1;
-                                        GlobalFunctionMaCun.phethu3++;
-                                    }
-                                }
-                                if (i == 15)
-                                {
-                                    if (GlobalFunctionMaCun.plr14p == 0)
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
-                                        embed.AddField($"" + n + " - Gái Điếm.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(583828253681254400).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr14 = user.Id;
-                                        GlobalFunctionMaCun.channel14 = 1;
-                                        GlobalFunctionMaCun.phedan++;
-                                    }
-                                    else
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr14p + "");
-                                        embed.AddField($"" + GlobalFunctionMaCun.plr14p + " - Gái Điếm.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(583828253681254400).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr14 = user.Id;
-                                        GlobalFunctionMaCun.channel14 = 1;
-                                        GlobalFunctionMaCun.phedan++;
-                                    }
-                                }
-                                if (i == 16)
-                                {
-                                    if (GlobalFunctionMaCun.plr15p == 0)
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
-                                        embed.AddField($"" + n + " - Thầy Đồng.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(583828359394492427).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr15 = user.Id;
-                                        GlobalFunctionMaCun.channel15 = 1;
-                                        GlobalFunctionMaCun.phedan++;
-                                    }
-                                    else
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr15p + "");
-                                        embed.AddField($"" + GlobalFunctionMaCun.plr15p + " - Thầy Đồng.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(583828359394492427).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr15 = user.Id;
-                                        GlobalFunctionMaCun.channel15 = 1;
-                                        GlobalFunctionMaCun.phedan++;
-                                    }
-                                }
-                                if (i == 17)
-                                {
-                                    if (GlobalFunctionMaCun.plr16p == 0)
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
-                                        embed.AddField($"" + n + " - Sói Tri.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(583828385659355147).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580564753982816256).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr16 = user.Id;
-                                        GlobalFunctionMaCun.channel16 = 1;
-                                        GlobalFunctionMaCun.phesoi++;
-                                    }
-                                    else
-                                    {
-                                        var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr16p + "");
-                                        embed.AddField($"" + GlobalFunctionMaCun.plr16p + " - Sói Tri.", "" + user.Username + "");
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(583828385659355147).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580564753982816256).AddPermissionOverwriteAsync(user, chophep.Modify());
-                                        GlobalFunctionMaCun.plr16 = user.Id;
-                                        GlobalFunctionMaCun.channel16 = 1;
-                                        GlobalFunctionMaCun.phesoi++;
-                                    }
-                                }
-
+                                GlobalFunctionMaCun.game = "notok";
+                                embed.AddField($"Lỗi!", $"Người chơi {numberofplayer} đã bị cấm chơi nên không thể thêm vai trò cho người chơi khác.");
                             }
                         }
+                        numberofplayer--;
+                        if (numberofplayer <= 0 & GlobalFunctionMaCun.game == "notok")
+                        {
+                            embed.WithColor(new Discord.Color(255, 0, 0));
+                            await Context.Guild.GetTextChannel(580558295023222784).SendMessageAsync("", false, embed.Build());
+                        }
+                    }
+
+                    if (GlobalFunctionMaCun.game == "ok")
+                    {
+
+                        int checkplayer = Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống").Members.Count();
+                        var number = checkplayer;
+                        Random a = new Random();
+                        Random j = new Random();
+                        List<int> randomList = new List<int>();
+                        int n = 1;
+                        int i = 1;
+                        number++;
+                        if (GlobalFunctionMaCun.plr1p != 0)
+                        {
+                            randomList.Add(GlobalFunctionMaCun.plr1p);
+                        }
+                        if (GlobalFunctionMaCun.plr2p != 0)
+                        {
+                            randomList.Add(GlobalFunctionMaCun.plr2p);
+                        }
+                        if (GlobalFunctionMaCun.plr3p != 0)
+                        {
+                            randomList.Add(GlobalFunctionMaCun.plr3p);
+                        }
+                        if (GlobalFunctionMaCun.plr4p != 0)
+                        {
+                            randomList.Add(GlobalFunctionMaCun.plr4p);
+                        }
+                        if (GlobalFunctionMaCun.plr5p != 0)
+                        {
+                            randomList.Add(GlobalFunctionMaCun.plr5p);
+                        }
+                        if (GlobalFunctionMaCun.plr6p != 0)
+                        {
+                            randomList.Add(GlobalFunctionMaCun.plr6p);
+                        }
+                        if (GlobalFunctionMaCun.plr7p != 0)
+                        {
+                            randomList.Add(GlobalFunctionMaCun.plr7p);
+                        }
+                        if (GlobalFunctionMaCun.plr8p != 0)
+                        {
+                            randomList.Add(GlobalFunctionMaCun.plr8p);
+                        }
+                        if (GlobalFunctionMaCun.plr9p != 0)
+                        {
+                            randomList.Add(GlobalFunctionMaCun.plr9p);
+                        }
+                        if (GlobalFunctionMaCun.plr10p != 0)
+                        {
+                            randomList.Add(GlobalFunctionMaCun.plr10p);
+                        }
+                        if (GlobalFunctionMaCun.plr11p != 0)
+                        {
+                            randomList.Add(GlobalFunctionMaCun.plr11p);
+                        }
+                        if (GlobalFunctionMaCun.plr12p != 0)
+                        {
+                            randomList.Add(GlobalFunctionMaCun.plr12p);
+                        }
+                        if (GlobalFunctionMaCun.plr13p != 0)
+                        {
+                            randomList.Add(GlobalFunctionMaCun.plr13p);
+                        }
+                        if (GlobalFunctionMaCun.plr14p != 0)
+                        {
+                            randomList.Add(GlobalFunctionMaCun.plr14p);
+                        }
+                        if (GlobalFunctionMaCun.plr15p != 0)
+                        {
+                            randomList.Add(GlobalFunctionMaCun.plr15p);
+                        }
+                        if (GlobalFunctionMaCun.plr16p != 0)
+                        {
+                            randomList.Add(GlobalFunctionMaCun.plr16p);
+                        }
+
+                        if (number <= 17 & number > 4)
+                        {
+                            while (i < number)
+                            {
+                                n = a.Next(1, number);
+                                if (!randomList.Contains(n))
+                                {
+                                    randomList.Add(n);
+                                    i++;
+                                    if (i == 2)
+                                    {
+                                        if (GlobalFunctionMaCun.plr1p == 0)
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
+                                            embed.AddField($"" + n + " - Bảo Vệ.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574363930198021).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr1 = user.Id;
+                                            GlobalFunctionMaCun.channel1 = 1;
+                                            GlobalFunctionMaCun.phedan++;
+                                        }
+                                        else
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr1p + "");
+                                            embed.AddField($"" + GlobalFunctionMaCun.plr1p + " - Bảo Vệ.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574363930198021).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr1 = user.Id;
+                                            GlobalFunctionMaCun.channel1 = 1;
+                                            GlobalFunctionMaCun.phedan++;
+                                        }
+                                    }
+                                    if (i == 3)
+                                    {
+                                        if (GlobalFunctionMaCun.plr2p == 0)
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
+                                            embed.AddField($"" + n + " - Thầy Bói.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574739391578112).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr2 = user.Id;
+                                            GlobalFunctionMaCun.channel2 = 1;
+                                            GlobalFunctionMaCun.phedan++;
+                                        }
+                                        else
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr2p + "");
+                                            embed.AddField($"" + GlobalFunctionMaCun.plr2p + " - Thầy Bói.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574739391578112).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr2 = user.Id;
+                                            GlobalFunctionMaCun.channel2 = 1;
+                                            GlobalFunctionMaCun.phedan++;
+                                        }
+                                    }
+                                    if (i == 4)
+                                    {
+                                        if (GlobalFunctionMaCun.plr3p == 0)
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
+                                            embed.AddField($"" + n + " - Dân Làng.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574427712847872).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr3 = user.Id;
+                                            GlobalFunctionMaCun.channel3 = 1;
+                                            GlobalFunctionMaCun.phedan++;
+                                        }
+                                        else
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr3p + "");
+                                            embed.AddField($"" + GlobalFunctionMaCun.plr3p + " - Dân Làng.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574427712847872).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr3 = user.Id;
+                                            GlobalFunctionMaCun.channel3 = 1;
+                                            GlobalFunctionMaCun.phedan++;
+                                        }
+                                    }
+                                    if (i == 5)
+                                    {
+                                        if (GlobalFunctionMaCun.plr4p == 0)
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
+                                            embed.AddField($"" + n + " - Sói Thường.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574451834290176).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580564753982816256).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr4 = user.Id;
+                                            GlobalFunctionMaCun.channel4 = 1;
+                                            GlobalFunctionMaCun.phesoi++;
+                                        }
+                                        else
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr4p + "");
+                                            embed.AddField($"" + GlobalFunctionMaCun.plr4p + " - Sói Thường.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574451834290176).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580564753982816256).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr4 = user.Id;
+                                            GlobalFunctionMaCun.channel4 = 1;
+                                            GlobalFunctionMaCun.phesoi++;
+                                        }
+                                    }
+                                    if (i == 6)
+                                    {
+                                        if (GlobalFunctionMaCun.plr5p == 0)
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
+                                            embed.AddField($"" + n + " - Già Làng.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574497514586137).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr5 = user.Id;
+                                            GlobalFunctionMaCun.channel5 = 1;
+                                            GlobalFunctionMaCun.phedan++;
+                                        }
+                                        else
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr5p + "");
+                                            embed.AddField($"" + GlobalFunctionMaCun.plr5p + " - Già Làng.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574497514586137).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr5 = user.Id;
+                                            GlobalFunctionMaCun.channel5 = 1;
+                                            GlobalFunctionMaCun.phedan++;
+                                        }
+                                    }
+                                    if (i == 7)
+                                    {
+                                        if (GlobalFunctionMaCun.plr6p == 0)
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
+                                            embed.AddField($"" + n + " - Sói Phù Thủy.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574522361774081).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580564753982816256).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr6 = user.Id;
+                                            GlobalFunctionMaCun.channel6 = 1;
+                                            GlobalFunctionMaCun.phesoi++;
+                                        }
+                                        else
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr6p + "");
+                                            embed.AddField($"" + GlobalFunctionMaCun.plr6p + " - Sói Phù Thủy.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574522361774081).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580564753982816256).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr6 = user.Id;
+                                            GlobalFunctionMaCun.channel6 = 1;
+                                            GlobalFunctionMaCun.phesoi++;
+                                        }
+                                    }
+                                    if (i == 8)
+                                    {
+                                        if (GlobalFunctionMaCun.plr7p == 0)
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
+                                            embed.AddField($"" + n + " - Thợ Săn.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574545606475782).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr7 = user.Id;
+                                            GlobalFunctionMaCun.channel7 = 1;
+                                            GlobalFunctionMaCun.phedan++;
+                                        }
+                                        else
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr7p + "");
+                                            embed.AddField($"" + GlobalFunctionMaCun.plr7p + " - Thợ Săn.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574545606475782).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr7 = user.Id;
+                                            GlobalFunctionMaCun.channel7 = 1;
+                                            GlobalFunctionMaCun.phedan++;
+                                        }
+                                    }
+                                    if (i == 9)
+                                    {
+                                        if (GlobalFunctionMaCun.plr8p == 0)
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
+                                            embed.AddField($"" + n + " - Thằng Ngố.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574572483706891).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr8 = user.Id;
+                                            GlobalFunctionMaCun.channel8 = 1;
+                                            GlobalFunctionMaCun.phedan++;
+                                        }
+                                        else
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr8p + "");
+                                            embed.AddField($"" + GlobalFunctionMaCun.plr8p + " - Thằng Ngố.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574572483706891).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr8 = user.Id;
+                                            GlobalFunctionMaCun.channel8 = 1;
+                                            GlobalFunctionMaCun.phedan++;
+                                        }
+                                    }
+                                    if (i == 10)
+                                    {
+                                        if (GlobalFunctionMaCun.plr9p == 0)
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
+                                            embed.AddField($"" + n + " - Phù Thủy.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574598677135390).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr9 = user.Id;
+                                            GlobalFunctionMaCun.channel9 = 1;
+                                            GlobalFunctionMaCun.phedan++;
+                                        }
+                                        else
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr9p + "");
+                                            embed.AddField($"" + GlobalFunctionMaCun.plr9p + " - Phù Thủy.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574598677135390).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr9 = user.Id;
+                                            GlobalFunctionMaCun.channel9 = 1;
+                                            GlobalFunctionMaCun.phedan++;
+                                        }
+                                    }
+                                    if (i == 11)
+                                    {
+                                        if (GlobalFunctionMaCun.plr10p == 0)
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
+                                            embed.AddField($"" + n + " - Xạ Thủ.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574616645402656).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr10 = user.Id;
+                                            GlobalFunctionMaCun.channel10 = 1;
+                                            GlobalFunctionMaCun.phedan++;
+                                        }
+                                        else
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr10p + "");
+                                            embed.AddField($"" + GlobalFunctionMaCun.plr10p + " - Xạ Thủ.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574616645402656).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr10 = user.Id;
+                                            GlobalFunctionMaCun.channel10 = 1;
+                                            GlobalFunctionMaCun.phedan++;
+                                        }
+                                    }
+                                    if (i == 12)
+                                    {
+                                        if (GlobalFunctionMaCun.plr11p == 0)
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
+                                            embed.AddField($"" + n + " - Sói Băng.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574634811064342).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580564753982816256).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr11 = user.Id;
+                                            GlobalFunctionMaCun.channel11 = 1;
+                                            GlobalFunctionMaCun.phesoi++;
+                                        }
+                                        else
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr11p + "");
+                                            embed.AddField($"" + GlobalFunctionMaCun.plr11p + " - Sói Băng.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574634811064342).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580564753982816256).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr11 = user.Id;
+                                            GlobalFunctionMaCun.channel11 = 1;
+                                            GlobalFunctionMaCun.phesoi++;
+                                        }
+                                    }
+                                    if (i == 13)
+                                    {
+                                        if (GlobalFunctionMaCun.plr12p == 0)
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
+                                            embed.AddField($"" + n + " - Tiên Tri.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574414660435982).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr12 = user.Id;
+                                            GlobalFunctionMaCun.channel12 = 1;
+                                            GlobalFunctionMaCun.phedan++;
+                                        }
+                                        else
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr12p + "");
+                                            embed.AddField($"" + GlobalFunctionMaCun.plr12p + " - Tiên Tri.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574414660435982).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr12 = user.Id;
+                                            GlobalFunctionMaCun.channel12 = 1;
+                                            GlobalFunctionMaCun.phedan++;
+                                        }
+                                    }
+                                    if (i == 14)
+                                    {
+                                        if (GlobalFunctionMaCun.plr13p == 0)
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
+                                            embed.AddField($"" + n + " - Sát Nhân.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574812662136836).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr13 = user.Id;
+                                            GlobalFunctionMaCun.channel13 = 1;
+                                            GlobalFunctionMaCun.phethu3++;
+                                        }
+                                        else
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr13p + "");
+                                            embed.AddField($"" + GlobalFunctionMaCun.plr13p + " - Sát Nhân.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580574812662136836).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr13 = user.Id;
+                                            GlobalFunctionMaCun.channel13 = 1;
+                                            GlobalFunctionMaCun.phethu3++;
+                                        }
+                                    }
+                                    if (i == 15)
+                                    {
+                                        if (GlobalFunctionMaCun.plr14p == 0)
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
+                                            embed.AddField($"" + n + " - Gái Điếm.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(583828253681254400).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr14 = user.Id;
+                                            GlobalFunctionMaCun.channel14 = 1;
+                                            GlobalFunctionMaCun.phedan++;
+                                        }
+                                        else
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr14p + "");
+                                            embed.AddField($"" + GlobalFunctionMaCun.plr14p + " - Gái Điếm.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(583828253681254400).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr14 = user.Id;
+                                            GlobalFunctionMaCun.channel14 = 1;
+                                            GlobalFunctionMaCun.phedan++;
+                                        }
+                                    }
+                                    if (i == 16)
+                                    {
+                                        if (GlobalFunctionMaCun.plr15p == 0)
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
+                                            embed.AddField($"" + n + " - Thầy Đồng.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(583828359394492427).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr15 = user.Id;
+                                            GlobalFunctionMaCun.channel15 = 1;
+                                            GlobalFunctionMaCun.phedan++;
+                                        }
+                                        else
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr15p + "");
+                                            embed.AddField($"" + GlobalFunctionMaCun.plr15p + " - Thầy Đồng.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(583828359394492427).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr15 = user.Id;
+                                            GlobalFunctionMaCun.channel15 = 1;
+                                            GlobalFunctionMaCun.phedan++;
+                                        }
+                                    }
+                                    if (i == 17)
+                                    {
+                                        if (GlobalFunctionMaCun.plr16p == 0)
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == n + "");
+                                            embed.AddField($"" + n + " - Sói Tri.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(583828385659355147).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580564753982816256).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr16 = user.Id;
+                                            GlobalFunctionMaCun.channel16 = 1;
+                                            GlobalFunctionMaCun.phesoi++;
+                                        }
+                                        else
+                                        {
+                                            var user = Context.Guild.Users.FirstOrDefault(x => x.Nickname == GlobalFunctionMaCun.plr16p + "");
+                                            embed.AddField($"" + GlobalFunctionMaCun.plr16p + " - Sói Tri.", "" + user.Username + "");
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(583828385659355147).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            await Context.Client.GetGuild(580555457983152149).GetTextChannel(580564753982816256).AddPermissionOverwriteAsync(user, chophep.Modify());
+                                            GlobalFunctionMaCun.plr16 = user.Id;
+                                            GlobalFunctionMaCun.channel16 = 1;
+                                            GlobalFunctionMaCun.phesoi++;
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                        embed.WithColor(new Discord.Color(0, 255, 255));
+                        await Context.Guild.GetTextChannel(580699915156455424).SendMessageAsync("", false, embed.Build());
                     }
                 }
-                embed.WithColor(new Discord.Color(0, 255, 255));
-                await Context.Guild.GetTextChannel(580699915156455424).SendMessageAsync("", false, embed.Build());
             }
             else return;
         }
@@ -4008,6 +4058,7 @@ namespace Neko_Test.Ma_Cun_
                 GlobalFunctionMaCun.luothoisinh = 0;
                 GlobalFunctionMaCun.hoisinh = 0;
                 GlobalFunctionMaCun.mogame = null;
+                GlobalFunctionMaCun.game = null;
                 GlobalFunctionMaCun.chucnangphuphep = 0;
                 GlobalFunctionMaCun.chucnangdongbang = 0;
                 GlobalFunctionMaCun.chucnangsoi = 0;

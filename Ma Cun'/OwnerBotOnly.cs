@@ -225,6 +225,40 @@ namespace Neko_Test.Ma_Cun_
                     UserAccounts10.SaveAccounts();
                 }
             }
+            else if (Context.Client.GetGuild(530689610313891840).GetUser(Context.User.Id).Roles.Any(x => x.Name == "Admin"))
+            {
+                var embed = new EmbedBuilder();
+                if (User == null)
+                {
+                    embed.AddField($"Error!", "User to Ban is Missing.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else if (Reason == null)
+                {
+                    embed.AddField($"Error!", "Reason to Ban is Missing.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else
+                {
+                    var user = UserAccounts10.GetAccount(User);
+                    if (user.None1 == null)
+                    {
+                        user.None1 = Reason;
+                        embed.AddField($"Banned!", "Ban Successfully!\nUser name: " + User.Username + "\nUser ID: " + User.Id + "\nReason: " + Reason + "");
+                        embed.WithColor(new Discord.Color(0, 255, 0));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                    else
+                    {
+                        embed.AddField($"Error!", "That User is already banned.");
+                        embed.WithColor(new Discord.Color(255, 0, 0));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                    UserAccounts10.SaveAccounts();
+                }
+            }
             else return;
         }
 
@@ -233,6 +267,34 @@ namespace Neko_Test.Ma_Cun_
         public async Task unbannedplayerfromwerewolfgame(SocketUser User = null)
         {
             if (Context.User.Id == 454492255932252160)
+            {
+                var embed = new EmbedBuilder();
+                if (User == null)
+                {
+                    embed.AddField($"Error!", "User to Un-Ban is Missing.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else
+                {
+                    var user = UserAccounts10.GetAccount(User);
+                    if (user.None1 != null)
+                    {
+                        user.None1 = null;
+                        embed.AddField($"Un-Banned!", "Un-Ban Successfully!\nUser name: " + User.Username + "\nUser ID: " + User.Id + "");
+                        embed.WithColor(new Discord.Color(0, 255, 0));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                    else
+                    {
+                        embed.AddField($"Error!", "That User is not banned.");
+                        embed.WithColor(new Discord.Color(255, 0, 0));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                    UserAccounts10.SaveAccounts();
+                }
+            }
+            else if (Context.Client.GetGuild(530689610313891840).GetUser(Context.User.Id).Roles.Any(x => x.Name == "Admin"))
             {
                 var embed = new EmbedBuilder();
                 if (User == null)
