@@ -6,7 +6,6 @@ namespace Neko_Test.Modules
 {
     public class GlobalFunction
     {
-        internal static object gamemodes;
         private static string gamecode;
         public static string gamecodes
         {

@@ -267,6 +267,7 @@ namespace Neko_Test.Ma_Cun_
                         while (numberofplayer > 0)
                         {
                             var g = Context.Guild.Users.FirstOrDefault(x => x.Nickname == numberofplayer + "");
+                            var i = Context.Guild.Users.FirstOrDefault(x => x.Nickname == numberofplayer + "").Id;
                             if (g != null)
                             {
                                 var User = UserAccounts10.GetAccount((Context.Guild.Users.FirstOrDefault(x => x.Nickname == numberofplayer + "")) as SocketUser);
@@ -275,12 +276,19 @@ namespace Neko_Test.Ma_Cun_
                                     GlobalFunctionMaCun.game = "notok";
                                     embed.AddField($"Lỗi!", $"Người chơi {numberofplayer} đã bị cấm chơi nên không thể thêm vai trò cho người chơi khác.");
                                 }
+                                var user1 = Context.Client.GetGuild(530689610313891840).GetUser(i);
+                                if (user1 == null)
+                                {
+                                    GlobalFunctionMaCun.game = "notok";
+                                    embed.AddField($"Lỗi!", $"Người chơi {numberofplayer} không có trong Main - Server nên không thể thêm vai trò cho người chơi khác.");
+                                }
                             }
                             numberofplayer--;
                             if (numberofplayer <= 0 & GlobalFunctionMaCun.game == "notok")
                             {
                                 embed.WithColor(new Discord.Color(255, 0, 0));
-                                await Context.Guild.GetTextChannel(580558295023222784).SendMessageAsync("", false, embed.Build());
+                                //await Context.Guild.GetTextChannel(580558295023222784).SendMessageAsync("", false, embed.Build());
+                                await Context.Channel.SendMessageAsync("", false, embed.Build());
                             }
                         }
                         if ( GlobalFunctionMaCun.game == "notok" )
@@ -515,6 +523,7 @@ namespace Neko_Test.Ma_Cun_
                     while (numberofplayer > 0)
                     {
                         var g = Context.Guild.Users.FirstOrDefault(x => x.Nickname == numberofplayer + "");
+                        var i = Context.Guild.Users.FirstOrDefault(x => x.Nickname == numberofplayer + "").Id;
                         if (g != null)
                         {
                             var User = UserAccounts10.GetAccount((Context.Guild.Users.FirstOrDefault(x => x.Nickname == numberofplayer + "")) as SocketUser);
@@ -523,12 +532,19 @@ namespace Neko_Test.Ma_Cun_
                                 GlobalFunctionMaCun.game = "notok";
                                 embed.AddField($"Lỗi!", $"Người chơi {numberofplayer} đã bị cấm chơi nên không thể thêm vai trò cho người chơi khác.");
                             }
+                            var user1 = Context.Client.GetGuild(530689610313891840).GetUser(i);
+                            if (user1 == null)
+                            {
+                                GlobalFunctionMaCun.game = "notok";
+                                embed.AddField($"Lỗi!", $"Người chơi {numberofplayer} không có trong Main - Server nên không thể thêm vai trò cho người chơi khác.");
+                            }
                         }
                         numberofplayer--;
                         if (numberofplayer <= 0 & GlobalFunctionMaCun.game == "notok")
                         {
                             embed.WithColor(new Discord.Color(255, 0, 0));
-                            await Context.Guild.GetTextChannel(580558295023222784).SendMessageAsync("", false, embed.Build());
+                            //await Context.Guild.GetTextChannel(580558295023222784).SendMessageAsync("", false, embed.Build());
+                            await Context.Channel.SendMessageAsync("", false, embed.Build());
                         }
                     }
 
@@ -967,6 +983,28 @@ namespace Neko_Test.Ma_Cun_
                         }
                         embed.WithColor(new Discord.Color(0, 255, 255));
                         await Context.Guild.GetTextChannel(580699915156455424).SendMessageAsync("", false, embed.Build());
+
+                        OverwritePermissions chophep2 = new OverwritePermissions(viewChannel: PermValue.Allow, sendMessages: PermValue.Allow, readMessageHistory: PermValue.Allow);
+                        OverwritePermissions khongchophep2 = new OverwritePermissions(viewChannel: PermValue.Deny, sendMessages: PermValue.Deny, readMessageHistory: PermValue.Deny);
+                        OverwritePermissions khongchophep3 = new OverwritePermissions(viewChannel: PermValue.Allow, connect: PermValue.Allow, speak: PermValue.Deny);
+                        await Context.Client.GetGuild(580555457983152149).GetVoiceChannel(580566264171331597).AddPermissionOverwriteAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống"), khongchophep3.Modify());
+                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580557883931099138).AddPermissionOverwriteAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống"), khongchophep2.Modify());
+                        GlobalFunctionMaCun.gamestatus = 1;
+                        int checkplayer2 = Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống").Members.Count();
+                        GlobalFunctionMaCun.plr = checkplayer2;
+                        GlobalFunctionMaCun.thuoccuu = 1;
+                        GlobalFunctionMaCun.thuocdoc = 1;
+                        GlobalFunctionMaCun.khien = 1;
+                        GlobalFunctionMaCun.danxathu = 1;
+                        GlobalFunctionMaCun.daycount = 1;
+                        GlobalFunctionMaCun.gialang = 1;
+                        GlobalFunctionMaCun.thayboi = 1;
+                        GlobalFunctionMaCun.tientri = 1;
+                        GlobalFunctionMaCun.soitri = 1;
+                        GlobalFunctionMaCun.luothoisinh = 1;
+                        GlobalFunctionMaCun.lastmoi = 1;
+                        GlobalFunctionMaCun.lastdongbang = 1;
+                        await Context.Client.GetGuild(580555457983152149).GetTextChannel(580563096544739331).SendMessageAsync("Đêm thứ Nhất Bắt Đầu!");
                     }
                 }
             }

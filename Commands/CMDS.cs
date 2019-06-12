@@ -240,10 +240,11 @@ namespace Neko_Test
                     await Context.Guild.ModifyAsync(x => x.Icon = pic);
                 }*/
                 var embed = new EmbedBuilder();
-                if (GlobalFunction.gamecodes != null & GlobalFunction.wons != null)
+                if (GlobalFunction.gamestatus == "hosting" & GlobalFunction.gamecodes != null & GlobalFunction.wons != null)
                 {
 
                     await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync("Game " + GlobalFunction.gamecodes + " ended - " + GlobalFunction.wons + " won the match!");
+                    GlobalFunction.gamecodes = null;
                     GlobalFunction.wons = null;
                     GlobalFunction.gamestatus = null;
                     GlobalFunction.gametime = null;
@@ -253,9 +254,8 @@ namespace Neko_Test
                     GlobalFunction.daycount = 0;
                     GlobalFunction.matchresult = null;
                     GlobalFunction.matchmember = null;
-                    GlobalFunction.gamemodes = null;
                     await Context.Client.SetGameAsync("No Game Hosting");
-
+                    /*
                     IEnumerable<IMessage> nonPinnedMessages = await Context.Guild.GetTextChannel(559650561981415424).GetMessagesAsync(1000).FlattenAsync();
                     await Context.Guild.GetTextChannel(559650561981415424).DeleteMessagesAsync(nonPinnedMessages.Where(x => x.IsPinned == false));
                     //Bulk Delete Messages Channel #player-commands in Werewolf Online Simulation - Game Server.
@@ -267,7 +267,7 @@ namespace Neko_Test
                     IEnumerable<IMessage> nonPinnedMessages3 = await Context.Guild.GetTextChannel(549202652689596427).GetMessagesAsync(1000).FlattenAsync();
                     await Context.Guild.GetTextChannel(549202652689596427).DeleteMessagesAsync(nonPinnedMessages3.Where(x => x.IsPinned == false));
                     //Bulk Delete Messages Channel #music-log in Werewolf Online Simulation - Game Server.
-
+                    */
                     var GetAllUser = Context.Client.GetGuild(465795320526274561).Users;
                     foreach (var x in GetAllUser)
                     {
@@ -322,7 +322,7 @@ namespace Neko_Test
                 }*/
                 else if (GlobalFunction.gamestatus == "hosting" & GlobalFunction.gamecodes != null & GlobalFunction.wons == null)
                 {
-                    await Context.Channel.SendMessageAsync("Can't Announce game end. (Team to Win is Missing)");
+                    await Context.Guild.GetTextChannel(549202043517272064).SendMessageAsync(Context.User.Mention+", Can't Announce game end. (Team to Win is Missing)");
                 }
                 else if (GlobalFunction.gamecodes != null & GlobalFunction.wons == null)
                 {
@@ -338,7 +338,7 @@ namespace Neko_Test
                 }
                 else
                 {
-                    GlobalFunction.gamemodes = null;
+                    GlobalFunction.gamecodes = null;
                     GlobalFunction.wons = null;
                     GlobalFunction.gamestatus = null;
                     GlobalFunction.gametime = null;
@@ -569,6 +569,7 @@ namespace Neko_Test
                     }
                     else
                     {
+                        GlobalFunction.gamecodes = gc;
                         await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Player").Mention + ", we are now starting game " + GlobalFunction.gamecodes + "! Our host will be " + Context.User.Mention + ". Type `-join " + GlobalFunction.gamecodes + "` to enter the game in <#549193241367543838>. If you don't want to get pinged for future games, come to <#578997340019490826> and reaction icon :video_game:.");
                         await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync("Game start with Manual.");
                         await Context.Client.SetGameAsync("Waiting For Player");
@@ -638,7 +639,7 @@ namespace Neko_Test
                 else if (GlobalFunction.gamecodes == null)
                 {
                     GlobalFunction.gamecodes = "RS.2[" + gc + "]";
-                    await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Ranked Warn").Mention + ", we are now starting game RS.2[" + gc + "]! Our host will be " + Context.User.Mention + ". Type `-join RS.2[" + gc + "]` to enter the game in <#549193241367543838>.");
+                    await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Ranked Warn").Mention + ", we are now starting game " + gc + "! Our host will be " + Context.User.Mention + ". Type `-join " + gc + "` to enter the game in <#549193241367543838>.");
                     await Context.Client.SetGameAsync("Waiting For Player");
                 }
                 else await Context.Channel.SendMessageAsync("Game Code `" + GlobalFunction.gamecodes + "` has been hosted, so can't change game code until game end!");
@@ -888,7 +889,7 @@ namespace Neko_Test
                 var embed = new EmbedBuilder();
                 {
                     //embed.WithTitle($"Status Running In GlobalFunction.");
-                    embed.AddField($"Status Running In GlobalFunction. \n \n", "Game Code: " + GlobalFunction.gamecodes + "\nTeam Won: " + GlobalFunction.wons + "\nGame Status: " + GlobalFunction.gamestatus + "\nGame Time: " + GlobalFunction.gametime + "\nJailer: " + GlobalFunction.jailer + "\nJailer Ammo: " + GlobalFunction.jailerammo + "\nJailed: " + GlobalFunction.jailed + "");
+                    embed.AddField($"Status Running In GlobalFunction. \n \n", "Game Code: " + GlobalFunction.gamecodes + "\nTeam Won: " + GlobalFunction.wons + "\nGame Status: " + GlobalFunction.gamestatus + "\nGame Time: " + GlobalFunction.gametime + "");
                     //embed.WithDescription($"Russian Roullete started for None {Emote.Parse("<:coin:475781084584607745>")}!");
                     embed.WithColor(new Discord.Color(0, 255, 255));
                     await Context.Channel.SendMessageAsync("", false, embed.Build());
@@ -1148,7 +1149,7 @@ namespace Neko_Test
             }
             else if (abc.ToLower() == "yes")
             {
-                ReplyAsync("Kicking players from 16 to 1, It's take a while.");
+                ReplyAsync("Kicking players with Nickname from 16 to 1, It'll take a while.");
                 var a = 16;
                 while (a > 0)
                 {

@@ -142,8 +142,6 @@ namespace Neko_Test
 
                             case CommandError.UnknownCommand:
                                 break;
-                            case CommandError.BadArgCount:
-                                break;
                             default:
                                 await Context.Channel.SendMessageAsync(
                                     $"An error has occurred {Result.ErrorReason}");
@@ -154,13 +152,28 @@ namespace Neko_Test
             }
             if (Result.IsSuccess)
             {
+                int hour = DateTime.Now.Hour;
+                int min = DateTime.Now.Minute;
+                string hours = null;
+                string minutes = null;
+                if (hour <= 9)
+                {
+                    hours = $"0{DateTime.Now.Hour}";
+                }
+                else hours = $"{DateTime.Now.Hour}";
+                if (min <= 9)
+                {
+                    minutes = $"0{DateTime.Now.Minute}";
+                }
+                else minutes = $"{DateTime.Now.Minute}";
+
                 if (Context.Guild.Id == 465795320526274561)
                 {
                     var embed = new EmbedBuilder();
                     {
                         embed.WithAuthor($"{Context.User.Username}#{Context.User.Discriminator}", Context.User.GetAvatarUrl());
-                        embed.WithDescription($"Used Command: "+Context.Message+"");
-                        embed.WithFooter("" + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " • " + DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year + " (GMT +7)");
+                        embed.WithDescription($""+Context.Message+"");
+                        embed.WithFooter("" + hours + ":" + minutes + " • " + DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year + " (GMT +7)");
                         embed.WithColor(new Discord.Color(0, 255, 0));
                         await Context.Client.GetGuild(465795320526274561).GetTextChannel(579152173217218570).SendMessageAsync("", false, embed.Build());
                     }

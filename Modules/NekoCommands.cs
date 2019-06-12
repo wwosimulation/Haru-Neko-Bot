@@ -14,7 +14,7 @@ namespace Neko_Test.Modules
 {
     public class NekoCommands : ModuleBase<SocketCommandContext>
     {
-        Random rnd = new Random();
+        Random rnd = new Random();//GetSfwAsync()
         [Command("neko")]
         public async Task Neko()
         {
@@ -54,6 +54,21 @@ namespace Neko_Test.Modules
 
                 embed.WithTitle("Neko <3");
                 embed.WithImageUrl($"{another.neko}");
+                embed.WithFooter("Powered by nekos.life");
+                await Context.Channel.SendMessageAsync("", embed: embed.Build());
+            }
+        }
+
+        [Command("neko2")]
+        public async Task Neko2()
+        {
+            //var neko = await NekoServices.GetNekoImage();
+            var embed = new EmbedBuilder();
+            var http = new HttpClient();
+            {
+                var another = NekosClient.GetSfwAsync();
+                embed.WithTitle("Neko <3");
+                embed.WithImageUrl($"{another}");
                 embed.WithFooter("Powered by nekos.life");
                 await Context.Channel.SendMessageAsync("", embed: embed.Build());
             }

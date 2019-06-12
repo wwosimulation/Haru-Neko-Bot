@@ -6,19 +6,64 @@ namespace Neko_Test.ModulesMaCun
 {
     class GlobalFunctionMaCun
     {
+
+
+        private static ulong RRplrs;
+        public static ulong RRplrsp
+        {
+            get { return RRplrs; }
+            set { RRplrs = value; }
+        }
+        private static ulong RRplr6ID;
+        public static ulong RRplr6IDp
+        {
+            get { return RRplr6ID; }
+            set { RRplr6ID = value; }
+        }
+        private static ulong RRplr5ID;
+        public static ulong RRplr5IDp
+        {
+            get { return RRplr5ID; }
+            set { RRplr5ID = value; }
+        }
+        private static ulong RRplr4ID;
+        public static ulong RRplr4IDp
+        {
+            get { return RRplr4ID; }
+            set { RRplr4ID = value; }
+        }
+        private static ulong RRplr3ID;
+        public static ulong RRplr3IDp
+        {
+            get { return RRplr3ID; }
+            set { RRplr3ID = value; }
+        }
+        private static ulong RRplr2ID;
+        public static ulong RRplr2IDp
+        {
+            get { return RRplr2ID; }
+            set { RRplr2ID = value; }
+        }
+        private static ulong RRbet;
+        public static ulong RRbetp
+        {
+            get { return RRbet; }
+            set { RRbet = value; }
+        }
+        private static ulong RRplrstartedID;
+        public static ulong RRplrstartedIDp
+        {
+            get { return RRplrstartedID; }
+            set { RRplrstartedID = value; }
+        }
+
+        // WEREWOLF =======================================
+
         private static string blockinggames;
         public static string game
         {
             get { return blockinggames; }
             set { blockinggames = value; }
-        }
-
-        internal static object gamemodes;
-        private static string gamecode;
-        public static string gamecodes
-        {
-            get { return gamecode; }
-            set { gamecode = value; }
         }
         private static string won;
         public static string wons

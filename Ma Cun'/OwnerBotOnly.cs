@@ -324,5 +324,76 @@ namespace Neko_Test.Ma_Cun_
             }
             else return;
         }
+
+        [Command("transfer")]
+        public async Task tranferforuseraccount(SocketUser User1 = null, SocketUser User2 = null)
+        {
+            if (Context.User.Id == 454492255932252160)
+            {
+                var embed = new EmbedBuilder();
+                if (User1 == null)
+                {
+                    embed.AddField($"Transfer!", "-transfer (User1) (User2)");
+                    embed.WithColor(new Discord.Color(255, 50, 255));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else if (User2 == null)
+                {
+                    embed.AddField($"Error!", "User2 is Missing!");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else
+                {
+                    var user1 = UserAccounts.GetAccount(User1);
+                    var user2 = UserAccounts.GetAccount(User2);
+
+                    user2.points = user2.points + user1.points;
+                    user2.roses = user2.roses + user1.roses;
+                    user2.plrroses = user2.plrroses + user1.plrroses;
+
+                    user1.points = 0;
+                    user1.roses = 0;
+                    user1.plrroses = 0;
+
+                    embed.AddField($"Transfer Successfully!", $"Transfered {Context.Client.GetUser(user1.ID).Username} to Account {Context.Client.GetUser(user2.ID).Username}");
+                    embed.WithColor(new Discord.Color(0, 255, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+
+                    UserAccounts.SaveAccounts();
+                }
+            }
+            else return;
+        }
+
+        [Command("removeaccount")]
+        public async Task removeforuseraccount(SocketUser User = null)
+        {
+            if (Context.User.Id == 454492255932252160)
+            {
+                var embed = new EmbedBuilder();
+                if (User == null)
+                {
+                    embed.AddField($"Transfer!", "-removeaccount (User1)");
+                    embed.WithColor(new Discord.Color(255, 50, 255));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else
+                {
+                    var user1 = UserAccounts.GetAccount(User);
+                    user1.points = 0;
+                    user1.roses = 0;
+                    user1.plrroses = 0;
+
+                    embed.AddField($"Removed Successfully!", $"Removed Account {Context.Client.GetUser(user1.ID).Username}");
+                    embed.WithColor(new Discord.Color(0, 255, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+
+                    UserAccounts.SaveAccounts();
+                }
+            }
+            else return;
+        }
+
     }
 }

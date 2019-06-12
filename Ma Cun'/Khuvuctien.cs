@@ -307,10 +307,10 @@ namespace Neko_Test.Ma_Cun_
                 var embed = new EmbedBuilder();
 
                 embed.WithAuthor($"Danh Sách Trò Chơi - Ma Sói Online - Ma Cún\n \n");
-                embed.WithTitle("Tạm thời không có trò chơi gì nên hãy quay lại sau nhé.");
-                embed.WithFooter($"Yêu cầu bởi {Context.User.Username}", Context.User.GetAvatarUrl());
+                embed.AddField("Cò Quay Nga - Russian Roulette", "Bạn sẽ có 1 viên đạn trong súng quay 6 viên, liệu rằng bạn có may mắn sống sót?\n(Chi tiết truy cập: https://vi.wikipedia.org/wiki/Cò_quay_Nga)");
+                embed.WithFooter($"Yêu cầu bởi {Context.User.Username} - Trang 1/1", Context.User.GetAvatarUrl());
 
-                embed.WithColor(new Discord.Color(255, 50, 255));
+                embed.WithColor(new Discord.Color(0, 255, 0));
                 await Context.Channel.SendMessageAsync("", false, embed.Build());
             }
             else return;
