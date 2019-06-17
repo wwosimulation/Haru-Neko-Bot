@@ -53,6 +53,7 @@ namespace Neko_Test.Ma_Cun_
                 embed.AddField($"-quantro", "Để đưa lên Quản Trò - Game hoặc bỏ đi.");
                 embed.AddField($"-mogame", "Dùng để mở cho người chơi đăng ký tham gia game.");
                 embed.AddField($"-donggame", "Dùng để khóa không cho người chơi đăng ký tham gia game.");
+                embed.AddField($"-caidatgame", "Để cài đặt trận đấu cho Game.");
                 embed.AddField($"-gamerole", "Để tự động đưa người chơi vào vai trò một cách ngẫu nhiên (Nhưng sẽ theo danh sách).");
                 embed.AddField($"-themvaitro (Số Người Chơi) (Số Vai Trò)", "Để đưa vai trò cho người chơi (-danhsachvaitro để xem Số Vai Trò).");
                 embed.AddField($"-batdau", "Dùng khi đã đưa vai trò cho người chơi xong - Sẽ bắt đầu thằng vào đêm 1.");

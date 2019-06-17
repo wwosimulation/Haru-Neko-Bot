@@ -50,7 +50,7 @@ namespace Neko_Test.Modules
                 var alpha = JsonConvert.DeserializeObject(response);*/
                 var patRequest = await http.GetAsync($"https://nekos.life/api/neko");
                 string response = await patRequest.Content.ReadAsStringAsync();
-                var another = JsonConvert.DeserializeObject<NekosImage>(response);
+                var another = JsonConvert.DeserializeObject<NekosImage2>(response);
 
                 embed.WithTitle("Neko <3");
                 embed.WithImageUrl($"{another.neko}");
@@ -60,17 +60,28 @@ namespace Neko_Test.Modules
         }
 
         [Command("neko2")]
-        public async Task Neko2()
+        public async Task Nekos(string url = null)
         {
             //var neko = await NekoServices.GetNekoImage();
             var embed = new EmbedBuilder();
             var http = new HttpClient();
             {
-                var another = NekosClient.GetSfwAsync();
-                embed.WithTitle("Neko <3");
-                embed.WithImageUrl($"{another}");
-                embed.WithFooter("Powered by nekos.life");
-                await Context.Channel.SendMessageAsync("", embed: embed.Build());
+                if (url == null)
+                {
+                    var nekos = NekosClient.GetSfwAsync();
+
+                    embed.WithImageUrl($"{nekos.Result.url}");
+                    embed.WithFooter("Powered by nekos.life");
+                    await Context.Channel.SendMessageAsync("", embed: embed.Build());
+                }
+                else
+                {
+                    var nekos = NekosClient.GetSfwAsync2(url);
+
+                    embed.WithImageUrl($"{nekos.Result.url}");
+                    embed.WithFooter("Powered by nekos.life");
+                    await Context.Channel.SendMessageAsync("", embed: embed.Build());
+                }
             }
         }
     }

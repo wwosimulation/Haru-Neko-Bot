@@ -15,6 +15,14 @@ namespace Neko_Test.Responses
         /// <summary>
         ///     The image URL depends on your search.
         /// </summary>
-       public string neko { get; set; }
+       public string url { get; set; }
+    }
+
+    public class NekosImage2
+    {
+        /// <summary>
+        ///     The image URL depends on your search.
+        /// </summary>
+        public string neko { get; set; }
     }
 }

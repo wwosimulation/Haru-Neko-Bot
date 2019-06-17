@@ -307,19 +307,29 @@ namespace Neko_Test
                 }
                 else
                 {
-                    var maxpage = 2;
+                    var maxpage = 1;
 
                     if (num == 1 || num == 0)
                     {
                         num = 1;
                         embed.WithAuthor($"Haru Neko - Emote List!\n \n");
-                        embed.WithDescription($"Use -emote <Number> to use that emote.\n1 - {Emote.Parse("<:TohruWeary:585492969025568799>")}\n2 - {Emote.Parse("<:remsleepy:585492968182644758>")}\n3 - {Emote.Parse("<:remBlush:585492968228519937>")}\n4 - {Emote.Parse("<:LoveHeart:585492967880523821>")}\n5 - {Emote.Parse("<:Kya:585507397993234556>")}\n6 - {Emote.Parse("<:kannaWave:585492969008791580>")}\n7 - {Emote.Parse("<:kannaPeek:585492968807464984>")}\n8 - {Emote.Parse("<:kannanom:585492968962523160>")}\n9 - {Emote.Parse("<:pillowYes:585492967649837197>")}\n10 - {Emote.Parse("<:pillowNo:585492968274657300>")}\n");
+                        embed.WithDescription($"Use -emote <Number> to use that emote." +
+                            $"\n  1 - {Emote.Parse("<:TohruWeary:585492969025568799>")} / 11 - {Emote.Parse("<:GWpdnlaugh:587152172161040396>")}" +
+                            $"\n 2 - {Emote.Parse("<:remsleepy:585492968182644758>")} / 12 - {Emote.Parse("<:GWpdnXD:587152173922648070>")}" +
+                            $"\n 3 - {Emote.Parse("<:remBlush:585492968228519937>")} / 13 - {Emote.Parse("<:ReimuFacePalm:587152173595623424>")}" +
+                            $"\n 4 - {Emote.Parse("<:LoveHeart:585492967880523821>")} / 14 - {Emote.Parse("<:Naisu:587265138843844608>")}" +
+                            $"\n 5 - {Emote.Parse("<:Kya:585507397993234556>")} / 15 - {Emote.Parse("<:SenkoThinking:589049035055169536>")}" +
+                            $"\n 6 - {Emote.Parse("<:kannaWave:585492969008791580>")} / 16 - {Emote.Parse("<:SenkoPlease:589049212239347753>")}" +
+                            $"\n 7 - {Emote.Parse("<:kannaPeek:585492968807464984>")} / 17 - {Emote.Parse("<:SenkoListening:589049338622246922>")}" +
+                            $"\n 8 - {Emote.Parse("<:kannanom:585492968962523160>")} / 18 - {Emote.Parse("<:SenkoHi:589049277754507265>")}" +
+                            $"\n 9 - {Emote.Parse("<:pillowYes:585492967649837197>")} / 19 - {Emote.Parse("<:SenkoBlush:589049141183905797>")}" +
+                            $"\n10 - {Emote.Parse("<:pillowNo:585492968274657300>")}");
                         embed.WithFooter($"Requested by {Context.User.Username} - Page {num}/{maxpage}", Context.User.GetAvatarUrl());
 
                         embed.WithColor(new Discord.Color(255, 50, 255));
                         await Context.Channel.SendMessageAsync("", false, embed.Build());
                     }
-                    if (num == 2)
+                    /*if (num == 2)
                     {
                         embed.WithAuthor($"Haru Neko - Emote List!\n \n");
                         embed.WithDescription($"Use -emote <Number> to use that emote.\n11 - {Emote.Parse("<:GWpdnlaugh:587152172161040396>")}\n12 - {Emote.Parse("<:GWpdnXD:587152173922648070>")}\n13 - {Emote.Parse("<:ReimuFacePalm:587152173595623424>")}\n14 - {Emote.Parse("<:Naisu:587265138843844608>")}");
@@ -327,7 +337,7 @@ namespace Neko_Test
 
                         embed.WithColor(new Discord.Color(255, 50, 255));
                         await Context.Channel.SendMessageAsync("", false, embed.Build());
-                    }
+                    }*/
                 }
             }
             UserAccounts10.SaveAccounts();
@@ -404,6 +414,26 @@ namespace Neko_Test
                     else if (num == 14)
                     {
                         await Context.Channel.SendMessageAsync($"{Emote.Parse("<:Naisu:587265138843844608>")}");
+                    }
+                    else if (num == 15)
+                    {
+                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:SenkoThinking:589049035055169536>")}");
+                    }
+                    else if (num == 16)
+                    {
+                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:SenkoPlease:589049212239347753>")}");
+                    }
+                    else if (num == 17)
+                    {
+                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:SenkoListening:589049338622246922>")}");
+                    }
+                    else if (num == 18)
+                    {
+                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:SenkoHi:589049277754507265>")}");
+                    }
+                    else if (num == 19)
+                    {
+                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:SenkoBlush:589049141183905797>")}");
                     }
                     else
                     {

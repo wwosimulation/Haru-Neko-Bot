@@ -255,7 +255,7 @@ namespace Neko_Test
                     GlobalFunction.matchresult = null;
                     GlobalFunction.matchmember = null;
                     await Context.Client.SetGameAsync("No Game Hosting");
-                    /*
+                    
                     IEnumerable<IMessage> nonPinnedMessages = await Context.Guild.GetTextChannel(559650561981415424).GetMessagesAsync(1000).FlattenAsync();
                     await Context.Guild.GetTextChannel(559650561981415424).DeleteMessagesAsync(nonPinnedMessages.Where(x => x.IsPinned == false));
                     //Bulk Delete Messages Channel #player-commands in Werewolf Online Simulation - Game Server.
@@ -267,7 +267,7 @@ namespace Neko_Test
                     IEnumerable<IMessage> nonPinnedMessages3 = await Context.Guild.GetTextChannel(549202652689596427).GetMessagesAsync(1000).FlattenAsync();
                     await Context.Guild.GetTextChannel(549202652689596427).DeleteMessagesAsync(nonPinnedMessages3.Where(x => x.IsPinned == false));
                     //Bulk Delete Messages Channel #music-log in Werewolf Online Simulation - Game Server.
-                    */
+                    
                     var GetAllUser = Context.Client.GetGuild(465795320526274561).Users;
                     foreach (var x in GetAllUser)
                     {
@@ -539,7 +539,7 @@ namespace Neko_Test
                 await Context.Channel.SendMessageAsync("This Command is Only work in Main - WWO Simulation!");
                 return;
             }
-            else if (checkbotstatus.Status == UserStatus.Offline)
+            else if (checkbotstatus.Status == UserStatus.Offline & mn.ToLower() != "manual")
             {
                 await Context.Channel.SendMessageAsync("Narrator Bot is Offline, so you can't host at this time!");
                 return;
@@ -559,6 +559,7 @@ namespace Neko_Test
                     }
                     else GlobalFunction.gamecodes = "" + mn + " " + gc + "";
                     await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Player").Mention + ", we are now starting game " + GlobalFunction.gamecodes + "! Our host will be " + Context.User.Mention + ". Type `-join " + GlobalFunction.gamecodes + "` to enter the game in <#549193241367543838>. If you don't want to get pinged for future games, come to <#578997340019490826> and reaction icon :video_game:.");
+                    await Context.Client.GetGuild(472261911526768642).GetTextChannel(589277661084254242).SendMessageAsync("= = = = = S T A R T = = = = =");
                     await Context.Client.SetGameAsync("Waiting For Player");
                 }
                 else if (mn.ToLower() == "manual")
@@ -571,7 +572,8 @@ namespace Neko_Test
                     {
                         GlobalFunction.gamecodes = gc;
                         await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Player").Mention + ", we are now starting game " + GlobalFunction.gamecodes + "! Our host will be " + Context.User.Mention + ". Type `-join " + GlobalFunction.gamecodes + "` to enter the game in <#549193241367543838>. If you don't want to get pinged for future games, come to <#578997340019490826> and reaction icon :video_game:.");
-                        await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync("Game start with Manual.");
+                        await Context.Client.GetGuild(472261911526768642).GetTextChannel(589277661084254242).SendMessageAsync("= = = = = S T A R T = = = = =");
+                        await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync("Note: game start with Manual.");
                         await Context.Client.SetGameAsync("Waiting For Player");
                     }
                 }
@@ -596,6 +598,7 @@ namespace Neko_Test
                 if (GlobalFunction.gamecodes != null)
                 {
                     await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync("Game " + GlobalFunction.gamecodes + " was cancelled, sorry for any inconvenience caused.");
+                    await Context.Client.GetGuild(472261911526768642).GetTextChannel(589277661084254242).SendMessageAsync("= = = = = C A N C E L L E D = = = = =");
                     await Context.Client.SetGameAsync("No Game Hosting");
                     GlobalFunction.gamecodes = null;
                     var GetAllUser = Context.Guild.Users;
@@ -640,6 +643,7 @@ namespace Neko_Test
                 {
                     GlobalFunction.gamecodes = "RS.2[" + gc + "]";
                     await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Ranked Warn").Mention + ", we are now starting game " + gc + "! Our host will be " + Context.User.Mention + ". Type `-join " + gc + "` to enter the game in <#549193241367543838>.");
+                    await Context.Client.GetGuild(472261911526768642).GetTextChannel(589277661084254242).SendMessageAsync("= = = = = S T A R T = = = = =");
                     await Context.Client.SetGameAsync("Waiting For Player");
                 }
                 else await Context.Channel.SendMessageAsync("Game Code `" + GlobalFunction.gamecodes + "` has been hosted, so can't change game code until game end!");
@@ -1149,7 +1153,7 @@ namespace Neko_Test
             }
             else if (abc.ToLower() == "yes")
             {
-                ReplyAsync("Kicking players with Nickname from 16 to 1, It'll take a while.");
+                await ReplyAsync("Kicking players with Nickname from 16 to 1, It'll take a while.");
                 var a = 16;
                 while (a > 0)
                 {

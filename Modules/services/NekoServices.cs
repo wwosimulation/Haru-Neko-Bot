@@ -11,7 +11,6 @@ namespace Neko_Test.Modules.services
 {
     public class NekosClient
     {
-        public static NekosClient NekoClient = new NekosClient();
 
         private const string HostUrl = "https://nekos.life/api/v2";
         /// <summary>
@@ -99,6 +98,7 @@ namespace Neko_Test.Modules.services
                 return JsonConvert.DeserializeObject<T>(response);
             }
         }
+
 
     }
 }

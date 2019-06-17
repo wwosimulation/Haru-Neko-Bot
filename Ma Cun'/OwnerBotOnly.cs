@@ -12,6 +12,7 @@ using Neko_Test.Core.UserAccounts;
 using Neko_Test.Core.UserAccounts10;
 using System.Globalization;
 using System.Windows.Forms;
+using Neko_Test.ModulesMaCun;
 
 using Discord.WebSocket;
 using System.Diagnostics;
@@ -34,17 +35,17 @@ namespace Neko_Test.Ma_Cun_
                 }
                 else if (Number1 == 0)
                 {
-                    embed.AddField($"Error!", "Number1 is Missing! / 1-Coin _ 2-Roses _ 3-PlrRoses");
+                    embed.AddField($"Error!", "Number1 is Missing! / 1-Coin • 2-Roses • 3-PlrRoses • 4-BlockCommand.");
                     embed.WithColor(new Discord.Color(255, 0, 0));
                     await Context.Channel.SendMessageAsync("", false, embed.Build());
                 }
                 else if (Number2 == 0)
                 {
-                    embed.AddField($"Error!", "Number2 is Missing! / 1-Add _ 2-Remove");
+                    embed.AddField($"Error!", "Number2 is Missing! / 1-Add • 2-Remove");
                     embed.WithColor(new Discord.Color(255, 0, 0));
                     await Context.Channel.SendMessageAsync("", false, embed.Build());
                 }
-                else if (Number3 == 0)
+                else if (Number3 == 0 & Number1 != 4)
                 {
                     embed.AddField($"Error!", "Number3 is Missing! / Context Number");
                     embed.WithColor(new Discord.Color(255, 0, 0));
@@ -135,7 +136,6 @@ namespace Neko_Test.Ma_Cun_
             else return;
         }
 
-
         [Command("perm")]
         public async Task permissionforuser(SocketUser User = null, int Number1 = 0, int Number2 = 0)
         {
@@ -186,7 +186,50 @@ namespace Neko_Test.Ma_Cun_
             else return;
         }
 
-
+        [Command("commandperm")]
+        public async Task CommandPermission(int Number1 = 0, int Number2 = 0)
+        {
+            if (Context.User.Id == 454492255932252160)
+            {
+                var embed = new EmbedBuilder();
+                if (Number1 == 0)
+                {
+                    embed.AddField($"Command Permission!", "-commandperm (Number1) (Number2)\n1 - Command Werewolf Online Vietnam.");
+                    embed.WithColor(new Discord.Color(255, 50, 255));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else if (Number2 == 0)
+                {
+                    embed.AddField($"Error!", "Number2 is Missing! / 1-Allow • 2-Deny.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else
+                {
+                    if (Number2 == 1)
+                    {
+                        if (Number1 == 1)
+                        {
+                            GlobalFunctionMaCun.blockcommand = true;
+                            embed.AddField($"Command Permission!", "Commands now are Blocked.");
+                            embed.WithColor(new Discord.Color(0, 255, 0));
+                            await Context.Channel.SendMessageAsync("", false, embed.Build());
+                        }
+                    }
+                    if (Number2 == 2)
+                    {
+                        if (Number1 == 1)
+                        {
+                            GlobalFunctionMaCun.blockcommand = false;
+                            embed.AddField($"Command Permission!", "Commands now are Un-Blocked.");
+                            embed.WithColor(new Discord.Color(0, 255, 0));
+                            await Context.Channel.SendMessageAsync("", false, embed.Build());
+                        }
+                    }
+                }
+            }
+            else return;
+        }
 
         [Command("cam")]
         public async Task bannedplayerfromwerewolfgame(SocketUser User = null, [Remainder] string Reason = null)
@@ -212,7 +255,7 @@ namespace Neko_Test.Ma_Cun_
                     if (user.None1 == null)
                     {
                         user.None1 = Reason;
-                        embed.AddField($"Banned!", "Ban Successfully!\nUser name: "+User.Username+"\nUser ID: "+User.Id+"\nReason: "+Reason+"");
+                        embed.AddField($"Banned!", "Ban Successfully!\nUser name: " + User.Username + "\nUser ID: " + User.Id + "\nReason: " + Reason + "");
                         embed.WithColor(new Discord.Color(0, 255, 0));
                         await Context.Channel.SendMessageAsync("", false, embed.Build());
                     }
@@ -395,5 +438,139 @@ namespace Neko_Test.Ma_Cun_
             else return;
         }
 
+
+        [Command("choose")]
+        public async Task chatsgetfromglobalfunction(string name, ulong id)
+        {
+            if (Context.User.Id == 454492255932252160)
+            {
+                if (id == 1)
+                {
+                    if (name.ToLower() == "guild")
+                    {
+                        GlobalFunctionMaCun.guildid = Context.Guild.Id;
+                        await ReplyAsync("Done.");
+                    }
+                    else if (name.ToLower() == "channel")
+                    {
+                        GlobalFunctionMaCun.channelid = Context.Channel.Id;
+                        await ReplyAsync("Done.");
+                    }
+                    else await ReplyAsync("Guild or Channel.");
+                }
+                else
+                {
+                    if (name.ToLower() == "guild")
+                    {
+                        var check = Context.Client.GetGuild(id);
+                        if (check == null)
+                        {
+                            await ReplyAsync("Error, Guild not found.");
+                        }
+                        else
+                        {
+                            GlobalFunctionMaCun.guildid = id;
+                            await ReplyAsync("Done.");
+                        }
+                    }
+                    else if (name.ToLower() == "channel")
+                    {
+                        if (GlobalFunctionMaCun.guildid == 0)
+                        {
+                            await ReplyAsync("Guild is Missing.");
+                        }
+                        else
+                        {
+                            var check = Context.Client.GetGuild(GlobalFunctionMaCun.guildid).GetTextChannel(id);
+                            if (check == null)
+                            {
+                                await ReplyAsync("Error, Channel not found from Guild " + Context.Client.Guilds.FirstOrDefault(x => x.Id == GlobalFunctionMaCun.guildid).Name + ".");
+                            }
+                            else
+                            {
+                                GlobalFunctionMaCun.channelid = id;
+                                await ReplyAsync("Done.");
+                            }
+                        }
+                    }
+                }
+            }
+            else return;
+        }
+
+        [Command("chats")]
+        public async Task chatsfromglobalfunction([Remainder]string text = null)
+        {
+            if (Context.User.Id == 454492255932252160)
+            {
+                if (GlobalFunctionMaCun.guildid == 0)
+                {
+                    await ReplyAsync("Guild is Missing.");
+                }
+                else if (GlobalFunctionMaCun.channelid == 0)
+                {
+                    await ReplyAsync("Channel is Missing.");
+                }
+                else if (text == null)
+                {
+                    await ReplyAsync("Text is Missing.");
+                }
+                else
+                {
+                    await Context.Client.GetGuild(GlobalFunctionMaCun.guildid).GetTextChannel(GlobalFunctionMaCun.channelid).SendMessageAsync(text);
+                }
+            }
+            else return;
+        }
+
+
+        [Command(".")]
+        public async Task testtsomething([Remainder]string text = null)
+        {
+            if (Context.User.Id == 454492255932252160)
+            {
+                string line = null;
+                var texts = text.Split(" ");
+                foreach (var t in texts)
+                {
+                    line = $"{line}\n{t}";
+                }
+                await ReplyAsync($"{line}");
+            }
+            else return;
+        }
+
+        [Command("..")]
+        public async Task a([Remainder]string text = null)
+        {
+            if (Context.User.Id == 454492255932252160)
+            {
+                string line = null;
+                var texts = text.Split(" ");
+                foreach (var t in texts)
+                {
+                    await GlobalFunctionMaCun.rolestring(t, "ten");
+                    line = $"{line}\n{GlobalFunctionMaCun.nameroles}";
+                }
+                await ReplyAsync($"{line}");
+            }
+            else return;
+        }
+        [Command("...")]
+        public async Task absas()
+        {
+            if (Context.User.Id == 454492255932252160)
+            {
+                var embed = new EmbedBuilder();
+                string ga = null;
+                ga = $"{ga}\n{GlobalFunctionMaCun.giaoxu}";
+                ga = $"{ga}\n{GlobalFunctionMaCun.giaoxu1}";
+                ga = $"{ga}\n{GlobalFunctionMaCun.giaoxu2}";
+                ga = $"{ga}\n{GlobalFunctionMaCun.giaoxu2}";
+                embed.AddField("Giáo Xứ!", $"{ga}");
+                await Context.Channel.SendMessageAsync("", false, embed.Build());
+            }
+            else return;
+        }
     }
 }

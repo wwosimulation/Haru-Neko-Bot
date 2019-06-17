@@ -1,12 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Neko_Test.ModulesMaCun
 {
     class GlobalFunctionMaCun
     {
+        public static ulong idowner = 454492255932252160;
 
+        public static bool blockcommand = false;
+
+        private static ulong guildids;
+        public static ulong guildid
+        {
+            get { return guildids; }
+            set { guildids = value; }
+        }
+
+        private static ulong channelids;
+        public static ulong channelid
+        {
+            get { return channelids; }
+            set { channelids = value; }
+        }
 
         private static ulong RRplrs;
         public static ulong RRplrsp
@@ -203,6 +220,18 @@ namespace Neko_Test.ModulesMaCun
             get { return plr16z; }
             set { plr16z = value; }
         }
+        private static ulong plr17z;
+        public static ulong plr17
+        {
+            get { return plr17z; }
+            set { plr17z = value; }
+        }
+        private static ulong plr18z;
+        public static ulong plr18
+        {
+            get { return plr18z; }
+            set { plr18z = value; }
+        }
         private static int plr1pp;
         public static int plr1p
         {
@@ -299,6 +328,18 @@ namespace Neko_Test.ModulesMaCun
             get { return plr16pp; }
             set { plr16pp = value; }
         }
+        private static int plr17pp;
+        public static int plr17p
+        {
+            get { return plr17pp; }
+            set { plr17pp = value; }
+        }
+        private static int plr18pp;
+        public static int plr18p
+        {
+            get { return plr18pp; }
+            set { plr18pp = value; }
+        }
         private static int channel1z;
         public static int channel1
         {
@@ -394,6 +435,18 @@ namespace Neko_Test.ModulesMaCun
         {
             get { return channel16z; }
             set { channel16z = value; }
+        }
+        private static int channel17z;
+        public static int channel17
+        {
+            get { return channel17z; }
+            set { channel17z = value; }
+        }
+        private static int channel18z;
+        public static int channel18
+        {
+            get { return channel18z; }
+            set { channel18z = value; }
         }
         private static int khienbaove;
         public static int khien
@@ -557,5 +610,1010 @@ namespace Neko_Test.ModulesMaCun
             get { return chucnangsois; }
             set { chucnangsois = value; }
         }
+
+        private static int showroless;
+        public static int showroles
+        {
+            get { return showroless; }
+            set { showroless = value; }
+        }
+
+        private static int deadroless;
+        public static int deadroles
+        {
+            get { return deadroless; }
+            set { deadroless = value; }
+        }
+        private static ulong giaoxuss;
+        public static ulong giaoxu
+        {
+            get { return giaoxuss; }
+            set { giaoxuss = value; }
+        }
+        private static ulong giaoxuss1;
+        public static ulong giaoxu1
+        {
+            get { return giaoxuss1; }
+            set { giaoxuss1 = value; }
+        }
+        private static ulong giaoxuss2;
+        public static ulong giaoxu2
+        {
+            get { return giaoxuss2; }
+            set { giaoxuss2 = value; }
+        }
+        private static ulong giaoxuss3;
+        public static ulong giaoxu3
+        {
+            get { return giaoxuss3; }
+            set { giaoxuss3 = value; }
+        }
+        private static ulong giaoxuss4;
+        public static ulong giaoxu4
+        {
+            get { return giaoxuss4; }
+            set { giaoxuss4 = value; }
+        }
+        private static ulong giaoxuss5;
+        public static ulong giaoxu5
+        {
+            get { return giaoxuss5; }
+            set { giaoxuss5 = value; }
+        }
+        private static ulong giaoxuss6;
+        public static ulong giaoxu6
+        {
+            get { return giaoxuss6; }
+            set { giaoxuss6 = value; }
+        }
+        private static ulong giaoxuss7;
+        public static ulong giaoxu7
+        {
+            get { return giaoxuss7; }
+            set { giaoxuss7 = value; }
+        }
+        private static ulong giaoxuss8;
+        public static ulong giaoxu8
+        {
+            get { return giaoxuss8; }
+            set { giaoxuss8 = value; }
+        }
+        private static ulong giaoxuss9;
+        public static ulong giaoxu9
+        {
+            get { return giaoxuss9; }
+            set { giaoxuss9 = value; }
+        }
+        private static ulong giaoxuss10;
+        public static ulong giaoxu10
+        {
+            get { return giaoxuss10; }
+            set { giaoxuss10 = value; }
+        }
+        private static ulong giaoxuss11;
+        public static ulong giaoxu11
+        {
+            get { return giaoxuss11; }
+            set { giaoxuss11 = value; }
+        }
+        private static ulong giaoxuss12;
+        public static ulong giaoxu12
+        {
+            get { return giaoxuss12; }
+            set { giaoxuss12 = value; }
+        }
+        private static ulong giaoxuss13;
+        public static ulong giaoxu13
+        {
+            get { return giaoxuss13; }
+            set { giaoxuss13 = value; }
+        }
+        private static ulong giaoxuss14;
+        public static ulong giaoxu14
+        {
+            get { return giaoxuss14; }
+            set { giaoxuss14 = value; }
+        }
+        private static ulong giaoxuss15;
+        public static ulong giaoxu15
+        {
+            get { return giaoxuss15; }
+            set { giaoxuss15 = value; }
+        }
+        private static ulong giaoxuss16;
+        public static ulong giaoxu16
+        {
+            get { return giaoxuss16; }
+            set { giaoxuss16 = value; }
+        }
+        private static ulong giaoxuss17;
+        public static ulong giaoxu17
+        {
+            get { return giaoxuss17; }
+            set { giaoxuss17 = value; }
+        }
+
+        private static ulong caubehoangdas;
+        public static ulong caubehoangda
+        {
+            get { return caubehoangdas; }
+            set { caubehoangdas = value; }
+        }
+
+        private static int caubesois;
+        public static int caubesoi
+        {
+            get { return caubesois; }
+            set { caubesois = value; }
+        }
+
+        //========================================== R O L E S ==========================================
+
+
+        private static string nameroless;
+        public static string nameroles
+        {
+            get { return nameroless; }
+            set { nameroless = value; }
+        }
+
+        private static ulong channelroless;
+        public static ulong channelroles
+        {
+            get { return channelroless; }
+            set { channelroless = value; }
+        }
+
+        private static ulong idroless;
+        public static ulong idroles
+        {
+            get { return idroless; }
+            set { idroless = value; }
+        }
+
+        private static int avileblroless;
+        public static int roleavailble
+        {
+            get { return avileblroless; }
+            set { avileblroless = value; }
+        }
+
+        private static int checkgiaoxus;
+        public static int checkgiaoxu
+        {
+            get { return checkgiaoxus; }
+            set { checkgiaoxus = value; }
+        }
+
+        private static int checkphupheps;
+        public static int checkphuphep
+        {
+            get { return checkphupheps; }
+            set { checkphupheps = value; }
+        }
+
+        public static async Task rolestring(string any, string request)
+        {
+            if (request.ToLower() == "name" || request.ToLower() == "ten" || request.ToLower() == "tên")
+            {
+                if (any == "1" || any.ToLower() == "bảo" || any.ToLower() == "bảo-vệ")
+                {
+                    GlobalFunctionMaCun.nameroles = "Bảo Vệ";
+                }
+                else if (any == "2" || any.ToLower() == "bói" || any.ToLower() == "thầy-bói")
+                {
+                    GlobalFunctionMaCun.nameroles = "Thầy Bói";
+                }
+                else if (any == "3" || any.ToLower() == "dân" || any.ToLower() == "dân-làng")
+                {
+                    GlobalFunctionMaCun.nameroles = "Dân Làng";
+                }
+                else if (any == "4" || any.ToLower() == "sói" || any.ToLower() == "sói-thường")
+                {
+                    GlobalFunctionMaCun.nameroles = "Sói Thường";
+                }
+                else if (any == "5" || any.ToLower() == "già" || any.ToLower() == "già-làng")
+                {
+                    GlobalFunctionMaCun.nameroles = "Già Làng";
+                }
+                else if (any == "6" || any.ToLower() == "sói-phù" || any.ToLower() == "sói-phù-thủy")
+                {
+                    GlobalFunctionMaCun.nameroles = "Sói Phù Thủy";
+                }
+                else if (any == "7" || any.ToLower() == "thợ" || any.ToLower() == "thợ-săn")
+                {
+                    GlobalFunctionMaCun.nameroles = "Thợ Săn";
+                }
+                else if (any == "8" || any.ToLower() == "ngố" || any.ToLower() == "thằng-ngố")
+                {
+                    GlobalFunctionMaCun.nameroles = "Thằng Ngố";
+                }
+                else if (any == "9" || any.ToLower() == "phù" || any.ToLower() == "phù-thủy")
+                {
+                    GlobalFunctionMaCun.nameroles = "Phù Thủy";
+                }
+                else if (any == "10" || any.ToLower() == "xạ" || any.ToLower() == "xạ-thủ")
+                {
+                    GlobalFunctionMaCun.nameroles = "Xạ Thủ";
+                }
+                else if (any == "11" || any.ToLower() == "băng" || any.ToLower() == "sói-băng")
+                {
+                    GlobalFunctionMaCun.nameroles = "Sói Băng";
+                }
+                else if (any == "12" || any.ToLower() == "tri" || any.ToLower() == "tiên-tri")
+                {
+                    GlobalFunctionMaCun.nameroles = "Tiên Tri";
+                }
+                else if (any == "13" || any.ToLower() == "sát" || any.ToLower() == "sát-nhân")
+                {
+                    GlobalFunctionMaCun.nameroles = "Sát Nhân";
+                }
+                else if (any == "14" || any.ToLower() == "điếm" || any.ToLower() == "gái-điếm")
+                {
+                    GlobalFunctionMaCun.nameroles = "Gái Điếm";
+                }
+                else if (any == "15" || any.ToLower() == "đồng" || any.ToLower() == "thầy-đồng")
+                {
+                    GlobalFunctionMaCun.nameroles = "Thầy Đồng";
+                }
+                else if (any == "16" || any.ToLower() == "sói-tri" || any.ToLower() == "stri")
+                {
+                    GlobalFunctionMaCun.nameroles = "Sói Tri";
+                }
+                else if (any == "17" || any.ToLower() == "cậu" || any.ToLower() == "cậu-bé-hoang-dã")
+                {
+                    if (GlobalFunctionMaCun.caubesoi == 1)
+                    {
+                        GlobalFunctionMaCun.nameroles = "Sói Thường";
+                    }
+                    else GlobalFunctionMaCun.nameroles = "Cậu Bé Hoang Dã";
+                }
+                else if (any == "18" || any.ToLower() == "giáo" || any.ToLower() == "giáo-xứ")
+                {
+                    GlobalFunctionMaCun.nameroles = "Giáo Xứ";
+                }
+                else return;
+            }
+            else if (request.ToLower() == "channelid")
+            {
+                if (any == "1" || any.ToLower() == "bảo" || any.ToLower() == "bảo-vệ")
+                {
+                    GlobalFunctionMaCun.channelroles = 580574363930198021;
+                }
+                else if (any == "2" || any.ToLower() == "bói" || any.ToLower() == "thầy-bói")
+                {
+                    GlobalFunctionMaCun.channelroles = 580574739391578112;
+                }
+                else if (any == "3" || any.ToLower() == "dân" || any.ToLower() == "dân-làng")
+                {
+                    GlobalFunctionMaCun.channelroles = 580574427712847872;
+                }
+                else if (any == "4" || any.ToLower() == "sói" || any.ToLower() == "sói-thường")
+                {
+                    GlobalFunctionMaCun.channelroles = 580574451834290176;
+                }
+                else if (any == "5" || any.ToLower() == "già" || any.ToLower() == "già-làng")
+                {
+                    GlobalFunctionMaCun.channelroles = 580574497514586137;
+                }
+                else if (any == "6" || any.ToLower() == "sói-phù" || any.ToLower() == "sói-phù-thủy")
+                {
+                    GlobalFunctionMaCun.channelroles = 580574522361774081;
+                }
+                else if (any == "7" || any.ToLower() == "thợ" || any.ToLower() == "thợ-săn")
+                {
+                    GlobalFunctionMaCun.channelroles = 580574545606475782;
+                }
+                else if (any == "8" || any.ToLower() == "ngố" || any.ToLower() == "thằng-ngố")
+                {
+                    GlobalFunctionMaCun.channelroles = 580574572483706891;
+                }
+                else if (any == "9" || any.ToLower() == "phù" || any.ToLower() == "phù-thủy")
+                {
+                    GlobalFunctionMaCun.channelroles = 580574598677135390;
+                }
+                else if (any == "10" || any.ToLower() == "xạ" || any.ToLower() == "xạ-thủ")
+                {
+                    GlobalFunctionMaCun.channelroles = 580574616645402656;
+                }
+                else if (any == "11" || any.ToLower() == "băng" || any.ToLower() == "sói-băng")
+                {
+                    GlobalFunctionMaCun.channelroles = 580574634811064342;
+                }
+                else if (any == "12" || any.ToLower() == "tri" || any.ToLower() == "tiên-tri")
+                {
+                    GlobalFunctionMaCun.channelroles = 580574414660435982;
+                }
+                else if (any == "13" || any.ToLower() == "sát" || any.ToLower() == "sát-nhân")
+                {
+                    GlobalFunctionMaCun.channelroles = 580574812662136836;
+                }
+                else if (any == "14" || any.ToLower() == "điếm" || any.ToLower() == "gái-điếm")
+                {
+                    GlobalFunctionMaCun.channelroles = 583828253681254400;
+                }
+                else if (any == "15" || any.ToLower() == "đồng" || any.ToLower() == "thầy-đồng")
+                {
+                    GlobalFunctionMaCun.channelroles = 583828359394492427;
+                }
+                else if (any == "16" || any.ToLower() == "sói-tri" || any.ToLower() == "stri")
+                {
+                    GlobalFunctionMaCun.channelroles = 583828385659355147;
+                }
+                else if (any == "17" || any.ToLower() == "cậu" || any.ToLower() == "cậu-bé-hoang-dã")
+                {
+                    GlobalFunctionMaCun.channelroles = 589462982275235860;
+                }
+                else if (any == "18" || any.ToLower() == "giáo" || any.ToLower() == "giáo-xứ")
+                {
+                    GlobalFunctionMaCun.channelroles = 589463015212974080;
+                }
+                else return;
+            }
+            else if (request.ToLower() == "getroles")
+            {
+                if (any == "1" || any.ToLower() == "bảo" || any.ToLower() == "bảo-vệ")
+                {
+                    GlobalFunctionMaCun.roleavailble = GlobalFunctionMaCun.plr1p;
+                }
+                else if (any == "2" || any.ToLower() == "bói" || any.ToLower() == "thầy-bói")
+                {
+                    GlobalFunctionMaCun.roleavailble = GlobalFunctionMaCun.plr2p;
+                }
+                else if (any == "3" || any.ToLower() == "dân" || any.ToLower() == "dân-làng")
+                {
+                    GlobalFunctionMaCun.roleavailble = GlobalFunctionMaCun.plr3p;
+                }
+                else if (any == "4" || any.ToLower() == "sói" || any.ToLower() == "sói-thường")
+                {
+                    GlobalFunctionMaCun.roleavailble = GlobalFunctionMaCun.plr4p;
+                }
+                else if (any == "5" || any.ToLower() == "già" || any.ToLower() == "già-làng")
+                {
+                    GlobalFunctionMaCun.roleavailble = GlobalFunctionMaCun.plr5p;
+                }
+                else if (any == "6" || any.ToLower() == "sói-phù" || any.ToLower() == "sói-phù-thủy")
+                {
+                    GlobalFunctionMaCun.roleavailble = GlobalFunctionMaCun.plr6p;
+                }
+                else if (any == "7" || any.ToLower() == "thợ" || any.ToLower() == "thợ-săn")
+                {
+                    GlobalFunctionMaCun.roleavailble = GlobalFunctionMaCun.plr7p;
+                }
+                else if (any == "8" || any.ToLower() == "ngố" || any.ToLower() == "thằng-ngố")
+                {
+                    GlobalFunctionMaCun.roleavailble = GlobalFunctionMaCun.plr8p;
+                }
+                else if (any == "9" || any.ToLower() == "phù" || any.ToLower() == "phù-thủy")
+                {
+                    GlobalFunctionMaCun.roleavailble = GlobalFunctionMaCun.plr9p;
+                }
+                else if (any == "10" || any.ToLower() == "xạ" || any.ToLower() == "xạ-thủ")
+                {
+                    GlobalFunctionMaCun.roleavailble = GlobalFunctionMaCun.plr10p;
+                }
+                else if (any == "11" || any.ToLower() == "băng" || any.ToLower() == "sói-băng")
+                {
+                    GlobalFunctionMaCun.roleavailble = GlobalFunctionMaCun.plr11p;
+                }
+                else if (any == "12" || any.ToLower() == "tri" || any.ToLower() == "tiên-tri")
+                {
+                    GlobalFunctionMaCun.roleavailble = GlobalFunctionMaCun.plr12p;
+                }
+                else if (any == "13" || any.ToLower() == "sát" || any.ToLower() == "sát-nhân")
+                {
+                    GlobalFunctionMaCun.roleavailble = GlobalFunctionMaCun.plr13p;
+                }
+                else if (any == "14" || any.ToLower() == "điếm" || any.ToLower() == "gái-điếm")
+                {
+                    GlobalFunctionMaCun.roleavailble = GlobalFunctionMaCun.plr14p;
+                }
+                else if (any == "15" || any.ToLower() == "đồng" || any.ToLower() == "thầy-đồng")
+                {
+                    GlobalFunctionMaCun.roleavailble = GlobalFunctionMaCun.plr15p;
+                }
+                else if (any == "16" || any.ToLower() == "sói-tri" || any.ToLower() == "stri")
+                {
+                    GlobalFunctionMaCun.roleavailble = GlobalFunctionMaCun.plr16p;
+                }
+                else if (any == "17" || any.ToLower() == "cậu" || any.ToLower() == "cậu-bé-hoang-dã")
+                {
+                    GlobalFunctionMaCun.roleavailble = GlobalFunctionMaCun.plr17p;
+                }
+                else if (any == "18" || any.ToLower() == "giáo" || any.ToLower() == "giáo-xứ")
+                {
+                    GlobalFunctionMaCun.roleavailble = GlobalFunctionMaCun.plr18p;
+                }
+                else return;
+            }
+            else if (request.ToLower() == "idrole")
+            {
+                if (any == "1" || any.ToLower() == "bảo" || any.ToLower() == "bảo-vệ")
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr1;
+                }
+                else if (any == "2" || any.ToLower() == "bói" || any.ToLower() == "thầy-bói")
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr2;
+                }
+                else if (any == "3" || any.ToLower() == "dân" || any.ToLower() == "dân-làng")
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr3;
+                }
+                else if (any == "4" || any.ToLower() == "sói" || any.ToLower() == "sói-thường")
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr4;
+                }
+                else if (any == "5" || any.ToLower() == "già" || any.ToLower() == "già-làng")
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr5;
+                }
+                else if (any == "6" || any.ToLower() == "sói-phù" || any.ToLower() == "sói-phù-thủy")
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr6;
+                }
+                else if (any == "7" || any.ToLower() == "thợ" || any.ToLower() == "thợ-săn")
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr7;
+                }
+                else if (any == "8" || any.ToLower() == "ngố" || any.ToLower() == "thằng-ngố")
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr8;
+                }
+                else if (any == "9" || any.ToLower() == "phù" || any.ToLower() == "phù-thủy")
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr9;
+                }
+                else if (any == "10" || any.ToLower() == "xạ" || any.ToLower() == "xạ-thủ")
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr10;
+                }
+                else if (any == "11" || any.ToLower() == "băng" || any.ToLower() == "sói-băng")
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr11;
+                }
+                else if (any == "12" || any.ToLower() == "tri" || any.ToLower() == "tiên-tri")
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr12;
+                }
+                else if (any == "13" || any.ToLower() == "sát" || any.ToLower() == "sát-nhân")
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr13;
+                }
+                else if (any == "14" || any.ToLower() == "điếm" || any.ToLower() == "gái-điếm")
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr14;
+                }
+                else if (any == "15" || any.ToLower() == "đồng" || any.ToLower() == "thầy-đồng")
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr15;
+                }
+                else if (any == "16" || any.ToLower() == "sói-tri" || any.ToLower() == "stri")
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr16;
+                }
+                else if (any == "17" || any.ToLower() == "cậu" || any.ToLower() == "cậu-bé-hoang-dã")
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr17;
+                }
+                else if (any == "18" || any.ToLower() == "giáo" || any.ToLower() == "giáo-xứ")
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr18;
+                }
+                else return;
+            }
+            else return;
+        }
+
+
+        public static async Task rolesid(ulong id, string request)
+        {
+            if (request.ToLower() == "name" || request.ToLower() == "ten" || request.ToLower() == "tên")
+            {
+                if (id == GlobalFunctionMaCun.plr1)
+                {
+                    GlobalFunctionMaCun.nameroles = "Bảo Vệ";
+                }
+                else if (id == GlobalFunctionMaCun.plr2)
+                {
+                    GlobalFunctionMaCun.nameroles = "Thầy Bói";
+                }
+                else if (id == GlobalFunctionMaCun.plr3)
+                {
+                    GlobalFunctionMaCun.nameroles = "Dân Làng";
+                }
+                else if (id == GlobalFunctionMaCun.plr4)
+                {
+                    GlobalFunctionMaCun.nameroles = "Sói Thường";
+                }
+                else if (id == GlobalFunctionMaCun.plr5)
+                {
+                    GlobalFunctionMaCun.nameroles = "Già Làng";
+                }
+                else if (id == GlobalFunctionMaCun.plr6)
+                {
+                    GlobalFunctionMaCun.nameroles = "Sói Phù Thủy";
+                }
+                else if (id == GlobalFunctionMaCun.plr7)
+                {
+                    GlobalFunctionMaCun.nameroles = "Thợ Săn";
+                }
+                else if (id == GlobalFunctionMaCun.plr8)
+                {
+                    GlobalFunctionMaCun.nameroles = "Thằng Ngố";
+                }
+                else if (id == GlobalFunctionMaCun.plr9)
+                {
+                    GlobalFunctionMaCun.nameroles = "Phù Thủy";
+                }
+                else if (id == GlobalFunctionMaCun.plr10)
+                {
+                    GlobalFunctionMaCun.nameroles = "Xạ Thủ";
+                }
+                else if (id == GlobalFunctionMaCun.plr11)
+                {
+                    GlobalFunctionMaCun.nameroles = "Sói Băng";
+                }
+                else if (id == GlobalFunctionMaCun.plr12)
+                {
+                    GlobalFunctionMaCun.nameroles = "Tiên Tri";
+                }
+                else if (id == GlobalFunctionMaCun.plr13)
+                {
+                    GlobalFunctionMaCun.nameroles = "Sát Nhân";
+                }
+                else if (id == GlobalFunctionMaCun.plr14)
+                {
+                    GlobalFunctionMaCun.nameroles = "Gái Điếm";
+                }
+                else if (id == GlobalFunctionMaCun.plr15)
+                {
+                    GlobalFunctionMaCun.nameroles = "Thầy Đồng";
+                }
+                else if (id == GlobalFunctionMaCun.plr16)
+                {
+                    GlobalFunctionMaCun.nameroles = "Sói Tri";
+                }
+                else if (id == GlobalFunctionMaCun.plr17)
+                {
+                    if (GlobalFunctionMaCun.caubesoi == 1)
+                    {
+                        GlobalFunctionMaCun.nameroles = "Sói Thường";
+                    }
+                    else GlobalFunctionMaCun.nameroles = "Cậu Bé Hoang Dã";
+                }
+                else if (id == GlobalFunctionMaCun.plr18)
+                {
+                    GlobalFunctionMaCun.nameroles = "Giáo Xứ";
+                }
+                else return;
+            }
+            else if (request.ToLower() == "channelid")
+            {
+                if (id == GlobalFunctionMaCun.plr1)
+                {
+                    GlobalFunctionMaCun.channelroles = 580574363930198021;
+                }
+                else if (id == GlobalFunctionMaCun.plr2)
+                {
+                    GlobalFunctionMaCun.channelroles = 580574739391578112;
+                }
+                else if (id == GlobalFunctionMaCun.plr3)
+                {
+                    GlobalFunctionMaCun.channelroles = 580574427712847872;
+                }
+                else if (id == GlobalFunctionMaCun.plr4)
+                {
+                    GlobalFunctionMaCun.channelroles = 580574451834290176;
+                }
+                else if (id == GlobalFunctionMaCun.plr5)
+                {
+                    GlobalFunctionMaCun.channelroles = 580574497514586137;
+                }
+                else if (id == GlobalFunctionMaCun.plr6)
+                {
+                    GlobalFunctionMaCun.channelroles = 580574522361774081;
+                }
+                else if (id == GlobalFunctionMaCun.plr7)
+                {
+                    GlobalFunctionMaCun.channelroles = 580574545606475782;
+                }
+                else if (id == GlobalFunctionMaCun.plr8)
+                {
+                    GlobalFunctionMaCun.channelroles = 580574572483706891;
+                }
+                else if (id == GlobalFunctionMaCun.plr9)
+                {
+                    GlobalFunctionMaCun.channelroles = 580574598677135390;
+                }
+                else if (id == GlobalFunctionMaCun.plr10)
+                {
+                    GlobalFunctionMaCun.channelroles = 580574616645402656;
+                }
+                else if (id == GlobalFunctionMaCun.plr11)
+                {
+                    GlobalFunctionMaCun.channelroles = 580574634811064342;
+                }
+                else if (id == GlobalFunctionMaCun.plr12)
+                {
+                    GlobalFunctionMaCun.channelroles = 580574414660435982;
+                }
+                else if (id == GlobalFunctionMaCun.plr13)
+                {
+                    GlobalFunctionMaCun.channelroles = 580574812662136836;
+                }
+                else if (id == GlobalFunctionMaCun.plr14)
+                {
+                    GlobalFunctionMaCun.channelroles = 583828253681254400;
+                }
+                else if (id == GlobalFunctionMaCun.plr15)
+                {
+                    GlobalFunctionMaCun.channelroles = 583828359394492427;
+                }
+                else if (id == GlobalFunctionMaCun.plr16)
+                {
+                    GlobalFunctionMaCun.channelroles = 583828385659355147;
+                }
+                else if (id == GlobalFunctionMaCun.plr17)
+                {
+                    GlobalFunctionMaCun.channelroles = 589462982275235860;
+                }
+                else if (id == GlobalFunctionMaCun.plr18)
+                {
+                    GlobalFunctionMaCun.channelroles = 589463015212974080;
+                }
+                else return;
+            }
+            else if (request.ToLower() == "aura" || request.ToLower() == "boi" || request.ToLower() == "bói")
+            {
+                if (id == GlobalFunctionMaCun.plr1)
+                {
+                    GlobalFunctionMaCun.nameroles = "Thiện";
+                }
+                else if (id == GlobalFunctionMaCun.plr2)
+                {
+                    GlobalFunctionMaCun.nameroles = "Thiện";
+                }
+                else if (id == GlobalFunctionMaCun.plr3)
+                {
+                    GlobalFunctionMaCun.nameroles = "Thiện";
+                }
+                else if (id == GlobalFunctionMaCun.plr4)
+                {
+                    GlobalFunctionMaCun.nameroles = "Ác";
+                }
+                else if (id == GlobalFunctionMaCun.plr5)
+                {
+                    GlobalFunctionMaCun.nameroles = "Thiện";
+                }
+                else if (id == GlobalFunctionMaCun.plr6)
+                {
+                    GlobalFunctionMaCun.nameroles = "Ác";
+                }
+                else if (id == GlobalFunctionMaCun.plr7)
+                {
+                    GlobalFunctionMaCun.nameroles = "Không rõ";
+                }
+                else if (id == GlobalFunctionMaCun.plr8)
+                {
+                    GlobalFunctionMaCun.nameroles = "Không rõ";
+                }
+                else if (id == GlobalFunctionMaCun.plr9)
+                {
+                    GlobalFunctionMaCun.nameroles = "Không rõ";
+                }
+                else if (id == GlobalFunctionMaCun.plr10)
+                {
+                    GlobalFunctionMaCun.nameroles = "Không rõ";
+                }
+                else if (id == GlobalFunctionMaCun.plr11)
+                {
+                    GlobalFunctionMaCun.nameroles = "Ác";
+                }
+                else if (id == GlobalFunctionMaCun.plr12)
+                {
+                    GlobalFunctionMaCun.nameroles = "Thiện";
+                }
+                else if (id == GlobalFunctionMaCun.plr13)
+                {
+                    GlobalFunctionMaCun.nameroles = "Không rõ";
+                }
+                else if (id == GlobalFunctionMaCun.plr14)
+                {
+                    GlobalFunctionMaCun.nameroles = "Không rõ";
+                }
+                else if (id == GlobalFunctionMaCun.plr15)
+                {
+                    GlobalFunctionMaCun.nameroles = "Không rõ";
+                }
+                else if (id == GlobalFunctionMaCun.plr16)
+                {
+                    GlobalFunctionMaCun.nameroles = "Ác";
+                }
+                else if (id == GlobalFunctionMaCun.plr17)
+                {
+                    if (GlobalFunctionMaCun.caubesoi == 1)
+                    {
+                        GlobalFunctionMaCun.nameroles = "Ác";
+                    }
+                    else GlobalFunctionMaCun.nameroles = "Thiện";
+                }
+                else if (id == GlobalFunctionMaCun.plr18)
+                {
+                    GlobalFunctionMaCun.nameroles = "Không Rõ";
+                }
+                else return;
+            }
+            else if (request.ToLower() == "phuphep")
+            {
+                if (GlobalFunctionMaCun.phuphep == id & id == GlobalFunctionMaCun.plr1)
+                {
+                    GlobalFunctionMaCun.checkphuphep = 1;
+                }
+                else if (GlobalFunctionMaCun.phuphep == id & id == GlobalFunctionMaCun.plr2)
+                {
+                    GlobalFunctionMaCun.checkphuphep = 1;
+                }
+                else if (GlobalFunctionMaCun.phuphep == id & id == GlobalFunctionMaCun.plr3)
+                {
+                    GlobalFunctionMaCun.checkphuphep = 1;
+                }
+                else if (GlobalFunctionMaCun.phuphep == id & id == GlobalFunctionMaCun.plr4)
+                {
+                    GlobalFunctionMaCun.checkphuphep = 1;
+                }
+                else if (GlobalFunctionMaCun.phuphep == id & id == GlobalFunctionMaCun.plr5)
+                {
+                    GlobalFunctionMaCun.checkphuphep = 1;
+                }
+                else if (GlobalFunctionMaCun.phuphep == id & id == GlobalFunctionMaCun.plr6)
+                {
+                    GlobalFunctionMaCun.checkphuphep = 1;
+                }
+                else if (GlobalFunctionMaCun.phuphep == id & id == GlobalFunctionMaCun.plr7)
+                {
+                    GlobalFunctionMaCun.checkphuphep = 1;
+                }
+                else if (GlobalFunctionMaCun.phuphep == id & id == GlobalFunctionMaCun.plr8)
+                {
+                    GlobalFunctionMaCun.checkphuphep = 1;
+                }
+                else if (GlobalFunctionMaCun.phuphep == id & id == GlobalFunctionMaCun.plr9)
+                {
+                    GlobalFunctionMaCun.checkphuphep = 1;
+                }
+                else if (GlobalFunctionMaCun.phuphep == id & id == GlobalFunctionMaCun.plr10)
+                {
+                    GlobalFunctionMaCun.checkphuphep = 1;
+                }
+                else if (GlobalFunctionMaCun.phuphep == id & id == GlobalFunctionMaCun.plr11)
+                {
+                    GlobalFunctionMaCun.checkphuphep = 1;
+                }
+                else if (GlobalFunctionMaCun.phuphep == id & id == GlobalFunctionMaCun.plr12)
+                {
+                    GlobalFunctionMaCun.checkphuphep = 1;
+                }
+                else if (GlobalFunctionMaCun.phuphep == id & id == GlobalFunctionMaCun.plr13)
+                {
+                    GlobalFunctionMaCun.checkphuphep = 1;
+                }
+                else if (GlobalFunctionMaCun.phuphep == id & id == GlobalFunctionMaCun.plr14)
+                {
+                    GlobalFunctionMaCun.checkphuphep = 1;
+                }
+                else if (GlobalFunctionMaCun.phuphep == id & id == GlobalFunctionMaCun.plr15)
+                {
+                    GlobalFunctionMaCun.checkphuphep = 1;
+                }
+                else if (GlobalFunctionMaCun.phuphep == id & id == GlobalFunctionMaCun.plr16)
+                {
+                    GlobalFunctionMaCun.checkphuphep = 1;
+                }
+                else if (GlobalFunctionMaCun.phuphep == id & id == GlobalFunctionMaCun.plr17)
+                {
+                    GlobalFunctionMaCun.checkphuphep = 1;
+                }
+                else if (GlobalFunctionMaCun.phuphep == id & id == GlobalFunctionMaCun.plr18)
+                {
+                    GlobalFunctionMaCun.checkphuphep = 1;
+                }
+                else GlobalFunctionMaCun.checkphuphep = 0;
+            }
+            else if (request.ToLower() == "idrole")
+            {
+                if (id == GlobalFunctionMaCun.plr1)
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr1;
+                }
+                else if (id == GlobalFunctionMaCun.plr2)
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr2;
+                }
+                else if (id == GlobalFunctionMaCun.plr3)
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr3;
+                }
+                else if (id == GlobalFunctionMaCun.plr4)
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr4;
+                }
+                else if (id == GlobalFunctionMaCun.plr5)
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr5;
+                }
+                else if (id == GlobalFunctionMaCun.plr6)
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr6;
+                }
+                else if (id == GlobalFunctionMaCun.plr7)
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr7;
+                }
+                else if (id == GlobalFunctionMaCun.plr8)
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr8;
+                }
+                else if (id == GlobalFunctionMaCun.plr9)
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr9;
+                }
+                else if (id == GlobalFunctionMaCun.plr10)
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr10;
+                }
+                else if (id == GlobalFunctionMaCun.plr11)
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr11;
+                }
+                else if (id == GlobalFunctionMaCun.plr12)
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr12;
+                }
+                else if (id == GlobalFunctionMaCun.plr13)
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr13;
+                }
+                else if (id == GlobalFunctionMaCun.plr14)
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr14;
+                }
+                else if (id == GlobalFunctionMaCun.plr15)
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr15;
+                }
+                else if (id == GlobalFunctionMaCun.plr16)
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr16;
+                }
+                else if (id == GlobalFunctionMaCun.plr17)
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr17;
+                }
+                else if (id == GlobalFunctionMaCun.plr18)
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr18;
+                }
+                else return;
+            }
+            else return;
+        }
+
+
+        public static async Task givenroles(string any, ulong id)
+        {
+            if (any == "1" || any.ToLower() == "bảo" || any.ToLower() == "bảo-vệ")
+            {
+                GlobalFunctionMaCun.plr1 = id;
+                GlobalFunctionMaCun.channel1 = 1;
+                GlobalFunctionMaCun.phedan++;
+            }
+            else if (any == "2" || any.ToLower() == "bói" || any.ToLower() == "thầy-bói")
+            {
+                GlobalFunctionMaCun.plr2 = id;
+                GlobalFunctionMaCun.channel2 = 1;
+                GlobalFunctionMaCun.phedan++;
+            }
+            else if (any == "3" || any.ToLower() == "dân" || any.ToLower() == "dân-làng")
+            {
+                GlobalFunctionMaCun.plr3 = id;
+                GlobalFunctionMaCun.channel3 = 1;
+                GlobalFunctionMaCun.phedan++;
+            }
+            else if (any == "4" || any.ToLower() == "sói" || any.ToLower() == "sói-thường")
+            {
+                GlobalFunctionMaCun.plr4 = id;
+                GlobalFunctionMaCun.channel4 = 1;
+                GlobalFunctionMaCun.phesoi++;
+            }
+            else if (any == "5" || any.ToLower() == "già" || any.ToLower() == "già-làng")
+            {
+                GlobalFunctionMaCun.plr5 = id;
+                GlobalFunctionMaCun.channel5 = 1;
+                GlobalFunctionMaCun.phedan++;
+            }
+            else if (any == "6" || any.ToLower() == "sói-phù" || any.ToLower() == "sói-phù-thủy")
+            {
+                GlobalFunctionMaCun.plr6 = id;
+                GlobalFunctionMaCun.channel6 = 1;
+                GlobalFunctionMaCun.phesoi++;
+            }
+            else if (any == "7" || any.ToLower() == "thợ" || any.ToLower() == "thợ-săn")
+            {
+                GlobalFunctionMaCun.plr7 = id;
+                GlobalFunctionMaCun.channel7 = 1;
+                GlobalFunctionMaCun.phedan++;
+            }
+            else if (any == "8" || any.ToLower() == "ngố" || any.ToLower() == "thằng-ngố")
+            {
+                GlobalFunctionMaCun.plr8 = id;
+                GlobalFunctionMaCun.channel8 = 1;
+                GlobalFunctionMaCun.phedan++;
+            }
+            else if (any == "9" || any.ToLower() == "phù" || any.ToLower() == "phù-thủy")
+            {
+                GlobalFunctionMaCun.plr9 = id;
+                GlobalFunctionMaCun.channel9 = 1;
+                GlobalFunctionMaCun.phedan++;
+            }
+            else if (any == "10" || any.ToLower() == "xạ" || any.ToLower() == "xạ-thủ")
+            {
+                GlobalFunctionMaCun.plr10 = id;
+                GlobalFunctionMaCun.channel10 = 1;
+                GlobalFunctionMaCun.phedan++;
+            }
+            else if (any == "11" || any.ToLower() == "băng" || any.ToLower() == "sói-băng")
+            {
+                GlobalFunctionMaCun.plr11 = id;
+                GlobalFunctionMaCun.channel11 = 1;
+                GlobalFunctionMaCun.phesoi++;
+            }
+            else if (any == "12" || any.ToLower() == "tri" || any.ToLower() == "tiên-tri")
+            {
+                GlobalFunctionMaCun.plr12 = id;
+                GlobalFunctionMaCun.channel12 = 1;
+                GlobalFunctionMaCun.phedan++;
+            }
+            else if (any == "13" || any.ToLower() == "sát" || any.ToLower() == "sát-nhân")
+            {
+                GlobalFunctionMaCun.plr13 = id;
+                GlobalFunctionMaCun.channel13 = 1;
+                GlobalFunctionMaCun.phethu3++;
+            }
+            else if (any == "14" || any.ToLower() == "điếm" || any.ToLower() == "gái-điếm")
+            {
+                GlobalFunctionMaCun.plr14 = id;
+                GlobalFunctionMaCun.channel14 = 1;
+                GlobalFunctionMaCun.phedan++;
+            }
+            else if (any == "15" || any.ToLower() == "đồng" || any.ToLower() == "thầy-đồng")
+            {
+                GlobalFunctionMaCun.plr15 = id;
+                GlobalFunctionMaCun.channel15 = 1;
+                GlobalFunctionMaCun.phedan++;
+            }
+            else if (any == "16" || any.ToLower() == "sói-tri" || any.ToLower() == "stri")
+            {
+                GlobalFunctionMaCun.plr16 = id;
+                GlobalFunctionMaCun.channel16 = 1;
+                GlobalFunctionMaCun.phesoi++;
+            }
+            else if (any == "17" || any.ToLower() == "cậu" || any.ToLower() == "cậu-bé-hoang-dã")
+            {
+                GlobalFunctionMaCun.plr17 = id;
+                GlobalFunctionMaCun.channel17 = 1;
+                GlobalFunctionMaCun.phedan++;
+            }
+            else if (any == "18" || any.ToLower() == "giáo" || any.ToLower() == "giáo-xứ")
+            {
+                GlobalFunctionMaCun.plr18 = id;
+                GlobalFunctionMaCun.channel18 = 1;
+                GlobalFunctionMaCun.phethu3++;
+            }
+            else return;
+        }
+
+
     }
+
 }

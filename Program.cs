@@ -51,7 +51,7 @@ namespace Neko_Test
             Client.Ready += Client_Ready;
             Client.Log += Client_Log;
 
-            string load = File.ReadAllText("TokenBot.txt");
+            string load = File.ReadAllText(@"C:\Users\nekocyan\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\TokenBot.txt");
 
             await Client.LoginAsync(TokenType.Bot, load);
             await Client.StartAsync();
@@ -141,6 +141,8 @@ namespace Neko_Test
                         {
 
                             case CommandError.UnknownCommand:
+                                break;
+                            case CommandError.BadArgCount:
                                 break;
                             default:
                                 await Context.Channel.SendMessageAsync(
