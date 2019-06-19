@@ -165,5 +165,102 @@ namespace Neko_Test.ModulesMaCunGame
             else GlobalFunctionMaCun.checkgiaoxu = 0;
         }
 
+        public static async Task showgameroles()
+        {
+            string roleselect = null;
+            if (GlobalFunctionMaCun.plr1 != 0)
+            {
+                await GlobalFunctionMaCun.rolestring("1", "ten");
+                roleselect = "" + roleselect + "\n" + GlobalFunctionMaCun.nameroles + "";
+            }
+            if (GlobalFunctionMaCun.plr2 != 0)
+            {
+                await GlobalFunctionMaCun.rolestring("2", "ten");
+                roleselect = "" + roleselect + "\n" + GlobalFunctionMaCun.nameroles + "";
+            }
+            if (GlobalFunctionMaCun.plr3 != 0)
+            {
+                await GlobalFunctionMaCun.rolestring("3", "ten");
+                roleselect = "" + roleselect + "\n" + GlobalFunctionMaCun.nameroles + "";
+            }
+            if (GlobalFunctionMaCun.plr4 != 0)
+            {
+                await GlobalFunctionMaCun.rolestring("4", "ten");
+                roleselect = "" + roleselect + "\n" + GlobalFunctionMaCun.nameroles + "";
+            }
+            if (GlobalFunctionMaCun.plr5 != 0)
+            {
+                await GlobalFunctionMaCun.rolestring("5", "ten");
+                roleselect = "" + roleselect + "\n" + GlobalFunctionMaCun.nameroles + "";
+            }
+            if (GlobalFunctionMaCun.plr6 != 0)
+            {
+                await GlobalFunctionMaCun.rolestring("6", "ten");
+                roleselect = "" + roleselect + "\n" + GlobalFunctionMaCun.nameroles + "";
+            }
+            if (GlobalFunctionMaCun.plr7 != 0)
+            {
+                await GlobalFunctionMaCun.rolestring("7", "ten");
+                roleselect = "" + roleselect + "\n" + GlobalFunctionMaCun.nameroles + "";
+            }
+            if (GlobalFunctionMaCun.plr8 != 0)
+            {
+                await GlobalFunctionMaCun.rolestring("8", "ten");
+                roleselect = "" + roleselect + "\n" + GlobalFunctionMaCun.nameroles + "";
+            }
+            if (GlobalFunctionMaCun.plr9 != 0)
+            {
+                await GlobalFunctionMaCun.rolestring("9", "ten");
+                roleselect = "" + roleselect + "\n" + GlobalFunctionMaCun.nameroles + "";
+            }
+            if (GlobalFunctionMaCun.plr10 != 0)
+            {
+                await GlobalFunctionMaCun.rolestring("10", "ten");
+                roleselect = "" + roleselect + "\n" + GlobalFunctionMaCun.nameroles + "";
+            }
+            if (GlobalFunctionMaCun.plr11 != 0)
+            {
+                await GlobalFunctionMaCun.rolestring("11", "ten");
+                roleselect = "" + roleselect + "\n" + GlobalFunctionMaCun.nameroles + "";
+            }
+            if (GlobalFunctionMaCun.plr12 != 0)
+            {
+                await GlobalFunctionMaCun.rolestring("12", "ten");
+                roleselect = "" + roleselect + "\n" + GlobalFunctionMaCun.nameroles + "";
+            }
+            if (GlobalFunctionMaCun.plr13 != 0)
+            {
+                await GlobalFunctionMaCun.rolestring("13", "ten");
+                roleselect = "" + roleselect + "\n" + GlobalFunctionMaCun.nameroles + "";
+            }
+            if (GlobalFunctionMaCun.plr14 != 0)
+            {
+                await GlobalFunctionMaCun.rolestring("14", "ten");
+                roleselect = "" + roleselect + "\n" + GlobalFunctionMaCun.nameroles + "";
+            }
+            if (GlobalFunctionMaCun.plr15 != 0)
+            {
+                await GlobalFunctionMaCun.rolestring("15", "ten");
+                roleselect = "" + roleselect + "\n" + GlobalFunctionMaCun.nameroles + "";
+            }
+            if (GlobalFunctionMaCun.plr16 != 0)
+            {
+                await GlobalFunctionMaCun.rolestring("16", "ten");
+                roleselect = "" + roleselect + "\n" + GlobalFunctionMaCun.nameroles + "";
+            }
+            if (GlobalFunctionMaCun.plr17 != 0)
+            {
+                await GlobalFunctionMaCun.rolestring("17", "ten");
+                roleselect = "" + roleselect + "\n" + GlobalFunctionMaCun.nameroles + "";
+            }
+            if (GlobalFunctionMaCun.plr18 != 0)
+            {
+                await GlobalFunctionMaCun.rolestring("18", "ten");
+                roleselect = "" + roleselect + "\n" + GlobalFunctionMaCun.nameroles + "";
+            }
+
+            GlobalFunctionMaCun.nameroles = roleselect;
+        }
+
     }
 }

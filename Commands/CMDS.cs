@@ -88,12 +88,14 @@ namespace Neko_Test
                 await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync("Game now starting, you can no longer join.");
                 await Context.Client.GetGuild(465795320526274561).GetTextChannel(549242357741256705).SendMessageAsync("Game Start has been announced.");
                 await Context.Client.GetGuild(472261911526768642).GetTextChannel(549202043517272064).SendMessageAsync("Game Start has been announced.");
-                GlobalFunction.jailerammo = 1;
                 GlobalFunction.gamestatus = "hosting";
                 GlobalFunction.gametime = "night";
                 await Context.Client.SetGameAsync("Game Started");
             }
         }
+
+
+
         [Command("night")]
         [Alias("testnight")]
         [RequireBotPermission(Discord.GuildPermission.ManageGuild)]
@@ -598,7 +600,6 @@ namespace Neko_Test
                 if (GlobalFunction.gamecodes != null)
                 {
                     await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync("Game " + GlobalFunction.gamecodes + " was cancelled, sorry for any inconvenience caused.");
-                    await Context.Client.GetGuild(472261911526768642).GetTextChannel(589277661084254242).SendMessageAsync("= = = = = C A N C E L L E D = = = = =");
                     await Context.Client.SetGameAsync("No Game Hosting");
                     GlobalFunction.gamecodes = null;
                     var GetAllUser = Context.Guild.Users;

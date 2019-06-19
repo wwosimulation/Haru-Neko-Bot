@@ -536,6 +536,7 @@ namespace Neko_Test.Ma_Cun_
                     line = $"{line}\n{t}";
                 }
                 await ReplyAsync($"{line}");
+                GlobalFunctionMaCun.votechet++;
             }
             else return;
         }

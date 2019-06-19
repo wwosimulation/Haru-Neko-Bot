@@ -307,7 +307,7 @@ namespace Neko_Test
                 }
                 else
                 {
-                    var maxpage = 1;
+                    var maxpage = 2;
 
                     if (num == 1 || num == 0)
                     {
@@ -323,21 +323,27 @@ namespace Neko_Test
                             $"\n 7 - {Emote.Parse("<:kannaPeek:585492968807464984>")} / 17 - {Emote.Parse("<:SenkoListening:589049338622246922>")}" +
                             $"\n 8 - {Emote.Parse("<:kannanom:585492968962523160>")} / 18 - {Emote.Parse("<:SenkoHi:589049277754507265>")}" +
                             $"\n 9 - {Emote.Parse("<:pillowYes:585492967649837197>")} / 19 - {Emote.Parse("<:SenkoBlush:589049141183905797>")}" +
-                            $"\n10 - {Emote.Parse("<:pillowNo:585492968274657300>")}");
+                            $"\n10 - {Emote.Parse("<:pillowNo:585492968274657300>")} / 20 - {Emote.Parse("<:VampySmug:590121887707693058>")}");
                         embed.WithFooter($"Requested by {Context.User.Username} - Page {num}/{maxpage}", Context.User.GetAvatarUrl());
 
                         embed.WithColor(new Discord.Color(255, 50, 255));
                         await Context.Channel.SendMessageAsync("", false, embed.Build());
                     }
-                    /*if (num == 2)
+                    if (num == 2)
                     {
                         embed.WithAuthor($"Haru Neko - Emote List!\n \n");
-                        embed.WithDescription($"Use -emote <Number> to use that emote.\n11 - {Emote.Parse("<:GWpdnlaugh:587152172161040396>")}\n12 - {Emote.Parse("<:GWpdnXD:587152173922648070>")}\n13 - {Emote.Parse("<:ReimuFacePalm:587152173595623424>")}\n14 - {Emote.Parse("<:Naisu:587265138843844608>")}");
+                        embed.WithDescription($"Use -emote <Number> to use that emote." +
+                            $"\n21 - {Emote.Parse("<:RaphiOhM:590121887963676673>")}" +
+                            $"\n22 - {Emote.Parse("<:RaphiWink:590121888043237390>")}" +
+                            $"\n23 - {Emote.Parse("<:WhoDesu:590121888655605762>")}" +
+                            $"\n24 - {Emote.Parse("<:WOW:590149641241231384>")}" +
+                            $"\n25 - {Emote.Parse("<:WannaSee:590149643376001024>")}" +
+                            $"\n26 - {Emote.Parse("<:owoAwoo:590149640356233220>")}");
                         embed.WithFooter($"Requested by {Context.User.Username} - Page {num}/{maxpage}", Context.User.GetAvatarUrl());
 
                         embed.WithColor(new Discord.Color(255, 50, 255));
                         await Context.Channel.SendMessageAsync("", false, embed.Build());
-                    }*/
+                    }
                 }
             }
             UserAccounts10.SaveAccounts();
@@ -434,6 +440,34 @@ namespace Neko_Test
                     else if (num == 19)
                     {
                         await Context.Channel.SendMessageAsync($"{Emote.Parse("<:SenkoBlush:589049141183905797>")}");
+                    }
+                    else if (num == 20)
+                    {
+                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:VampySmug:590121887707693058>")}");
+                    }
+                    else if (num == 21)
+                    {
+                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:RaphiOhM:590121887963676673>")}");
+                    }
+                    else if (num == 22)
+                    {
+                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:RaphiWink:590121888043237390>")}");
+                    }
+                    else if (num == 23)
+                    {
+                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:WhoDesu:590121888655605762>")}");
+                    }
+                    else if (num == 24)
+                    {
+                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:WOW:590149641241231384>")}");
+                    }
+                    else if (num == 25)
+                    {
+                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:WannaSee:590149643376001024>")}");
+                    }
+                    else if (num == 26)
+                    {
+                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:owoAwoo:590149640356233220>")}");
                     }
                     else
                     {
