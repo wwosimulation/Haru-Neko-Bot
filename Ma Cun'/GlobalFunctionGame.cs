@@ -20,78 +20,6 @@ namespace Neko_Test.ModulesMaCunGame
     public class GlobalFunctionGame
     {
 
-        public static async Task RoleShowWhenHide(ulong id, string role)
-        {
-            if (role.ToLower() == "sát" || role.ToLower() == "sát-nhân" || role.ToLower() == "13")
-            {
-                if (id == GlobalFunctionMaCun.plr1)
-                {
-                    GlobalFunctionMaCun.nameroles = "Bảo Vệ";
-                }
-                else if (id == GlobalFunctionMaCun.plr2)
-                {
-                    GlobalFunctionMaCun.nameroles = "Thầy Bói";
-                }
-                else if (id == GlobalFunctionMaCun.plr3)
-                {
-                    GlobalFunctionMaCun.nameroles = "Dân Làng";
-                }
-                else if (id == GlobalFunctionMaCun.plr4)
-                {
-                    GlobalFunctionMaCun.nameroles = "Sói Thường";
-                }
-                else if (id == GlobalFunctionMaCun.plr5)
-                {
-                    GlobalFunctionMaCun.nameroles = "Già Làng";
-                }
-                else if (id == GlobalFunctionMaCun.plr6)
-                {
-                    GlobalFunctionMaCun.nameroles = "Sói Phù Thủy";
-                }
-                else if (id == GlobalFunctionMaCun.plr7)
-                {
-                    GlobalFunctionMaCun.nameroles = "Thợ Săn";
-                }
-                else if (id == GlobalFunctionMaCun.plr8)
-                {
-                    GlobalFunctionMaCun.nameroles = "Thằng Ngố";
-                }
-                else if (id == GlobalFunctionMaCun.plr9)
-                {
-                    GlobalFunctionMaCun.nameroles = "Phù Thủy";
-                }
-                else if (id == GlobalFunctionMaCun.plr10)
-                {
-                    GlobalFunctionMaCun.nameroles = "Xạ Thủ";
-                }
-                else if (id == GlobalFunctionMaCun.plr11)
-                {
-                    GlobalFunctionMaCun.nameroles = "Sói Băng";
-                }
-                else if (id == GlobalFunctionMaCun.plr12)
-                {
-                    GlobalFunctionMaCun.nameroles = "Tiên Tri";
-                }
-                else if (id == GlobalFunctionMaCun.plr13)
-                {
-                    GlobalFunctionMaCun.nameroles = "Sát Nhân";
-                }
-                else if (id == GlobalFunctionMaCun.plr14)
-                {
-                    GlobalFunctionMaCun.nameroles = "Gái Điếm";
-                }
-                else if (id == GlobalFunctionMaCun.plr15)
-                {
-                    GlobalFunctionMaCun.nameroles = "Thầy Đồng";
-                }
-                else if (id == GlobalFunctionMaCun.plr16)
-                {
-                    GlobalFunctionMaCun.nameroles = "Sói Tri";
-                }
-                else return;
-            }
-        }
-
         public static async Task rolegiaoxu(ulong id)
         {
             if (id == GlobalFunctionMaCun.giaoxu1)
@@ -258,8 +186,108 @@ namespace Neko_Test.ModulesMaCunGame
                 await GlobalFunctionMaCun.rolestring("18", "ten");
                 roleselect = "" + roleselect + "\n" + GlobalFunctionMaCun.nameroles + "";
             }
+            if (GlobalFunctionMaCun.plr19 != 0)
+            {
+                await GlobalFunctionMaCun.rolestring("19", "ten");
+                roleselect = "" + roleselect + "\n" + GlobalFunctionMaCun.nameroles + "";
+            }
+            if (GlobalFunctionMaCun.plr20 != 0)
+            {
+                await GlobalFunctionMaCun.rolestring("20", "ten");
+                roleselect = "" + roleselect + "\n" + GlobalFunctionMaCun.nameroles + "";
+            }
+            if (GlobalFunctionMaCun.plr21 != 0)
+            {
+                await GlobalFunctionMaCun.rolestring("21", "ten");
+                roleselect = "" + roleselect + "\n" + GlobalFunctionMaCun.nameroles + "";
+            }
 
             GlobalFunctionMaCun.nameroles = roleselect;
+        }
+
+        public static async Task voting(ulong user, int target)
+        {
+            if (user != GlobalFunctionMaCun.pha)
+            {
+                if (user == GlobalFunctionMaCun.plr1) { GlobalFunctionMaCun.plr1p = target; }
+                else if (user == GlobalFunctionMaCun.plr2) { GlobalFunctionMaCun.plr2p = target; }
+                else if (user == GlobalFunctionMaCun.plr3) { GlobalFunctionMaCun.plr3p = target; }
+                else if (user == GlobalFunctionMaCun.plr4) { GlobalFunctionMaCun.plr4p = target; }
+                else if (user == GlobalFunctionMaCun.plr5) { GlobalFunctionMaCun.plr5p = target; }
+                else if (user == GlobalFunctionMaCun.plr6) { GlobalFunctionMaCun.plr6p = target; }
+                else if (user == GlobalFunctionMaCun.plr7) { GlobalFunctionMaCun.plr7p = target; }
+                else if (user == GlobalFunctionMaCun.plr8) { GlobalFunctionMaCun.plr8p = target; }
+                else if (user == GlobalFunctionMaCun.plr9) { GlobalFunctionMaCun.plr9p = target; }
+                else if (user == GlobalFunctionMaCun.plr10) { GlobalFunctionMaCun.plr10p = target; }
+                else if (user == GlobalFunctionMaCun.plr11) { GlobalFunctionMaCun.plr11p = target; }
+                else if (user == GlobalFunctionMaCun.plr12) { GlobalFunctionMaCun.plr12p = target; }
+                else if (user == GlobalFunctionMaCun.plr13) { GlobalFunctionMaCun.plr13p = target; }
+                else if (user == GlobalFunctionMaCun.plr14) { GlobalFunctionMaCun.plr14p = target; }
+                else if (user == GlobalFunctionMaCun.plr15) { GlobalFunctionMaCun.plr15p = target; }
+                else if (user == GlobalFunctionMaCun.plr16) { GlobalFunctionMaCun.plr16p = target; }
+                else if (user == GlobalFunctionMaCun.plr17) { GlobalFunctionMaCun.plr17p = target; }
+                else if (user == GlobalFunctionMaCun.plr18) { GlobalFunctionMaCun.plr18p = target; }
+                else if (user == GlobalFunctionMaCun.plr19) { GlobalFunctionMaCun.plr19p = target; }
+                else if (user == GlobalFunctionMaCun.plr20) { GlobalFunctionMaCun.plr20p = target; }
+                else if (user == GlobalFunctionMaCun.plr21) { GlobalFunctionMaCun.plr21p = target; }
+                else return;
+            }
+            else return;
+        }
+
+        public static async Task vedem()
+        {
+            GlobalFunctionMaCun.channel1 = 1;
+            GlobalFunctionMaCun.channel2 = 1;
+            GlobalFunctionMaCun.channel3 = 1;
+            GlobalFunctionMaCun.channel4 = 1;
+            GlobalFunctionMaCun.channel5 = 1;
+            GlobalFunctionMaCun.channel6 = 1;
+            GlobalFunctionMaCun.channel7 = 1;
+            GlobalFunctionMaCun.channel8 = 1;
+            GlobalFunctionMaCun.channel9 = 1;
+            GlobalFunctionMaCun.channel10 = 1;
+            GlobalFunctionMaCun.channel11 = 1;
+            GlobalFunctionMaCun.channel12 = 1;
+            GlobalFunctionMaCun.channel13 = 1;
+            GlobalFunctionMaCun.channel14 = 1;
+            GlobalFunctionMaCun.channel15 = 1;
+            GlobalFunctionMaCun.channel16 = 1;
+            GlobalFunctionMaCun.channel17 = 1;
+            GlobalFunctionMaCun.channel18 = 1;
+            GlobalFunctionMaCun.channel19 = 1;
+            GlobalFunctionMaCun.channel20 = 1;
+            GlobalFunctionMaCun.channel21 = 1;
+            GlobalFunctionMaCun.plr1p = 0;
+            GlobalFunctionMaCun.plr2p = 0;
+            GlobalFunctionMaCun.plr3p = 0;
+            GlobalFunctionMaCun.plr4p = 0;
+            GlobalFunctionMaCun.plr5p = 0;
+            GlobalFunctionMaCun.plr6p = 0;
+            GlobalFunctionMaCun.plr7p = 0;
+            GlobalFunctionMaCun.plr8p = 0;
+            GlobalFunctionMaCun.plr9p = 0;
+            GlobalFunctionMaCun.plr10p = 0;
+            GlobalFunctionMaCun.plr11p = 0;
+            GlobalFunctionMaCun.plr12p = 0;
+            GlobalFunctionMaCun.plr13p = 0;
+            GlobalFunctionMaCun.plr14p = 0;
+            GlobalFunctionMaCun.plr15p = 0;
+            GlobalFunctionMaCun.plr16p = 0;
+            GlobalFunctionMaCun.plr17p = 0;
+            GlobalFunctionMaCun.plr18p = 0;
+            GlobalFunctionMaCun.plr19p = 0;
+            GlobalFunctionMaCun.plr20p = 0;
+            GlobalFunctionMaCun.plr21p = 0;
+            GlobalFunctionMaCun.gamestatus = 1;
+            GlobalFunctionMaCun.thayboi = 1;
+            GlobalFunctionMaCun.tientri = 1;
+            GlobalFunctionMaCun.soitri = 1;
+            GlobalFunctionMaCun.votesong = 0;
+            GlobalFunctionMaCun.votechet = 0;
+            GlobalFunctionMaCun.pha = 1;
+            GlobalFunctionMaCun.daycount++;
+            GlobalFunctionMaCun.treo = 0;
         }
 
     }

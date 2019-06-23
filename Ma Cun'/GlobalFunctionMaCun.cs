@@ -232,6 +232,24 @@ namespace Neko_Test.ModulesMaCun
             get { return plr18z; }
             set { plr18z = value; }
         }
+        private static ulong plr19z;
+        public static ulong plr19
+        {
+            get { return plr19z; }
+            set { plr19z = value; }
+        }
+        private static ulong plr20z;
+        public static ulong plr20
+        {
+            get { return plr20z; }
+            set { plr20z = value; }
+        }
+        private static ulong plr21z;
+        public static ulong plr21
+        {
+            get { return plr21z; }
+            set { plr21z = value; }
+        }
         private static int plr1pp;
         public static int plr1p
         {
@@ -340,6 +358,24 @@ namespace Neko_Test.ModulesMaCun
             get { return plr18pp; }
             set { plr18pp = value; }
         }
+        private static int plr19pp;
+        public static int plr19p
+        {
+            get { return plr19pp; }
+            set { plr19pp = value; }
+        }
+        private static int plr20pp;
+        public static int plr20p
+        {
+            get { return plr20pp; }
+            set { plr20pp = value; }
+        }
+        private static int plr21pp;
+        public static int plr21p
+        {
+            get { return plr21pp; }
+            set { plr21pp = value; }
+        }
         private static int channel1z;
         public static int channel1
         {
@@ -447,6 +483,24 @@ namespace Neko_Test.ModulesMaCun
         {
             get { return channel18z; }
             set { channel18z = value; }
+        }
+        private static int channel19z;
+        public static int channel19
+        {
+            get { return channel19z; }
+            set { channel19z = value; }
+        }
+        private static int channel20z;
+        public static int channel20
+        {
+            get { return channel20z; }
+            set { channel20z = value; }
+        }
+        private static int channel21z;
+        public static int channel21
+        {
+            get { return channel21z; }
+            set { channel21z = value; }
         }
         private static int khienbaove;
         public static int khien
@@ -733,6 +787,13 @@ namespace Neko_Test.ModulesMaCun
             set { giaoxuss17 = value; }
         }
 
+        private static string giaoxusplrs;
+        public static string giaoxuplr
+        {
+            get { return giaoxusplrs; }
+            set { giaoxusplrs = value; }
+        }
+
         private static ulong caubehoangdas;
         public static ulong caubehoangda
         {
@@ -745,6 +806,43 @@ namespace Neko_Test.ModulesMaCun
         {
             get { return caubesois; }
             set { caubesois = value; }
+        }
+
+        private static ulong nuois;
+        public static ulong nuoi
+        {
+            get { return nuois; }
+            set { nuois = value; }
+        }
+        private static int luotnuois;
+        public static int luotnuoi
+        {
+            get { return luotnuois; }
+            set { luotnuois = value; }
+        }
+        private static int lammes;
+        public static int lamme
+        {
+            get { return lammes; }
+            set { lammes = value; }
+        }
+        private static ulong phas;
+        public static ulong pha
+        {
+            get { return phas; }
+            set { phas = value; }
+        }
+        private static int luotcanchets;
+        public static int luotcanchet
+        {
+            get { return luotcanchets; }
+            set { luotcanchets = value; }
+        }
+        private static ulong canchets;
+        public static ulong canchet
+        {
+            get { return canchets; }
+            set { canchets = value; }
         }
 
         //========================================== R O L E S ==========================================
@@ -872,6 +970,18 @@ namespace Neko_Test.ModulesMaCun
                 {
                     GlobalFunctionMaCun.nameroles = "Giáo Xứ";
                 }
+                else if (any == "19" || any.ToLower() == "mẹ" || any.ToLower() == "mẹ-đơn-thân")
+                {
+                    GlobalFunctionMaCun.nameroles = "Mẹ Đơn Thân";
+                }
+                else if (any == "20" || any.ToLower() == "kẻ" || any.ToLower() == "kẻ-tài-lanh")
+                {
+                    GlobalFunctionMaCun.nameroles = "Kẻ Tài Lanh";
+                }
+                else if (any == "21" || any.ToLower() == "sói-hoa" || any.ToLower() == "sói-đào-hoa")
+                {
+                    GlobalFunctionMaCun.nameroles = "Sói Đào Hoa";
+                }
                 else return;
             }
             else if (request.ToLower() == "channelid")
@@ -947,6 +1057,18 @@ namespace Neko_Test.ModulesMaCun
                 else if (any == "18" || any.ToLower() == "giáo" || any.ToLower() == "giáo-xứ")
                 {
                     GlobalFunctionMaCun.channelroles = 589463015212974080;
+                }
+                else if (any == "19" || any.ToLower() == "mẹ" || any.ToLower() == "mẹ-đơn-thân")
+                {
+                    GlobalFunctionMaCun.channelroles = 591478522111983616;
+                }
+                else if (any == "20" || any.ToLower() == "kẻ" || any.ToLower() == "kẻ-tài-lanh")
+                {
+                    GlobalFunctionMaCun.channelroles = 591478642966528020;
+                }
+                else if (any == "21" || any.ToLower() == "sói-hoa" || any.ToLower() == "sói-đào-hoa")
+                {
+                    GlobalFunctionMaCun.channelroles = 591478711774085143;
                 }
                 else return;
             }
@@ -1024,6 +1146,18 @@ namespace Neko_Test.ModulesMaCun
                 {
                     GlobalFunctionMaCun.roleavailble = GlobalFunctionMaCun.plr18p;
                 }
+                else if (any == "19" || any.ToLower() == "mẹ" || any.ToLower() == "mẹ-đơn-thân")
+                {
+                    GlobalFunctionMaCun.roleavailble = GlobalFunctionMaCun.plr19p;
+                }
+                else if (any == "20" || any.ToLower() == "kẻ" || any.ToLower() == "kẻ-tài-lanh")
+                {
+                    GlobalFunctionMaCun.roleavailble = GlobalFunctionMaCun.plr20p;
+                }
+                else if (any == "21" || any.ToLower() == "sói-hoa" || any.ToLower() == "sói-đào-hoa")
+                {
+                    GlobalFunctionMaCun.roleavailble = GlobalFunctionMaCun.plr21p;
+                }
                 else return;
             }
             else if (request.ToLower() == "idrole")
@@ -1099,6 +1233,18 @@ namespace Neko_Test.ModulesMaCun
                 else if (any == "18" || any.ToLower() == "giáo" || any.ToLower() == "giáo-xứ")
                 {
                     GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr18;
+                }
+                else if (any == "19" || any.ToLower() == "mẹ" || any.ToLower() == "mẹ-đơn-thân")
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr19;
+                }
+                else if (any == "20" || any.ToLower() == "kẻ" || any.ToLower() == "kẻ-tài-lanh")
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr20;
+                }
+                else if (any == "21" || any.ToLower() == "sói-hoa" || any.ToLower() == "sói-đào-hoa")
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr21;
                 }
                 else return;
             }
@@ -1186,6 +1332,18 @@ namespace Neko_Test.ModulesMaCun
                 {
                     GlobalFunctionMaCun.nameroles = "Giáo Xứ";
                 }
+                else if (id == GlobalFunctionMaCun.plr19)
+                {
+                    GlobalFunctionMaCun.nameroles = "Mẹ Đơn Thân";
+                }
+                else if (id == GlobalFunctionMaCun.plr20)
+                {
+                    GlobalFunctionMaCun.nameroles = "Kẻ Tài Lanh";
+                }
+                else if (id == GlobalFunctionMaCun.plr21)
+                {
+                    GlobalFunctionMaCun.nameroles = "Sói Đào Hoa";
+                }
                 else return;
             }
             else if (request.ToLower() == "channelid")
@@ -1261,6 +1419,18 @@ namespace Neko_Test.ModulesMaCun
                 else if (id == GlobalFunctionMaCun.plr18)
                 {
                     GlobalFunctionMaCun.channelroles = 589463015212974080;
+                }
+                else if (id == GlobalFunctionMaCun.plr19)
+                {
+                    GlobalFunctionMaCun.channelroles = 591478522111983616;
+                }
+                else if (id == GlobalFunctionMaCun.plr20)
+                {
+                    GlobalFunctionMaCun.channelroles = 591478642966528020;
+                }
+                else if (id == GlobalFunctionMaCun.plr21)
+                {
+                    GlobalFunctionMaCun.channelroles = 591478711774085143;
                 }
                 else return;
             }
@@ -1342,6 +1512,18 @@ namespace Neko_Test.ModulesMaCun
                 {
                     GlobalFunctionMaCun.nameroles = "Không Rõ";
                 }
+                else if (id == GlobalFunctionMaCun.plr19)
+                {
+                    GlobalFunctionMaCun.nameroles = "Thiện";
+                }
+                else if (id == GlobalFunctionMaCun.plr20)
+                {
+                    GlobalFunctionMaCun.nameroles = "Không Rõ";
+                }
+                else if (id == GlobalFunctionMaCun.plr21)
+                {
+                    GlobalFunctionMaCun.nameroles = "Ác";
+                }
                 else return;
             }
             else if (request.ToLower() == "phuphep")
@@ -1415,6 +1597,18 @@ namespace Neko_Test.ModulesMaCun
                     GlobalFunctionMaCun.checkphuphep = 1;
                 }
                 else if (GlobalFunctionMaCun.phuphep == id & id == GlobalFunctionMaCun.plr18)
+                {
+                    GlobalFunctionMaCun.checkphuphep = 1;
+                }
+                else if (GlobalFunctionMaCun.phuphep == id & id == GlobalFunctionMaCun.plr19)
+                {
+                    GlobalFunctionMaCun.checkphuphep = 1;
+                }
+                else if (GlobalFunctionMaCun.phuphep == id & id == GlobalFunctionMaCun.plr20)
+                {
+                    GlobalFunctionMaCun.checkphuphep = 1;
+                }
+                else if (GlobalFunctionMaCun.phuphep == id & id == GlobalFunctionMaCun.plr21)
                 {
                     GlobalFunctionMaCun.checkphuphep = 1;
                 }
@@ -1493,6 +1687,18 @@ namespace Neko_Test.ModulesMaCun
                 else if (id == GlobalFunctionMaCun.plr18)
                 {
                     GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr18;
+                }
+                else if (id == GlobalFunctionMaCun.plr19)
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr19;
+                }
+                else if (id == GlobalFunctionMaCun.plr20)
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr20;
+                }
+                else if (id == GlobalFunctionMaCun.plr21)
+                {
+                    GlobalFunctionMaCun.idroles = GlobalFunctionMaCun.plr21;
                 }
                 else return;
             }
@@ -1609,6 +1815,24 @@ namespace Neko_Test.ModulesMaCun
                 GlobalFunctionMaCun.plr18 = id;
                 GlobalFunctionMaCun.channel18 = 1;
                 GlobalFunctionMaCun.phethu3++;
+            }
+            else if (any == "19" || any.ToLower() == "mẹ" || any.ToLower() == "mẹ-đơn-thân")
+            {
+                GlobalFunctionMaCun.plr19 = id;
+                GlobalFunctionMaCun.channel19 = 1;
+                GlobalFunctionMaCun.phedan++;
+            }
+            else if (any == "20" || any.ToLower() == "kẻ" || any.ToLower() == "kẻ-tài-lanh")
+            {
+                GlobalFunctionMaCun.plr20 = id;
+                GlobalFunctionMaCun.channel20 = 1;
+                GlobalFunctionMaCun.phedan++;
+            }
+            else if (any == "21" || any.ToLower() == "sói-hoa" || any.ToLower() == "sói-đào-hoa")
+            {
+                GlobalFunctionMaCun.plr21 = id;
+                GlobalFunctionMaCun.channel21 = 1;
+                GlobalFunctionMaCun.phesoi++;
             }
             else return;
         }

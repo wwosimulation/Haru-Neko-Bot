@@ -39,8 +39,18 @@ namespace Neko_Test
             }
             else
             {
+                string msg = message;
+                int checknum = GlobalFunction.MaxEmotes;
+                while (checknum >= 1)
+                {
+                    var ab = $"{checknum}";
+                    var ac = "-" + checknum + "";
+                    GlobalFunction.emotesstring(ab);
+                    msg = msg.Replace($"{ac}", $"{GlobalFunction.emote}");
+                    checknum--;
+                }
                 await Context.Message.DeleteAsync();
-                await Context.Channel.SendMessageAsync(message);
+                await Context.Channel.SendMessageAsync(msg);
             }
         }
         [Command("copy2"), Alias("say2")]
@@ -105,7 +115,17 @@ namespace Neko_Test
                 }
                 else
                 {
-                    await Context.Guild.GetTextChannel(channel.Id).SendMessageAsync("" + text + "");
+                    string msg = text;
+                    int checknum = GlobalFunction.MaxEmotes;
+                    while (checknum >= 1)
+                    {
+                        var ab = $"{checknum}";
+                        var ac = "-" + checknum + "";
+                        GlobalFunction.emotesstring(ab);
+                        msg = msg.Replace($"{ac}", $"{GlobalFunction.emote}");
+                        checknum--;
+                    }
+                    await Context.Guild.GetTextChannel(channel.Id).SendMessageAsync("" + msg + "");
                 }
             }
             else return;
@@ -351,7 +371,7 @@ namespace Neko_Test
 
         [Command("emote")]
         [Alias("e")]
-        private async Task emotetime(int num = 0)
+        private async Task emotetime(int num = 0, SocketUserMessage c = null)
         {
             var check = UserAccounts10.GetAccount((Context.User as SocketUser));
             if (check.emote == true)
@@ -365,109 +385,22 @@ namespace Neko_Test
                 }
                 else
                 {
-                    if (num == 1)
+                    if (num >= 1 & num <= 26 & c == null)
                     {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:TohruWeary:585492969025568799>")}");
-                    }
-                    else if (num == 2)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:remsleepy:585492968182644758>")}");
-                    }
-                    else if (num == 3)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:remBlush:585492968228519937>")}");
-                    }
-                    else if (num == 4)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:LoveHeart:585492967880523821>")}");
-                    }
-                    else if (num == 5)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:Kya:585507397993234556>")}");
-                    }
-                    else if (num == 6)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:kannaWave:585492969008791580>")}");
-                    }
-                    else if (num == 7)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:kannaPeek:585492968807464984>")}");
-                    }
-                    else if (num == 8)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:kannanom:585492968962523160>")}");
-                    }
-                    else if (num == 9)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:pillowYes:585492967649837197>")}");
-                    }
-                    else if (num == 10)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:pillowNo:585492968274657300>")}");
-                    }
-                    else if (num == 11)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:GWpdnlaugh:587152172161040396>")}");
-                    }
-                    else if (num == 12)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:GWpdnXD:587152173922648070>")}");
-                    }
-                    else if (num == 13)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:ReimuFacePalm:587152173595623424>")}");
-                    }
-                    else if (num == 14)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:Naisu:587265138843844608>")}");
-                    }
-                    else if (num == 15)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:SenkoThinking:589049035055169536>")}");
-                    }
-                    else if (num == 16)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:SenkoPlease:589049212239347753>")}");
-                    }
-                    else if (num == 17)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:SenkoListening:589049338622246922>")}");
-                    }
-                    else if (num == 18)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:SenkoHi:589049277754507265>")}");
-                    }
-                    else if (num == 19)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:SenkoBlush:589049141183905797>")}");
-                    }
-                    else if (num == 20)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:VampySmug:590121887707693058>")}");
-                    }
-                    else if (num == 21)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:RaphiOhM:590121887963676673>")}");
-                    }
-                    else if (num == 22)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:RaphiWink:590121888043237390>")}");
-                    }
-                    else if (num == 23)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:WhoDesu:590121888655605762>")}");
-                    }
-                    else if (num == 24)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:WOW:590149641241231384>")}");
-                    }
-                    else if (num == 25)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:WannaSee:590149643376001024>")}");
-                    }
-                    else if (num == 26)
-                    {
-                        await Context.Channel.SendMessageAsync($"{Emote.Parse("<:owoAwoo:590149640356233220>")}");
+                        if (c != null)
+                        {
+                            string getemote = null;
+                            getemote = $"{num}";
+                            GlobalFunction.emotesstring(getemote);
+                            c.AddReactionAsync(Emote.Parse($"{GlobalFunction.emote}"));
+                        }
+                        else
+                        {
+                            string getemote = null;
+                            getemote = $"{num}";
+                            GlobalFunction.emotesstring(getemote);
+                            await Context.Channel.SendMessageAsync($"{Emote.Parse($"{GlobalFunction.emote}")}");
+                        }
                     }
                     else
                     {

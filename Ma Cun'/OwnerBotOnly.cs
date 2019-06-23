@@ -13,6 +13,7 @@ using Neko_Test.Core.UserAccounts10;
 using System.Globalization;
 using System.Windows.Forms;
 using Neko_Test.ModulesMaCun;
+using Neko_Test.Modules;
 
 using Discord.WebSocket;
 using System.Diagnostics;
@@ -517,7 +518,17 @@ namespace Neko_Test.Ma_Cun_
                 }
                 else
                 {
-                    await Context.Client.GetGuild(GlobalFunctionMaCun.guildid).GetTextChannel(GlobalFunctionMaCun.channelid).SendMessageAsync(text);
+                    string msg = text;
+                    int checknum = GlobalFunction.MaxEmotes;
+                    while (checknum >= 1)
+                    {
+                        var ab = $"{checknum}";
+                        var ac = "-" + checknum + "";
+                        GlobalFunction.emotesstring(ab);
+                        msg = msg.Replace($"{ac}", $"{GlobalFunction.emote}");
+                        checknum--;
+                    }
+                    await Context.Client.GetGuild(GlobalFunctionMaCun.guildid).GetTextChannel(GlobalFunctionMaCun.channelid).SendMessageAsync(msg);
                 }
             }
             else return;
@@ -536,7 +547,6 @@ namespace Neko_Test.Ma_Cun_
                     line = $"{line}\n{t}";
                 }
                 await ReplyAsync($"{line}");
-                GlobalFunctionMaCun.votechet++;
             }
             else return;
         }
@@ -567,11 +577,30 @@ namespace Neko_Test.Ma_Cun_
                 ga = $"{ga}\n{GlobalFunctionMaCun.giaoxu}";
                 ga = $"{ga}\n{GlobalFunctionMaCun.giaoxu1}";
                 ga = $"{ga}\n{GlobalFunctionMaCun.giaoxu2}";
-                ga = $"{ga}\n{GlobalFunctionMaCun.giaoxu2}";
+                ga = $"{ga}\n{GlobalFunctionMaCun.giaoxu3}";
+                ga = $"{ga}\n{GlobalFunctionMaCun.giaoxu4}";
+                ga = $"{ga}\n{GlobalFunctionMaCun.giaoxu5}";
                 embed.AddField("Giáo Xứ!", $"{ga}");
                 await Context.Channel.SendMessageAsync("", false, embed.Build());
             }
             else return;
         }
+
+
+        [Command("line")]
+        public async Task linees()
+        {
+            string c = null;
+            if (c == null)
+            {
+                if (c == null)
+                {
+
+                  
+
+                }
+            }
+        }
+
     }
 }

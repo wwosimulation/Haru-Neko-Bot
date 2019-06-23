@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Drawing;
 using Neko_Test.Core.UserAccounts;
+using Neko_Test.Core.UserAccounts10;
 using System.Globalization;
 using System.Windows.Forms;
 using Newtonsoft.Json;
@@ -106,19 +107,78 @@ namespace Neko_Test.Ma_Cun_
                 var embed = new EmbedBuilder();
                 if (user == null || user == (Context.User as SocketUser))
                 {
-                    var accounts = UserAccounts.GetAccount(Context.User);
-                    embed.AddField($"Túi đồ của bạn!", $"Tổng xu có: {accounts.points}{Emote.Parse("<:coin:584231931835580419>")}.\nHoa có: {accounts.roses}{Emote.Parse("<:rose:584250710284304384>")}.\nHoa được tặng: {accounts.plrroses}{Emote.Parse("<:rose:584250710284304384>")}.");
-                    embed.WithColor(new Discord.Color(0, 255, 255));
-                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    var accounts10 = UserAccounts10.GetAccount(Context.User);
+                    if (accounts10.None2 != null)
+                    {
+                        string item = null;
+                        string name = accounts10.None2;
+                        string[] name2 = name.Split(" ");
+                        foreach (var get in name2)
+                        {
+                            if (get == "RandomRolesRequest")
+                            {
+                                if (item == null)
+                                {
+                                    item = $"Yêu Cầu Random Vai Trò";
+                                }
+                                else
+                                {
+                                    item = $"{item}\nYêu Cầu Random Vai Trò";
+                                }
+                            }
+                        }
+                        var accounts = UserAccounts.GetAccount(Context.User);
+                        embed.AddField($"Túi đồ của bạn!", $"Tổng xu có: {accounts.points}{Emote.Parse("<:coin:584231931835580419>")}.\nHoa có: {accounts.roses}{Emote.Parse("<:rose:584250710284304384>")}.\nHoa được tặng: {accounts.plrroses}{Emote.Parse("<:rose:584250710284304384>")}.");
+                        embed.AddField($"Vật Phẩm!", $"{item}");
+                        embed.WithColor(new Discord.Color(0, 255, 255));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                    else
+                    {
+                        var accounts = UserAccounts.GetAccount(Context.User);
+                        embed.AddField($"Túi đồ của bạn!", $"Tổng xu có: {accounts.points}{Emote.Parse("<:coin:584231931835580419>")}.\nHoa có: {accounts.roses}{Emote.Parse("<:rose:584250710284304384>")}.\nHoa được tặng: {accounts.plrroses}{Emote.Parse("<:rose:584250710284304384>")}.");
+                        embed.WithColor(new Discord.Color(0, 255, 255));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
                 }
                 else
                 {
-                    var accounts = UserAccounts.GetAccount(user);
-                    embed.AddField($"Túi đồ của {user.Username}!", $"Tổng xu có: {accounts.points}{Emote.Parse("<:coin:584231931835580419>")}.\nHoa có: {accounts.roses}{Emote.Parse("<:rose:584250710284304384>")}.\nHoa được tặng: {accounts.plrroses}{Emote.Parse("<:rose:584250710284304384>")}.");
-                    embed.WithColor(new Discord.Color(0, 255, 255));
-                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    var accounts10 = UserAccounts10.GetAccount(user);
+                    if (accounts10.None2 != null)
+                    {
+                        string item = null;
+                        string name = accounts10.None2;
+                        string[] name2 = name.Split(" ");
+                        foreach (var get in name2)
+                        {
+                            if (get == "RandomRolesRequest")
+                            {
+                                if (item == null)
+                                {
+                                    item = $"Yêu Cầu Random Vai Trò";
+                                }
+                                else
+                                {
+                                    item = $"{item}\nYêu Cầu Random Vai Trò";
+                                }
+                            }
+                        }
+                        var accounts = UserAccounts.GetAccount(user);
+                        embed.AddField($"Túi đồ của {user.Username}!", $"Tổng xu có: {accounts.points}{Emote.Parse("<:coin:584231931835580419>")}.\nHoa có: {accounts.roses}{Emote.Parse("<:rose:584250710284304384>")}.\nHoa được tặng: {accounts.plrroses}{Emote.Parse("<:rose:584250710284304384>")}.");
+                        embed.AddField($"Vật Phẩm!", $"{item}");
+                        embed.WithColor(new Discord.Color(0, 255, 255));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                    else
+                    {
+                        var accounts = UserAccounts.GetAccount(user);
+                        embed.AddField($"Túi đồ của {user.Username}!", $"Tổng xu có: {accounts.points}{Emote.Parse("<:coin:584231931835580419>")}.\nHoa có: {accounts.roses}{Emote.Parse("<:rose:584250710284304384>")}.\nHoa được tặng: {accounts.plrroses}{Emote.Parse("<:rose:584250710284304384>")}.");
+                        embed.WithColor(new Discord.Color(0, 255, 255));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
                 }
                 UserAccounts.SaveAccounts();
+                UserAccounts10.SaveAccounts();
             }
             else
             {
@@ -274,24 +334,26 @@ namespace Neko_Test.Ma_Cun_
                 }
                 else
                 {
+                    int maxpage = 2;
                     if (num == 1 || num == 0)
                     {
                         num = 1;
                         embed.WithAuthor($"Cửa Hàng Xu - Ma Sói Online - Ma Cún\n \n");
                         embed.AddField($"DJ role - 200 {Emote.Parse("<:coin:584231931835580419>")}", "Muốn nghe một chút nhạc trong Game Server? mua nó thôi!");
                         embed.AddField($"Hoa - 25 {Emote.Parse("<:coin:475781084584607745>")} / 1 {Emote.Parse("<:rose:584250710284304384>")}", "Tặng hoa cho người chơi? (Sử dụng -tanghoa khi đang choi Ma Sói tại Game Server).");
-                        embed.WithFooter($"Yêu cầu bởi {Context.User.Username} - Trang 1/2", Context.User.GetAvatarUrl());
+                        embed.WithFooter($"Yêu cầu bởi {Context.User.Username} - Trang {num}/{maxpage}", Context.User.GetAvatarUrl());
 
                         embed.WithColor(new Discord.Color(0, 255, 0));
                         await Context.Channel.SendMessageAsync("", false, embed.Build());
                     }
                     if (num == 2)
                     {
+                        num = 2;
                         embed.WithAuthor($"Cửa Hàng Hoa - Ma Sói Online - Ma Cún\n \n");
-                        embed.WithTitle("Tạm thời trang 2 không có gì nên hãy quay lại sau nhé.");
-                        embed.WithFooter($"Yêu cầu bởi {Context.User.Username} - Trang 2/2", Context.User.GetAvatarUrl());
+                        embed.AddField($"Random Roles - 10 {Emote.Parse("<:rose:584250710284304384>")}", "Bạn đã quá chán với việc Quản Trò tự random? Mua nó và yêu cầu Quản Trò random theo ý mình thôi!\n(Dùng trong Game Server với Lệnh: -yeucaurandom <Vai Trò>)");
+                        embed.WithFooter($"Yêu cầu bởi {Context.User.Username} - Trang {num}/{maxpage}", Context.User.GetAvatarUrl());
 
-                        embed.WithColor(new Discord.Color(255, 50, 255));
+                        embed.WithColor(new Discord.Color(0, 255, 0));
                         await Context.Channel.SendMessageAsync("", false, embed.Build());
                     }
                 }
@@ -317,7 +379,7 @@ namespace Neko_Test.Ma_Cun_
         }
         [Command("mua")]
         [Alias("buy", "muado")]
-        private async Task muadooshop(string item, [Optional]string tenthem, [Optional]ulong soluong)
+        private async Task muadooshop(string item, [Optional]string tenthem)
         {
             if (Context.Guild.Id == 530689610313891840)
             {
@@ -363,69 +425,110 @@ namespace Neko_Test.Ma_Cun_
                 }
                 if (item.ToLower() == "hoa")
                 {
-                    if (tenthem == "soluong" || tenthem == "Soluong" || tenthem == "SoLuong")
+                    ulong soluong = UInt64.Parse(tenthem);
+                    var user = UserAccounts.GetAccount(Context.User);
+                    if (soluong <= 0)
                     {
-                        var user = UserAccounts.GetAccount(Context.User);
-                        if (soluong <= 0)
+                        embed.AddField($"Hệ Thống!", "-mua hoa soluong [Số lượng hoa muốn mua]");
+                        embed.WithColor(new Discord.Color(255, 50, 255));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                    else if (soluong == 1 & user.points >= 25)
+                    {
+                        user.points = user.points - 25;
+                        user.roses = user.roses + 1;
+                        embed.AddField($"Hệ Thống!", $"Đã mua 1 bông hoa với giá 25{Emote.Parse("<:coin:584231931835580419>")}! số dư còn lại của bạn là {user.points}{Emote.Parse("<:coin:584231931835580419>")}.");
+                        embed.WithColor(new Discord.Color(0, 255, 0));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                    else if (soluong >= 2)
+                    {
+                        var check = 25 * soluong;
+                        if (user.points >= check)
                         {
-                            embed.AddField($"Hệ Thống!", "-mua hoa soluong [Số lượng hoa muốn mua]");
-
-                            embed.WithColor(new Discord.Color(255, 50, 255));
-                            await Context.Channel.SendMessageAsync("", false, embed.Build());
-                        }
-                        else if (soluong == 1 & user.points >= 25)
-                        {
-                            user.points = user.points - 25;
-                            user.roses = user.roses + 1;
-                            embed.AddField($"Hệ Thống!", $"Đã mua 1 bông hoa với giá 25{Emote.Parse("<:coin:584231931835580419>")}! số dư còn lại của bạn là {user.points}{Emote.Parse("<:coin:584231931835580419>")}.");
+                            user.points = user.points - check;
+                            user.roses = user.roses + soluong;
+                            embed.AddField($"Hệ Thống!", $"Đã mua {soluong} bông hoa với giá {check}{Emote.Parse("<:coin:584231931835580419>")}! số dư còn lại của bạn là {user.points}{Emote.Parse("<:coin:584231931835580419>")}.");
                             embed.WithColor(new Discord.Color(0, 255, 0));
                             await Context.Channel.SendMessageAsync("", false, embed.Build());
                         }
-                        else if (soluong >= 2)
-                        {
-                            var check = 25 * soluong;
-                            if (user.points >= check)
-                            {
-                                user.points = user.points - check;
-                                user.roses = user.roses + soluong;
-                                embed.AddField($"Hệ Thống!", $"Đã mua {soluong} bông hoa với giá {check}{Emote.Parse("<:coin:584231931835580419>")}! số dư còn lại của bạn là {user.points}{Emote.Parse("<:coin:584231931835580419>")}.");
-                                embed.WithColor(new Discord.Color(0, 255, 0));
-                                await Context.Channel.SendMessageAsync("", false, embed.Build());
-                            }
-                            else
-                            {
-                                embed.AddField($"Lỗi!", $"Bạn không đủ tiền để mua {soluong} bông hoa ({check}{Emote.Parse("<:coin:584231931835580419>")}).");
-                                embed.WithColor(new Discord.Color(255, 0, 0));
-                                await Context.Channel.SendMessageAsync("", false, embed.Build());
-                            }
-                        }
                         else
                         {
-                            embed.AddField($"Lỗi!", $"Bạn không đủ tiền để mua 1 bông hoa.");
+                            embed.AddField($"Lỗi!", $"Bạn không đủ tiền để mua {soluong} bông hoa ({check}{Emote.Parse("<:coin:584231931835580419>")}).");
                             embed.WithColor(new Discord.Color(255, 0, 0));
                             await Context.Channel.SendMessageAsync("", false, embed.Build());
                         }
                     }
                     else
                     {
-                        var user = UserAccounts.GetAccount(Context.User);
-                        if (user.points >= 25)
+                        embed.AddField($"Lỗi!", $"Bạn không đủ tiền để mua 1 bông hoa.");
+                        embed.WithColor(new Discord.Color(255, 0, 0));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                }
+                if (item.ToLower() == "random")
+                {
+                    if (tenthem == "role" || tenthem == "Role" || tenthem == "Roles" ||  tenthem == "roles" || tenthem == null)
+                    {
+                        var user2 = UserAccounts.GetAccount(Context.User as SocketUser);
+                        var user = UserAccounts10.GetAccount(Context.User as SocketUser);
+                        if (user.None2 == null)
                         {
-                            user.points = user.points - 25;
-                            user.roses = user.roses + 1;
-                            embed.AddField($"Hệ Thống!", $"Đã mua 1 bông hoa với giá 25{Emote.Parse("<:coin:584231931835580419>")}! số dư còn lại của bạn là {user.points}{Emote.Parse("<:coin:584231931835580419>")}.");
-                            embed.WithColor(new Discord.Color(0, 255, 0));
-                            await Context.Channel.SendMessageAsync("", false, embed.Build());
+                            if (user2.plrroses >= 10)
+                            {
+                                user2.plrroses = user2.plrroses - 10;
+                                user.None2 = "RandomRolesRequest";
+                                embed.AddField($"Hệ Thống!", $"Đã mua Yêu Cầu Random Vai Trò với giá 10{Emote.Parse("<:rose:584250710284304384>")}! số dư còn lại của bạn là {user2.plrroses}{Emote.Parse("<:rose:584250710284304384>")}.");
+                                embed.WithColor(new Discord.Color(0, 255, 0));
+                                await Context.Channel.SendMessageAsync("", false, embed.Build());
+                            }
+                            else
+                            {
+                                embed.AddField($"Lỗi!", $"Bạn không đủ hoa để mua Yêu Cấu Random Vai Trò.");
+                                embed.WithColor(new Discord.Color(255, 0, 0));
+                                await Context.Channel.SendMessageAsync("", false, embed.Build());
+                            }
                         }
                         else
                         {
-                            embed.AddField($"Lỗi!", $"Bạn không đủ tiền để mua 1 bông hoa.");
-                            embed.WithColor(new Discord.Color(255, 0, 0));
-                            await Context.Channel.SendMessageAsync("", false, embed.Build());
+                            var check = "yes";
+                            string name = user.None2;
+                            string[] name2 = name.Split(" ");
+                            foreach(var get in name2)
+                            {
+                                if (get == "RandomRolesRequest")
+                                {
+                                    check = "no";
+                                }
+                            }
+                            if (check == "no")
+                            {
+                                embed.AddField($"Lỗi!", "Bạn có Vật Phẩm này rùi mà, mua gì mua lắm vậy, muốn mua lại thì vút cái vật phẩm đó đi rùi mua lại =.=");
+                                embed.WithColor(new Discord.Color(255, 0, 0));
+                                await Context.Channel.SendMessageAsync("", false, embed.Build());
+                            }
+                            else
+                            {
+                                if (user2.plrroses >= 10)
+                                {
+                                    user2.plrroses = user2.plrroses - 10;
+                                    user.None2 = $"{user.None2} RandomRolesRequest";
+                                    embed.AddField($"Hệ Thống!", $"Đã mua Yêu Cầu Random Vai Trò với giá 10{Emote.Parse("<:rose:584250710284304384>")}! số dư còn lại của bạn là {user2.plrroses}{Emote.Parse("<:rose:584250710284304384>")}.");
+                                    embed.WithColor(new Discord.Color(0, 255, 0));
+                                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                                }
+                                else
+                                {
+                                    embed.AddField($"Lỗi!", $"Bạn không đủ hoa để mua Yêu Cầu Random Vai Trò.");
+                                    embed.WithColor(new Discord.Color(255, 0, 0));
+                                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                                }
+                            }
                         }
                     }
                 }
                 UserAccounts.SaveAccounts();
+                UserAccounts10.SaveAccounts();
             }
             else return;
         }
@@ -536,6 +639,64 @@ namespace Neko_Test.Ma_Cun_
                 }
                 else return;
             }
+        }
+
+        [Command("yeucaurandom")]
+        public async Task sendrequestrandomforhoster([Remainder] string chat = null)
+        {
+            if (Context.Guild.Id == 580555457983152149)
+            {
+                var embed = new EmbedBuilder();
+                var accounts10 = UserAccounts10.GetAccount(Context.User);
+                if (!Context.Guild.Roles.FirstOrDefault(x => x.Name == "Sống").Members.Contains(Context.User))
+                {
+                    embed.AddField($"Lỗi!", "Bạn phải ở trong Game mới có thể sử dụng lệnh này.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else if (chat == null)
+                {
+                    embed.AddField($"Lỗi!", "Bạn chưa nhập vai trò cần Random.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else if (accounts10.None2 != null)
+                {
+                    var check = "yes";
+                    string name = accounts10.None2;
+                    string[] name2 = name.Split(" ");
+                    foreach (var get in name2)
+                    {
+                        if (get != "RandomRolesRequest")
+                        {
+                            check = "no";
+                        }
+                    }
+                    if (check == "no")
+                    {
+                        embed.AddField($"Lỗi!", "Bạn cần phải mua vật phẩm Yêu Cầu Random Vai Trò mới có thể sử dụng lệnh này.");
+                        embed.WithColor(new Discord.Color(255, 0, 0));
+                        await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    }
+                    else
+                    {
+                        embed.WithAuthor($"{Context.User.Username}#{Context.User.Discriminator}", Context.User.GetAvatarUrl());
+                        embed.AddField("Đã yêu cầu vai trò:", $"{chat}");
+                        embed.WithFooter($"ID người đó: {Context.User.Id}");
+                        embed.WithColor(new Discord.Color(0, 255, 0));
+                        await Context.Guild.GetTextChannel(580558295023222784).SendMessageAsync("", false, embed.Build());
+                        await Context.Channel.SendMessageAsync("Đã gửi yêu cầu!");
+                    }
+                }
+                else
+                {
+                    embed.AddField($"Lỗi!", "Bạn cần phải mua vật phẩm Yêu Cầu Random Vai Trò mới có thể sử dụng lệnh này.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                UserAccounts10.SaveAccounts();
+            }
+            else return;
         }
 
     }
