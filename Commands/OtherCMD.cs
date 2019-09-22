@@ -45,7 +45,7 @@ namespace Neko_Test
                 {
                     var ab = $"{checknum}";
                     var ac = "-" + checknum + "";
-                    GlobalFunction.emotesstring(ab);
+                    await GlobalFunction.emotesstring(ab);
                     msg = msg.Replace($"{ac}", $"{GlobalFunction.emote}");
                     checknum--;
                 }
@@ -121,7 +121,7 @@ namespace Neko_Test
                     {
                         var ab = $"{checknum}";
                         var ac = "-" + checknum + "";
-                        GlobalFunction.emotesstring(ab);
+                        await GlobalFunction.emotesstring(ab);
                         msg = msg.Replace($"{ac}", $"{GlobalFunction.emote}");
                         checknum--;
                     }
@@ -130,7 +130,48 @@ namespace Neko_Test
             }
             else return;
         }
-
+        [Command("editmessage")]
+        public async Task changemsgofbot(ulong channel = 0, [Remainder] string text = null)
+        {
+            SocketGuildUser User1 = Context.User as SocketGuildUser;
+            if (User1.GuildPermissions.ManageRoles)
+            {
+                var embed = new EmbedBuilder();
+                if (channel == 0)
+                {
+                    embed.AddField($"Error!", "ID Message in Channel is Missing.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else if (text == null)
+                {
+                    embed.AddField($"Error!", "Text is Missing.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else if (Context.Channel.GetMessageAsync(channel) == null)
+                {
+                    embed.AddField($"Error!", "ID Message not found.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else
+                {
+                    string msg = text;
+                    int checknum = GlobalFunction.MaxEmotes;
+                    while (checknum >= 1)
+                    {
+                        var ab = $"{checknum}";
+                        var ac = "-" + checknum + "";
+                        await GlobalFunction.emotesstring(ab);
+                        msg = msg.Replace($"{ac}", $"{GlobalFunction.emote}");
+                        checknum--;
+                    }
+                    //await Context.Channel.GetMessageAsync(channel).
+                }
+            }
+            else return;
+        }
         /*        [Command("test3")]
                 public async Task testremoveallrole(ITextChannel Channel, Func<IGuildUser, bool> predicate)
                 {
@@ -391,14 +432,14 @@ namespace Neko_Test
                         {
                             string getemote = null;
                             getemote = $"{num}";
-                            GlobalFunction.emotesstring(getemote);
-                            c.AddReactionAsync(Emote.Parse($"{GlobalFunction.emote}"));
+                            await GlobalFunction.emotesstring(getemote);
+                            await c.AddReactionAsync(Emote.Parse($"{GlobalFunction.emote}"));
                         }
                         else
                         {
                             string getemote = null;
                             getemote = $"{num}";
-                            GlobalFunction.emotesstring(getemote);
+                            await GlobalFunction.emotesstring(getemote);
                             await Context.Channel.SendMessageAsync($"{Emote.Parse($"{GlobalFunction.emote}")}");
                         }
                     }

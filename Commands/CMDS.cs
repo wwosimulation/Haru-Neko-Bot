@@ -37,11 +37,11 @@ namespace Neko_Test
             {
                 embed.WithAuthor($"Neko's Command. \n \n");
                 //embed.WithAuthor($"=== WWO Simulation ===\n");
-                embed.AddField($"WWO Simulation - Commands: -gwhost, -gwcancel, -rwhost, -rwcancel", "Usage: -gwhost <Game Code> to start Host Game (Require: Game Narrator or GN Helper role)\n       -gwcancel to cancel Game (Require: Game Narrator or GN Helper role) \n       -rwhost <Game Code> to start Host Rank Game (Require: Game Narrator role)\n       -rwcancel to cancel Rank Game (Require: Game Narrator role)");
+                embed.AddField($"WWO Simulation - Commands: -gwhost, -gwcancel, -rwhost, -rwcancel", "Usage: -gwhost <Game Code> to start Host Game (Require: Game Narrator or Mini Narrator role)\n       -gwcancel to cancel Game (Require: Game Narrator or Mini Narrator role) \n       -rwhost <Game Code> to start Host Rank Game (Require: Game Narrator role)\n       -rwcancel to cancel Rank Game (Require: Game Narrator role)");
                 //embed.WithTitle($"=== Game Server ===");
-                embed.AddField($"Game Server - Commands: -gnhelper, -gn, -dj", "Usage: -gnhelper to get GN Helper role (Require: GN Helper role in WWO Simulation)\n       -gn to get GN role (Require: Game Narrator role in WWO Simulation)\n       -dj to get DJ role (Require: DJ role in WWO - Simulation)");
+                embed.AddField($"Game Server - Commands: -gnhelper, -gn, -dj", "Usage: -gnhelper to get Mini Narrator role (Require: Mini Narrator role in WWO Simulation)\n       -gn to get GN role (Require: Game Narrator role in WWO Simulation)\n       -dj to get DJ role (Require: DJ role in WWO - Simulation)");
                 //embed.WithTitle($"=== Another Commands ===");
-                embed.AddField($"Another Commands: -recover, -change, -reset, -stats, -clr", "Usage: -recover <Num> <Text> to change Game's Info (Require: ManageRoles Permission)\n       -change <User> <New Nickname> to change Nick Name of User (Require: ManageNicknames Permission)\n       -reset to reset Status Running in GlobalFunction (Require: Bot Helper or Bot Dev role in WWO Simulation)\n       -stats to show Status Running in GlobalFunction (Require: Game Narrator or GN Helper role in WWO Simulation)\n       -clr to Bulk Delete Messages channel (Require: ManageMessages Permission)");
+                embed.AddField($"Another Commands: -recover, -change, -reset, -stats, -clr", "Usage: -recover <Num> <Text> to change Game's Info (Require: ManageRoles Permission)\n       -change <User> <New Nickname> to change Nick Name of User (Require: ManageNicknames Permission)\n       -reset to reset Status Running in GlobalFunction (Require: Game Narrator or Mini Narrator role in WWO Simulation)\n       -stats to show Status Running in GlobalFunction (Require: Game Narrator or Mini Narrator role in WWO Simulation)\n       -clr to Bulk Delete Messages channel (Require: ManageMessages Permission)");
                 embed.AddField($"More Soon", "...");
 
                 int Re = rnd.Next(0, 255);
@@ -85,9 +85,9 @@ namespace Neko_Test
                 Image pic = new Image(clonestream);
                 clonestream.Position = 0;
                 await Context.Guild.ModifyAsync(x => x.Icon = pic);*/
-                await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync("Game now starting, you can no longer join.");
-                await Context.Client.GetGuild(465795320526274561).GetTextChannel(549242357741256705).SendMessageAsync("Game Start has been announced.");
-                await Context.Client.GetGuild(472261911526768642).GetTextChannel(549202043517272064).SendMessageAsync("Game Start has been announced.");
+                await Context.Client.GetGuild(465795320526274561).GetTextChannel(606123818305585167).SendMessageAsync("Game now starting, you can no longer join.");
+                await Context.Client.GetGuild(465795320526274561).GetTextChannel(606123748738859008).SendMessageAsync("Game Start has been announced.");
+                await Context.Client.GetGuild(472261911526768642).GetTextChannel(606131484532801549).SendMessageAsync("Game Start has been announced.");
                 GlobalFunction.gamestatus = "hosting";
                 GlobalFunction.gametime = "night";
                 await Context.Client.SetGameAsync("Game Started");
@@ -245,7 +245,7 @@ namespace Neko_Test
                 if (GlobalFunction.gamestatus == "hosting" & GlobalFunction.gamecodes != null & GlobalFunction.wons != null)
                 {
 
-                    await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync("Game " + GlobalFunction.gamecodes + " ended - " + GlobalFunction.wons + " won the match!");
+                    await Context.Client.GetGuild(465795320526274561).GetTextChannel(606123818305585167).SendMessageAsync("Game " + GlobalFunction.gamecodes + " ended - " + GlobalFunction.wons + " won the match!");
                     GlobalFunction.gamecodes = null;
                     GlobalFunction.wons = null;
                     GlobalFunction.gamestatus = null;
@@ -258,16 +258,16 @@ namespace Neko_Test
                     GlobalFunction.matchmember = null;
                     await Context.Client.SetGameAsync("No Game Hosting");
                     
-                    IEnumerable<IMessage> nonPinnedMessages = await Context.Guild.GetTextChannel(559650561981415424).GetMessagesAsync(1000).FlattenAsync();
-                    await Context.Guild.GetTextChannel(559650561981415424).DeleteMessagesAsync(nonPinnedMessages.Where(x => x.IsPinned == false));
+                    IEnumerable<IMessage> nonPinnedMessages = await Context.Guild.GetTextChannel(606132422601474049).GetMessagesAsync(1000).FlattenAsync();
+                    await Context.Guild.GetTextChannel(606132422601474049).DeleteMessagesAsync(nonPinnedMessages.Where(x => x.IsPinned == false));
                     //Bulk Delete Messages Channel #player-commands in Werewolf Online Simulation - Game Server.
 
-                    IEnumerable<IMessage> nonPinnedMessages2 = await Context.Guild.GetTextChannel(556385557983395840).GetMessagesAsync(1000).FlattenAsync();
-                    await Context.Guild.GetTextChannel(556385557983395840).DeleteMessagesAsync(nonPinnedMessages2.Where(x => x.IsPinned == false));
+                    IEnumerable<IMessage> nonPinnedMessages2 = await Context.Guild.GetTextChannel(606148110682423306).GetMessagesAsync(1000).FlattenAsync();
+                    await Context.Guild.GetTextChannel(606148110682423306).DeleteMessagesAsync(nonPinnedMessages2.Where(x => x.IsPinned == false));
                     //Bulk Delete Messages Channel #Timer in Werewolf Online Simulation - Game Server.
 
-                    IEnumerable<IMessage> nonPinnedMessages3 = await Context.Guild.GetTextChannel(549202652689596427).GetMessagesAsync(1000).FlattenAsync();
-                    await Context.Guild.GetTextChannel(549202652689596427).DeleteMessagesAsync(nonPinnedMessages3.Where(x => x.IsPinned == false));
+                    IEnumerable<IMessage> nonPinnedMessages3 = await Context.Guild.GetTextChannel(606138364168634378).GetMessagesAsync(1000).FlattenAsync();
+                    await Context.Guild.GetTextChannel(606138364168634378).DeleteMessagesAsync(nonPinnedMessages3.Where(x => x.IsPinned == false));
                     //Bulk Delete Messages Channel #music-log in Werewolf Online Simulation - Game Server.
                     
                     var GetAllUser = Context.Client.GetGuild(465795320526274561).Users;
@@ -285,9 +285,9 @@ namespace Neko_Test
                     
                     embed.AddField($"Result of Match "+GlobalFunction.gamecodes+" \n \n", "" + GlobalFunction.matchmember + "\n" + GlobalFunction.matchresult + "");
                     embed.WithColor(new Discord.Color(0, 255, 0));
-                    await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync("", false, embed.Build());
+                    await Context.Client.GetGuild(465795320526274561).GetTextChannel(606123818305585167).SendMessageAsync("", false, embed.Build());
 
-                    await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync("Game " + GlobalFunction.gamecodes + " ended - " + GlobalFunction.wons + " won the match!");
+                    await Context.Client.GetGuild(465795320526274561).GetTextChannel(606123818305585167).SendMessageAsync("Game " + GlobalFunction.gamecodes + " ended - " + GlobalFunction.wons + " won the match!");
                     GlobalFunction.gamemodes = null;
                     GlobalFunction.wons = null;
                     GlobalFunction.gamestatus = null;
@@ -324,7 +324,7 @@ namespace Neko_Test
                 }*/
                 else if (GlobalFunction.gamestatus == "hosting" & GlobalFunction.gamecodes != null & GlobalFunction.wons == null)
                 {
-                    await Context.Guild.GetTextChannel(549202043517272064).SendMessageAsync(Context.User.Mention+", Can't Announce game end. (Team to Win is Missing)");
+                    await Context.Guild.GetTextChannel(606131484532801549).SendMessageAsync(Context.User.Mention+", Can't Announce game end. (Team to Win is Missing)");
                 }
                 else if (GlobalFunction.gamecodes != null & GlobalFunction.wons == null)
                 {
@@ -420,7 +420,7 @@ namespace Neko_Test
                 await Context.Channel.SendMessageAsync("This Command is Only work in WWO Simulation - Game Server!");
                 return;
             }
-            else if (!Context.Guild.Roles.FirstOrDefault(x => x.Name == "Alive").Members.Contains(Context.User) & Context.Guild.Roles.FirstOrDefault(x => x.Name == "GN Helper").Members.Contains(Context.User))
+            else if (!Context.Guild.Roles.FirstOrDefault(x => x.Name == "Alive").Members.Contains(Context.User) & Context.Guild.Roles.FirstOrDefault(x => x.Name == "Mini Narrator").Members.Contains(Context.User))
             {
                 await (Context.User as IGuildUser).AddRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Narrator Trainee"));
             }
@@ -470,12 +470,40 @@ namespace Neko_Test
                 await Context.Channel.SendMessageAsync("This Command is Only work in WWO Simulation - Game Server!");
                 return;
             }
-            else if (user.Roles.Any(x => x.Name == "GN Helper"))
+            else if (user.Roles.Any(x => x.Name == "Mini Narrator"))
             {
-                await (Context.User as IGuildUser).AddRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "GN Helper"));
+                await (Context.User as IGuildUser).AddRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Mini GN"));
                 await Context.Channel.SendMessageAsync("Role Added!");
             }
-            else await Context.Channel.SendMessageAsync("Your GN Helper role is Missing in Main - WWO Simulation!");
+            else await Context.Channel.SendMessageAsync("Your Mini Narrator role is Missing in Main - WWO Simulation!");
+        }
+        [Command("kowwo")]
+        [RequireBotPermission(Discord.GuildPermission.ManageRoles)]
+        public async Task kowworole()
+        {
+            var WWO = Context.Client.GetGuild(465795320526274561);
+            var user = WWO.GetUser(Context.User.Id);
+
+            if (Context.Guild.Id != 472261911526768642)
+            {
+                await Context.Channel.SendMessageAsync("This Command is Only work in WWO Simulation - Game Server!");
+                return;
+            }
+            else if (user.Roles.Any(x => x.Name == "KOWWO"))
+            {
+                string role = "King of WWO";
+                if (Context.Guild.Roles.FirstOrDefault(x => x.Name == role).Members.Contains(Context.User))
+                {
+                    await (Context.User as IGuildUser).RemoveRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == role));
+                    await ReplyAsync($"{role} role has been removed.");
+                }
+                else
+                {
+                    await (Context.User as IGuildUser).AddRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == role));
+                    await ReplyAsync($"{role} role has been added.");
+                }
+            }
+            else await Context.Channel.SendMessageAsync("Your KOWWO role is Missing in Main - WWO Simulation!");
         }
         [Command("test")]
         public async Task testgc([Remainder] string gc)
@@ -509,10 +537,14 @@ namespace Neko_Test
                 await (Context.Client.CurrentUser as IGuildUser).RemoveRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Joining"));
                 await Context.Channel.SendMessageAsync("" + Context.Client.CurrentUser.Id + "");
                 //await (Context.User as IGuildUser).AddRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Narrator Trainee"));
-            }
+            }//🏆
             else if (gc == "status")
             {
                 await Context.Channel.SendMessageAsync("Status of Narrator Bot is " + checkbotstatus.Status + "");
+            }
+            else if (gc == "icon")
+            {
+                await Context.Channel.SendMessageAsync("🏆");
             }
             else if (gc == "aaa" & Context.User.Id == 454492255932252160)
             {
@@ -546,7 +578,7 @@ namespace Neko_Test
                 await Context.Channel.SendMessageAsync("Narrator Bot is Offline, so you can't host at this time!");
                 return;
             }
-            else if (user.Roles.Any(x => x.Name == "Game Narrator") || user.Roles.Any(x => x.Name == "GN Helper"))
+            else if (user.Roles.Any(x => x.Name == "Game Narrator") || user.Roles.Any(x => x.Name == "Mini Narrator"))
             {
                 if (mn == null)
                 {
@@ -560,28 +592,32 @@ namespace Neko_Test
                         GlobalFunction.gamecodes = mn;
                     }
                     else GlobalFunction.gamecodes = "" + mn + " " + gc + "";
-                    await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Player").Mention + ", we are now starting game " + GlobalFunction.gamecodes + "! Our host will be " + Context.User.Mention + ". Type `-join " + GlobalFunction.gamecodes + "` to enter the game in <#549193241367543838>. If you don't want to get pinged for future games, come to <#578997340019490826> and reaction icon :video_game:.");
-                    await Context.Client.GetGuild(472261911526768642).GetTextChannel(589277661084254242).SendMessageAsync("= = = = = S T A R T = = = = =");
+                    Context.Guild.Roles.FirstOrDefault(x => x.Id == 606123686633799680).ModifyAsync(y => y.Mentionable = true);
+                    await Context.Client.GetGuild(465795320526274561).GetTextChannel(606123818305585167).SendMessageAsync(Context.Guild.Roles.FirstOrDefault(x => x.Id == 606123686633799680).Mention + ", we are now starting game " + GlobalFunction.gamecodes + "! Our host will be " + Context.User.Mention + ". Type `-join " + GlobalFunction.gamecodes + "` to enter the game in <#606123821656702987>. If you don't want to get pinged for future games, come to <#578997340019490826> and reaction icon :video_game:.");
+                    await Context.Client.GetGuild(472261911526768642).GetTextChannel(606422958721859585).SendMessageAsync("= = = = = S T A R T = = = = =");
                     await Context.Client.SetGameAsync("Waiting For Player");
+                    Context.Guild.Roles.FirstOrDefault(x => x.Id == 606123686633799680).ModifyAsync(y => y.Mentionable = false);
                 }
                 else if (mn.ToLower() == "manual")
                 {
                     if (gc == null)
                     {
-                        await Context.Channel.SendMessageAsync("Game Code is Missing, Please write your Game Code to start Host Game.");
+                        await Context.Channel.SendMessageAsync("Game Code is Missing, Please write your Game Code to start Host Game.");//.Id == 606123686633799680 - Ping PIayer role.
                     }
                     else
                     {
                         GlobalFunction.gamecodes = gc;
-                        await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Player").Mention + ", we are now starting game " + GlobalFunction.gamecodes + "! Our host will be " + Context.User.Mention + ". Type `-join " + GlobalFunction.gamecodes + "` to enter the game in <#549193241367543838>. If you don't want to get pinged for future games, come to <#578997340019490826> and reaction icon :video_game:.");
-                        await Context.Client.GetGuild(472261911526768642).GetTextChannel(589277661084254242).SendMessageAsync("= = = = = S T A R T = = = = =");
-                        await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync("Note: game start with Manual.");
+                        Context.Guild.Roles.FirstOrDefault(x => x.Id == 606123686633799680).ModifyAsync(y => y.Mentionable = true);
+                        await Context.Client.GetGuild(465795320526274561).GetTextChannel(606123818305585167).SendMessageAsync(Context.Guild.Roles.FirstOrDefault(x => x.Id == 606123686633799680).Mention + ", we are now starting game " + GlobalFunction.gamecodes + "! Our host will be " + Context.User.Mention + ". Type `-join " + GlobalFunction.gamecodes + "` to enter the game in <#606123821656702987>. If you don't want to get pinged for future games, come to <#578997340019490826> and reaction icon :video_game:.");
+                        await Context.Client.GetGuild(472261911526768642).GetTextChannel(606422958721859585).SendMessageAsync("= = = = = S T A R T = = = = =");
+                        await Context.Client.GetGuild(465795320526274561).GetTextChannel(606123818305585167).SendMessageAsync("Note: game start with Manual.");
                         await Context.Client.SetGameAsync("Waiting For Player");
+                        Context.Guild.Roles.FirstOrDefault(x => x.Id == 606123686633799680).ModifyAsync(y => y.Mentionable = false);
                     }
                 }
                 else await Context.Channel.SendMessageAsync("Game Code `" + GlobalFunction.gamecodes + "` has been hosted, so can't change game code until game end!");
             }
-            else await Context.Channel.SendMessageAsync("Your Game Narrator or GN Helper role is Missing in Main - WWO Simulation!");
+            else await Context.Channel.SendMessageAsync("Your Game Narrator or Mini Narrator role is Missing in Main - WWO Simulation!");
         }
         [Command("gwcancel")]
         [Alias("rwcancel")]
@@ -595,11 +631,11 @@ namespace Neko_Test
                 await Context.Channel.SendMessageAsync("This Command is Only work in Main - WWO Simulation!");
                 return;
             }
-            else if (user.Roles.Any(x => x.Name == "Game Narrator") || user.Roles.Any(x => x.Name == "GN Helper"))
+            else if (user.Roles.Any(x => x.Name == "Game Narrator") || user.Roles.Any(x => x.Name == "Mini Narrator"))
             {
                 if (GlobalFunction.gamecodes != null)
                 {
-                    await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync("Game " + GlobalFunction.gamecodes + " was cancelled, sorry for any inconvenience caused.");
+                    await Context.Client.GetGuild(465795320526274561).GetTextChannel(606123818305585167).SendMessageAsync("Game " + GlobalFunction.gamecodes + " was cancelled, sorry for any inconvenience caused.");
                     await Context.Client.SetGameAsync("No Game Hosting");
                     GlobalFunction.gamecodes = null;
                     var GetAllUser = Context.Guild.Users;
@@ -614,11 +650,12 @@ namespace Neko_Test
                 }
                 else await Context.Channel.SendMessageAsync("No game hosting.");
             }
-            else await Context.Channel.SendMessageAsync("Your Game Narrator or GN Helper role is Missing in Main - WWO Simulation!");
+            else await Context.Channel.SendMessageAsync("Your Game Narrator or Mini Narrator role is Missing in Main - WWO Simulation!");
         }
         [Command("rwhost")]
         public async Task rankhostcode([Remainder] string gc = null)
         {
+            var rs = File.ReadAllText($"{GlobalFunction.filelocal}RankedSeason.txt");
             var WWO = Context.Client.GetGuild(465795320526274561);
             var user = WWO.GetUser(Context.User.Id);
             var checkbotstatus = Context.Client.GetUser(470020987866578964);
@@ -642,10 +679,12 @@ namespace Neko_Test
                 }
                 else if (GlobalFunction.gamecodes == null)
                 {
-                    GlobalFunction.gamecodes = "RS.2[" + gc + "]";
-                    await Context.Client.GetGuild(465795320526274561).GetTextChannel(549193422817329156).SendMessageAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Ranked Warn").Mention + ", we are now starting game " + gc + "! Our host will be " + Context.User.Mention + ". Type `-join " + gc + "` to enter the game in <#549193241367543838>.");
-                    await Context.Client.GetGuild(472261911526768642).GetTextChannel(589277661084254242).SendMessageAsync("= = = = = S T A R T = = = = =");
+                    GlobalFunction.gamecodes = "RS."+rs+"[" + gc + "]";
+                    Context.Guild.Roles.FirstOrDefault(x => x.Name == "Ranked Warn").ModifyAsync(y => y.Mentionable = true);
+                    await Context.Client.GetGuild(465795320526274561).GetTextChannel(606123818305585167).SendMessageAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Ranked Warn").Mention + ", we are now starting game " + GlobalFunction.gamecodes + "! Our host will be " + Context.User.Mention + ". Type `-join " + GlobalFunction.gamecodes + "` to enter the game in <#606123821656702987>. If you don't want to get pinged for future games, come to <#578997340019490826> and reaction icon 🏆.");
+                    await Context.Client.GetGuild(472261911526768642).GetTextChannel(606422958721859585).SendMessageAsync("= = = = = S T A R T = = = = =");
                     await Context.Client.SetGameAsync("Waiting For Player");
+                    Context.Guild.Roles.FirstOrDefault(x => x.Name == "Ranked Warn").ModifyAsync(y => y.Mentionable = false);
                 }
                 else await Context.Channel.SendMessageAsync("Game Code `" + GlobalFunction.gamecodes + "` has been hosted, so can't change game code until game end!");
             }
@@ -670,7 +709,7 @@ namespace Neko_Test
                 if (GlobalFunction.gamecodes != null)
                 {
                     GlobalFunction.wons = "Village";
-                    await Context.Client.GetGuild(472261911526768642).GetTextChannel(549198145779793930).SendMessageAsync("Game Over - Villagers Win!");
+                    await Context.Client.GetGuild(472261911526768642).GetTextChannel(606132999389708330).SendMessageAsync("Game Over - Villagers Win!");
                     await Context.Client.SetGameAsync("Game Ended");
                     var embed = new EmbedBuilder();
                     var GetAllUser = Context.Client.GetGuild(465795320526274561).Users;
@@ -692,7 +731,7 @@ namespace Neko_Test
             SocketGuildUser User1 = Context.User as SocketGuildUser;
             if (Context.Guild.Id != 472261911526768642)
             {
-                await Context.Channel.SendMessageAsync("This Command is Only work in Main - WWO Simulation!");
+                await Context.Channel.SendMessageAsync("This Command is Only work in Game Server - WWO Simulation!");
                 return;
             }
             else if (!User1.GuildPermissions.ManageRoles)
@@ -705,7 +744,7 @@ namespace Neko_Test
                 if (GlobalFunction.gamecodes != null)
                 {
                     GlobalFunction.wons = "Werewolves";
-                    await Context.Client.GetGuild(472261911526768642).GetTextChannel(549198145779793930).SendMessageAsync("Game Over - Werewolves Win!");
+                    await Context.Client.GetGuild(472261911526768642).GetTextChannel(606132999389708330).SendMessageAsync("Game Over - Werewolves Win!");
                     await Context.Client.SetGameAsync("Game Ended");
                     var embed = new EmbedBuilder();
                     var GetAllUser = Context.Client.GetGuild(465795320526274561).Users;
@@ -743,7 +782,7 @@ namespace Neko_Test
             else if (GlobalFunction.wons == null & GlobalFunction.gamecodes != null)
             {
                 GlobalFunction.wons = team;
-                await Context.Client.GetGuild(472261911526768642).GetTextChannel(549198145779793930).SendMessageAsync("Game Over - " + team + " Win!");
+                await Context.Client.GetGuild(472261911526768642).GetTextChannel(606132999389708330).SendMessageAsync("Game Over - " + team + " Win!");
                 await Context.Client.SetGameAsync("Game Ended");
                 var embed = new EmbedBuilder();
                 var GetAllUser = Context.Client.GetGuild(465795320526274561).Users;
@@ -761,7 +800,7 @@ namespace Neko_Test
                 if (GlobalFunction.gamecodes != null)
                 {
                     GlobalFunction.wons = team;
-                    await Context.Client.GetGuild(472261911526768642).GetTextChannel(549198145779793930).SendMessageAsync("Game Over - " + team + " Win!");
+                    await Context.Client.GetGuild(472261911526768642).GetTextChannel(606131484532801549).SendMessageAsync("Game Over - " + team + " Win!");
                     await Context.Client.SetGameAsync("Game Ended");
                     var embed = new EmbedBuilder();
                     var GetAllUser = Context.Client.GetGuild(465795320526274561).Users;
@@ -782,9 +821,9 @@ namespace Neko_Test
         public async Task join([Remainder] string gamecd = null)
         {
             SocketGuildUser User1 = Context.User as SocketGuildUser;
-            if (Context.Guild.Id != 472261911526768642 & Context.Channel.Id != 549193241367543838)
+            if (Context.Guild.Id != 472261911526768642 & Context.Channel.Id != 606123821656702987)
             {
-                await Context.Channel.SendMessageAsync("This Command is Only work in <#549193241367543838> of Main - WWO Simulation!");
+                await Context.Channel.SendMessageAsync("This Command is Only work in <#606123821656702987> of Main - WWO Simulation!");
                 return;
             }
             else if (GlobalFunction.gamecodes == null)
@@ -793,19 +832,20 @@ namespace Neko_Test
             }
             else if (gamecd == null)
             {
-                await Context.Channel.SendMessageAsync("Game Code to join is Missing, Please check Game Code in <#549193422817329156>.");
+                await Context.Channel.SendMessageAsync("Game Code to join is Missing, Please check Game Code in <#606123818305585167>.");
             }
             else if (gamecd.ToLower() == (GlobalFunction.gamecodes).ToLower())
             {
                 await (Context.User as IGuildUser).AddRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Joining"));
+                await Context.Guild.GetTextChannel(606123824743841793).SendMessageAsync($"{Context.User.Username} joined match {GlobalFunction.gamecodes}\nUser ID: {Context.User.Id}");
             }
             else await Context.Channel.SendMessageAsync(Context.User.Mention + ", Your game code to join is wrong (Game code is `" + GlobalFunction.gamecodes + "`).");
         }
-        [Command("reset")]
+        [Command("resets")]
         public async Task resetstats()
         {
             SocketGuildUser User1 = Context.User as SocketGuildUser;
-            if (Context.Client.GetGuild(465795320526274561).GetUser(Context.User.Id).Roles.Any(x => x.Name == "Bot Helper") || Context.Client.GetGuild(465795320526274561).GetUser(Context.User.Id).Roles.Any(x => x.Name == "Bot Dev"))
+            if (Context.Client.GetGuild(465795320526274561).GetUser(Context.User.Id).Roles.Any(x => x.Name == "Game Narrator") || Context.Client.GetGuild(465795320526274561).GetUser(Context.User.Id).Roles.Any(x => x.Name == "Mini Narrator"))
             {
                 GlobalFunction.gamecodes = null;
                 await Context.Channel.SendMessageAsync("Game Code has been reseted");
@@ -823,7 +863,7 @@ namespace Neko_Test
             }
             else
             {
-                await Context.Channel.SendMessageAsync("Your Bot Helper or Bot Dev role is Missing in WWO Simulation.");
+                await Context.Channel.SendMessageAsync("Your Game Narrator or Mini Narrator role is Missing in WWO Simulation.");
                 return;
             }
         }
@@ -889,7 +929,7 @@ namespace Neko_Test
         [Command("stats")]
         public async Task ShowStatsAllGlobalFunction()
         {
-            if (Context.Client.GetGuild(465795320526274561).GetUser(Context.User.Id).Roles.Any(x => x.Name == "Game Narrator") || Context.Client.GetGuild(465795320526274561).GetUser(Context.User.Id).Roles.Any(x => x.Name == "GN Helper"))
+            if (Context.Client.GetGuild(465795320526274561).GetUser(Context.User.Id).Roles.Any(x => x.Name == "Game Narrator") || Context.Client.GetGuild(465795320526274561).GetUser(Context.User.Id).Roles.Any(x => x.Name == "Mini Narrator"))
             {
                 var embed = new EmbedBuilder();
                 {
@@ -902,7 +942,7 @@ namespace Neko_Test
             }
             else
             {
-                await Context.Channel.SendMessageAsync("Your Game Narrator or GN Helper role is Missing in WWO Simulation.");
+                await Context.Channel.SendMessageAsync("Your Game Narrator or Mini Narrator role is Missing in WWO Simulation.");
                 return;
             }
         }
@@ -1024,6 +1064,19 @@ namespace Neko_Test
                 }
             }
         }
+        [Command("update")]
+        public async Task updatecommand([Remainder]string text = null)
+        {
+            if (Context.User.Id != 454492255932252160)
+            {
+                return;
+            }
+            else
+            {
+                await Context.Client.GetGuild(465795320526274561).GetTextChannel(606123759514025985).SendMessageAsync(text);
+                await Context.Client.GetGuild(465795320526274561).GetTextChannel(606123760944414721).SendMessageAsync(text);
+            }
+        }
         /*[Command("add")]
         public async Task addmatchresult([Remainder] string text = null)
         {
@@ -1046,7 +1099,7 @@ namespace Neko_Test
                 }
                 else if (text == "reset")
                 {
-                    if (Context.Channel.Id == 549202043517272064)
+                    if (Context.Channel.Id == 606131484532801549)
                     {
                         await Context.Channel.SendMessageAsync(GlobalFunction.matchresult);
                         await Context.Channel.SendMessageAsync("Match Result is above and has been Removed!");
@@ -1055,8 +1108,8 @@ namespace Neko_Test
                     }
                     else
                     {
-                        await Context.Guild.GetTextChannel(549202043517272064).SendMessageAsync(GlobalFunction.matchresult);
-                        await Context.Channel.SendMessageAsync("Match Result in <#549202043517272064> and has been Removed!");
+                        await Context.Guild.GetTextChannel(606131484532801549).SendMessageAsync(GlobalFunction.matchresult);
+                        await Context.Channel.SendMessageAsync("Match Result in <#606131484532801549> and has been Removed!");
                         GlobalFunction.matchresult = null;
                         return;
                     }
@@ -1172,5 +1225,79 @@ namespace Neko_Test
             }
             else return;
         }
+
+        [Command("rankedseason")]
+        [Alias("rs")]
+        public async Task RankedSeason([Remainder]string text = null)
+        {
+            if (Context.Guild.Id == 465795320526274561 || Context.Guild.Id == 472261911526768642)
+            {
+                var rs = File.ReadAllText($"{GlobalFunction.filelocal}RankedSeason.txt");
+                var embed = new EmbedBuilder();
+                SocketGuildUser User1 = Context.User as SocketGuildUser;
+                if (!User1.GuildPermissions.ManageRoles)
+                {
+                    embed.AddField($"Error!", "Permission is Missing (ManageRoles Permissions).");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else if (text == null)
+                {
+                    embed.AddField($"Ranked Game!", $"Now is Season {rs}");
+                    embed.WithColor(new Discord.Color(0, 255, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else
+                {
+                    File.WriteAllText($"{GlobalFunction.filelocal}RankedSeason.txt", $"{text}");
+
+                    embed.AddField($"Ranked Game!", $"Changed to Season {text}");
+                    embed.WithColor(new Discord.Color(0, 255, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+            }
+            else return;
+        }
+
+        [Command("getplayers")]
+        public async Task getplayerfrom1to16()
+        {
+            if (Context.Guild.Id != 472261911526768642)
+            {
+                await Context.Channel.SendMessageAsync("This Command is Only work in Game Server - WWO Simulation!");
+                return;
+            }
+            else
+            {
+                int count = 1;
+                string result = null;
+                while (count <= 16)
+                {
+                    var c = $"{count}";
+                    var m = Context.Guild.Users.FirstOrDefault(x => x.Nickname == c);
+                    if (m != null)
+                    {
+                        if (result == null)
+                        {
+                            result = $"{count} - {m.Username}#{m.Discriminator}";
+                        }
+                        else
+                        {
+                            result = $"{result}\n{count} - {m.Username}#{m.Discriminator}";
+                        }
+                    }
+                    count++;
+                }
+                if (result == null)
+                {
+                    await ReplyAsync($"Not Found - No players with Nickname from 1 to 16.");
+                }
+                else
+                {
+                    await ReplyAsync($"{result}");
+                }
+            }
+        }
+
     }
 }

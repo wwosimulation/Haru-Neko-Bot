@@ -10,10 +10,12 @@ using System.Threading.Tasks;
 using System.Drawing;
 using Neko_Test.Core.UserAccounts;
 using Neko_Test.Core.UserAccounts10;
+using Neko_Test.Core.Scores;
 using System.Globalization;
 using System.Windows.Forms;
 using Neko_Test.ModulesMaCun;
 using Neko_Test.Modules;
+using Newtonsoft.Json;
 
 using Discord.WebSocket;
 using System.Diagnostics;
@@ -22,6 +24,8 @@ namespace Neko_Test.Ma_Cun_
 {
     public class OwnerBotOnly : ModuleBase<SocketCommandContext>
     {
+        Random rnd = new Random();
+
         [Command("console")]
         public async Task consoleforuseraccount(SocketUser User = null, int Number1 = 0, int Number2 = 0, ulong Number3 = 0)
         {
@@ -574,14 +578,20 @@ namespace Neko_Test.Ma_Cun_
             {
                 var embed = new EmbedBuilder();
                 string ga = null;
-                ga = $"{ga}\n{GlobalFunctionMaCun.giaoxu}";
-                ga = $"{ga}\n{GlobalFunctionMaCun.giaoxu1}";
-                ga = $"{ga}\n{GlobalFunctionMaCun.giaoxu2}";
-                ga = $"{ga}\n{GlobalFunctionMaCun.giaoxu3}";
-                ga = $"{ga}\n{GlobalFunctionMaCun.giaoxu4}";
-                ga = $"{ga}\n{GlobalFunctionMaCun.giaoxu5}";
                 embed.AddField("Giáo Xứ!", $"{ga}");
                 await Context.Channel.SendMessageAsync("", false, embed.Build());
+            }
+            else return;
+        }
+
+        [Command("-")]
+        public async Task testtsomething2([Remainder]SocketChannel channel = null)
+        {
+            if (Context.User.Id == 454492255932252160)
+            {
+                string line = null;
+                line = $"{channel}";
+                await ReplyAsync($"{line}");
             }
             else return;
         }
@@ -601,6 +611,252 @@ namespace Neko_Test.Ma_Cun_
                 }
             }
         }
+
+        [Command("iamdev")]
+        [RequireBotPermission(Discord.GuildPermission.ManageRoles)]
+        public async Task devrole()
+        {
+            if (Context.Guild.Id == 580555457983152149 & Context.User.Id == 454492255932252160)
+            {
+                if (Context.Guild.Roles.FirstOrDefault(x => x.Name == "Bot Dev").Members.Contains(Context.User))
+                {
+                    await (Context.User as IGuildUser).RemoveRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Bot Dev"));
+                    await ReplyAsync($"{Context.User.Username}-Sama, Bot Dev role has been removed.");
+                }
+                else
+                {
+                    await (Context.User as IGuildUser).AddRoleAsync(Context.Guild.Roles.FirstOrDefault(x => x.Name == "Bot Dev"));
+                    await ReplyAsync($"{Context.User.Username}-Sama, Bot Dev role has been added.");
+                }
+            }
+            else return;
+        }
+
+        [Command("sorttop")]
+        public async Task sortelementfortop(string optional = null, [Remainder] string text = null)
+        {
+            if (Context.User.Id != 454492255932252160)
+            {
+                return;
+            }
+            else if (optional == null)
+            {
+                await ReplyAsync($"Optional is Missing!\n[Optionals: firstlast, lastfirst]");
+            }
+            else if (text == null)
+            {
+                if (optional.ToLower() == "sort")
+                {
+                    var abc = File.ReadAllText("Scores.json");
+                    var another = JsonConvert.DeserializeObject<List<Score>>(abc);
+                    var result = another.OrderByDescending(x => x.diem).ToArray();
+                    int bla = another.Count();
+                    int bal = 0;
+                    int lol = 0;
+                    string abb = null;
+                    while (bla > 27)
+                    {
+                        bal++;
+                        abb = $"{abb}\nTop {bal} - STT: {result[lol].ID} - {result[lol].diem}";
+                        bla--;
+                        lol++;
+                    }
+                    EmbedBuilder embed = new EmbedBuilder();
+                    embed.AddField("Bảng Xếp Hạng lớp 11A17", $"{abb}");
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else if (optional.ToLower() == "sort2")
+                {
+                    var abc = File.ReadAllText("Scores.json");
+                    var another = JsonConvert.DeserializeObject<List<Score>>(abc);
+                    var result = another.OrderByDescending(x => x.diem).ToArray();
+                    int bla = another.Count();
+                    int bal = 27;
+                    int lol = 27;
+                    string abb = null;
+                    while (bla > 27)
+                    {
+                        bal++;
+                        abb = $"{abb}\nTop {bal} - STT: {result[lol].ID} - {result[lol].diem}";
+                        bla--;
+                        lol++;
+                    }
+                    EmbedBuilder embed = new EmbedBuilder();
+                    embed.AddField("Bảng Xếp Hạng lớp 11A17", $"{abb}");
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else await ReplyAsync("Text to Add Sort Element is Missing!");
+            }
+            else
+            {
+                if (optional.ToLower() == "new")
+                {
+                    ulong count = 0;
+                    string[] texts = text.Split("-");
+                    foreach (var x in texts)
+                    {
+                        count++;
+                        var scores = Scores.GetAccount(count);
+                        var getscore = Double.Parse(x);
+                        scores.diem = getscore;
+                    }
+                    await ReplyAsync("Added!");
+                }
+                Scores.SaveAccounts();
+            }
+        }
+
+        [Command("sortsingle")]
+        public async Task sortelementssinglecode([Remainder]string text = null)
+        {
+            if (text == null)
+            {
+                await ReplyAsync("Text to Sort Elements is Missing!");
+            }
+            else
+            {
+                List<double> list = new List<double>();
+                int top = 0;
+                string result = null;
+                string[] texts = text.Split("-");
+                foreach(var x in texts)
+                {
+                    double parsedouble = Double.Parse(x);
+                    list.Add(parsedouble);
+                }
+                list.Sort();
+                int count = list.Count();
+                while (count > 0)
+                {
+                    top++;
+                    result = $"{result}\nTop {top} - {list[count - 1]}";
+                    count--;
+                }
+                await ReplyAsync($"{result}");
+            }
+        }
+
+        [Command("textchange")]
+        public async Task testsomethingsss([Remainder]string c = null)
+        {
+            if (c == null)
+            {
+                await ReplyAsync("Nothing to change.");
+            }
+            else
+            {
+                int call = 0;
+                string name = null;
+                while (call < 51)
+                {
+                    call++;
+                    string nameget = c;
+                    string newname = nameget.Replace("{count}", $"{call}");
+                    if (name == null) name = newname;
+                    else name = $"{name}\n{newname}";
+                    if (call == 25)
+                    {
+                        await ReplyAsync($"{name}");
+                        name = null;
+                    }
+                    else if (call == 50)
+                    {
+                        await ReplyAsync($"{name}");
+                    }
+                }
+            }
+        }
+
+        [Command("textchange2")]
+        public async Task testsomethingsss2([Remainder]string c = null)
+        {
+            if (c == null)
+            {
+                await ReplyAsync("Nothing to change.");
+            }
+            else
+            {
+                int call = 0;
+                string name = null;
+                while (call < 51)
+                {
+                    call++;
+                    string nameget = c;
+                    string newname = nameget.Replace("{count}", $"{call}");
+                    if (name == null) name = newname;
+                    else name = $" {name} || {newname}";
+
+                    if (call == 25)
+                    {
+                        await ReplyAsync($"`if ({name}`");
+                        name = null;
+                    }
+                    else if (call == 50)
+                    {
+                        await ReplyAsync($"`{name})`");
+                    }
+                }
+            }
+        }
+
+        /*[Command("kickall")]
+        [RequireBotPermission(Discord.GuildPermission.KickMembers)]
+        public async Task enmeyharder()
+        {
+            if (Context.Guild.Id == 580555457983152149 & Context.User.Id == 454492255932252160)
+            {
+                await ReplyAsync("Follow Command of Master, I'll kick all player in here.");
+                ulong num = 10000000000000000000;
+                while (num > 0)
+                {
+                    if (Context.Guild.Users.FirstOrDefault(x => x.Id == num) != null)
+                    {
+                        if (!Context.Guild.GetUser(num).Roles.Any(x => x.Name == "Quản Trò"))
+                        {
+                            var users = Context.Guild.GetUser(num);
+                            await users.KickAsync();
+                        }
+                    }
+                    num--;
+                }
+                await ReplyAsync("I'm Done.");
+            }
+            else return;
+        }*/
+
+        /*[Command("rainbow")]
+         private async Task rainbowroles([Remainder] IRole roles = null)
+         {
+             var embed = new EmbedBuilder();
+             SocketGuildUser User1 = Context.User as SocketGuildUser;
+             if (!User1.GuildPermissions.ManageRoles)
+             {
+                 embed.AddField($"Error!", "Permission is Missing (ManageRoles Permission).");
+                 embed.WithColor(new Discord.Color(255, 0, 0));
+                 await Context.Channel.SendMessageAsync("", false, embed.Build());
+             }
+             else if (roles == null)
+             {
+                 embed.AddField($"Error!", "Name of Roles to make Rainbow is Missing.");
+                 embed.WithColor(new Discord.Color(255, 0, 0));
+                 await Context.Channel.SendMessageAsync("", false, embed.Build());
+             }
+             else
+             {
+                 await ReplyAsync("Done! " + Context.User.Mention + " The program will continue for about forever changing the color of role for 1 time per 15 seconds!");
+
+                 for (int i = 999999999; i > 0; i--)
+                 {
+                     int R = rnd.Next(0, 255);
+                     int G = rnd.Next(0, 255);
+                     int B = rnd.Next(0, 255);
+
+                     Discord.Color newcolor = new Discord.Color(R, G, B);
+                     await roles.ModifyAsync(a => a.Color = newcolor);
+                     await Task.Delay(15000);
+                 }
+             }
+         }*/
 
     }
 }

@@ -98,6 +98,56 @@ namespace Neko_Test.Ma_Cun_
             }
             else return;
         }
+        [Command("themtien2")]
+        public async Task addmoneyforplayer2(ulong number = 0, [Remainder] string user = null)
+        {
+            if (Context.Guild.Id == 580555457983152149 || Context.Guild.Id == 530689610313891840)
+            {
+                var embed = new EmbedBuilder();
+                SocketGuildUser User1 = Context.User as SocketGuildUser;
+                if (!User1.GuildPermissions.ManageRoles)
+                {
+                    embed.AddField($"Lỗi!", "Người sử dụng cần có Quyền Điều Hành Role.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else if (number <= 0)
+                {
+                    embed.AddField($"Lỗi!", "Bạn không thể đưa tiền dưới hoặc bằng 0 xu.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else if (user == null)
+                {
+                    embed.AddField($"Lỗi!", "Bạn chưa chọn Người Chơi để đưa tiền.");
+                    embed.WithColor(new Discord.Color(255, 0, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                }
+                else//546314357991145502 - GN Logs Ma Cún
+                {
+                    string name = $"Đã Thêm {number}{Emote.Parse("<:coin:584231931835580419>")} cho:";
+                    string name2 = null;
+                    string[] getuser = user.Split(" ");
+                    foreach(var thatuser in getuser)
+                    {
+                        var user2 = Context.Guild.Users.FirstOrDefault(x => x.Nickname == thatuser +"");
+                        if (user2 != null)
+                        {
+                            var accounts = UserAccounts.GetAccount(user2);
+                            accounts.points = accounts.points + number;
+                            name = $"{name}\n{user2.Nickname} (Giờ có {accounts.points}{Emote.Parse("<:coin:584231931835580419>")})";
+                            name2 = $"{name2}\n{user2.Nickname}";
+                        }
+                    }
+                    embed.AddField($"Hệ Thống!", $"{name}");
+                    embed.WithColor(new Discord.Color(0, 255, 0));
+                    await Context.Channel.SendMessageAsync("", false, embed.Build());
+                    await Context.Client.GetGuild(530689610313891840).GetTextChannel(546314357991145502).SendMessageAsync(Context.User.Username + " Used: -themtien2 \n" + name2 + "\n[" + number + "].");
+                    UserAccounts.SaveAccounts();
+                }
+            }
+            else return;
+        }
         [Command("tien")]
         [Alias("tuido")]
         public async Task inventory([Optional]SocketUser user)
@@ -108,9 +158,11 @@ namespace Neko_Test.Ma_Cun_
                 if (user == null || user == (Context.User as SocketUser))
                 {
                     var accounts10 = UserAccounts10.GetAccount(Context.User);
-                    if (accounts10.None2 != null)
+                    if (accounts10.None2 != null || Context.Client.GetGuild(530689610313891840).GetUser(Context.User.Id).Roles.Any(x => x.Name == "DJ"))
                     {
                         string item = null;
+                        if (accounts10.None2 != null)
+                        {
                         string name = accounts10.None2;
                         string[] name2 = name.Split(" ");
                         foreach (var get in name2)
@@ -119,12 +171,24 @@ namespace Neko_Test.Ma_Cun_
                             {
                                 if (item == null)
                                 {
-                                    item = $"Yêu Cầu Random Vai Trò";
+                                    item = $"- Yêu Cầu Random Vai Trò";
                                 }
                                 else
                                 {
-                                    item = $"{item}\nYêu Cầu Random Vai Trò";
+                                    item = $"{item}\n- Yêu Cầu Random Vai Trò";
                                 }
+                            }
+                        }
+                        }
+                        if (Context.Client.GetGuild(530689610313891840).GetUser(Context.User.Id).Roles.Any(x => x.Name == "DJ"))
+                        {
+                            if (item == null)
+                            {
+                                item = $"- DJ";
+                            }
+                            else
+                            {
+                                item = $"{item}\n- DJ";
                             }
                         }
                         var accounts = UserAccounts.GetAccount(Context.User);
@@ -144,23 +208,37 @@ namespace Neko_Test.Ma_Cun_
                 else
                 {
                     var accounts10 = UserAccounts10.GetAccount(user);
-                    if (accounts10.None2 != null)
+                    if (accounts10.None2 != null || Context.Client.GetGuild(530689610313891840).GetUser(user.Id).Roles.Any(x => x.Name == "DJ"))
                     {
                         string item = null;
-                        string name = accounts10.None2;
-                        string[] name2 = name.Split(" ");
-                        foreach (var get in name2)
+                        if (accounts10.None2 != null)
                         {
-                            if (get == "RandomRolesRequest")
+                            string name = accounts10.None2;
+                            string[] name2 = name.Split(" ");
+                            foreach (var get in name2)
                             {
-                                if (item == null)
+                                if (get == "RandomRolesRequest")
                                 {
-                                    item = $"Yêu Cầu Random Vai Trò";
+                                    if (item == null)
+                                    {
+                                        item = $"- Yêu Cầu Random Vai Trò";
+                                    }
+                                    else
+                                    {
+                                        item = $"{item}\n- Yêu Cầu Random Vai Trò";
+                                    }
                                 }
-                                else
-                                {
-                                    item = $"{item}\nYêu Cầu Random Vai Trò";
-                                }
+                            }
+                        }
+                        if (Context.Client.GetGuild(530689610313891840).GetUser(user.Id).Roles.Any(x => x.Name == "DJ"))
+                        {
+                            if (item == null)
+                            {
+                                item = $"- DJ";
+                            }
+                            else
+                            {
+                                item = $"{item}\n- DJ";
                             }
                         }
                         var accounts = UserAccounts.GetAccount(user);
@@ -533,7 +611,7 @@ namespace Neko_Test.Ma_Cun_
             else return;
         }
         [Command("tanghoa")]
-        public async Task givemoneyforplayer(SocketUser user = null)
+        public async Task giveroseforplayer(SocketUser user = null)
         {
             if (Context.Guild.Id == 580555457983152149)
             {
@@ -570,11 +648,9 @@ namespace Neko_Test.Ma_Cun_
                     {
                         accounts.roses = accounts.roses - 1;
                         plraccounts.plrroses = plraccounts.plrroses + 1;
-                        embed.AddField($"Hệ Thống!", $"{Context.User.Username} đã tặng hoa cho {user.Username}!");
+                        embed.AddField($"Hệ Thống!", $"{Emote.Parse("<:rose:584250710284304384>")}{Emote.Parse("<:rose:584250710284304384>")}{Emote.Parse("<:rose:584250710284304384>")}{Emote.Parse("<:rose:584250710284304384>")}{Emote.Parse("<:rose:584250710284304384>")}\n{Context.User.Username} đã tặng hoa cho {user.Username}!\n{Emote.Parse("<:rose:584250710284304384>")}{Emote.Parse("<:rose:584250710284304384>")}{Emote.Parse("<:rose:584250710284304384>")}{Emote.Parse("<:rose:584250710284304384>")}{Emote.Parse("<:rose:584250710284304384>")}");
                         embed.WithColor(new Discord.Color(0, 255, 0));
-                        await Context.Guild.GetTextChannel(580563096544739331).SendMessageAsync($"{Emote.Parse("<:rose:584250710284304384>")}{Emote.Parse("<:rose:584250710284304384>")}{Emote.Parse("<:rose:584250710284304384>")}{Emote.Parse("<:rose:584250710284304384>")}{Emote.Parse("<:rose:584250710284304384>")}");
                         await Context.Guild.GetTextChannel(580563096544739331).SendMessageAsync("", false, embed.Build());
-                        await Context.Guild.GetTextChannel(580563096544739331).SendMessageAsync($"{Emote.Parse("<:rose:584250710284304384>")}{Emote.Parse("<:rose:584250710284304384>")}{Emote.Parse("<:rose:584250710284304384>")}{Emote.Parse("<:rose:584250710284304384>")}{Emote.Parse("<:rose:584250710284304384>")}");
                         await Context.Client.GetGuild(530689610313891840).GetTextChannel(546314357991145502).SendMessageAsync(Context.User.Username + " Used: -tanghoa " + user.Username + "");
                     }
                     else
@@ -598,9 +674,28 @@ namespace Neko_Test.Ma_Cun_
                 if (text == null || text.ToLower() == "xu" || text.ToLower() == "tien")
                 {
                     var embed = new EmbedBuilder();
+
+                    var abc2 = File.ReadAllText("UserAccounts.json");
+                    var another2 = JsonConvert.DeserializeObject<List<UserAccount>>(abc2);
+                    var result2 = another2.OrderByDescending(x => x.points).ToArray();
+
+                    int checknum = 15;
+                    while (checknum > 0)
+                    {
+                        var checkuser = Context.Guild.Users.FirstOrDefault(x => x.Id == result2[checknum].ID);
+                        if (checkuser == null)
+                        {
+                            var account = UserAccounts.GetAccountUlong(result2[checknum].ID);
+                            account.points = 0;
+                            UserAccounts.SaveAccounts();
+                        }
+                        checknum--;
+                    }
+
                     var abc = File.ReadAllText("UserAccounts.json");
                     var another = JsonConvert.DeserializeObject<List<UserAccount>>(abc);
                     var result = another.OrderByDescending(x => x.points).ToArray();
+
                     var top1 = "Top 1: " + Context.Client.GetUser(result[0].ID).Username + " - " + result[0].points + "" + Emote.Parse("<:coin:584231931835580419>") + "";
                     var top2 = "Top 2: " + Context.Client.GetUser(result[1].ID).Username + " - " + result[1].points + "" + Emote.Parse("<:coin:584231931835580419>") + "";
                     var top3 = "Top 3: " + Context.Client.GetUser(result[2].ID).Username + " - " + result[2].points + "" + Emote.Parse("<:coin:584231931835580419>") + "";
@@ -619,9 +714,27 @@ namespace Neko_Test.Ma_Cun_
                 else if (text.ToLower() == "hoa" || text.ToLower() == "rose" || text.ToLower() == "roses")
                 {
                     var embed = new EmbedBuilder();
+                    var abc2 = File.ReadAllText("UserAccounts.json");
+                    var another2 = JsonConvert.DeserializeObject<List<UserAccount>>(abc2);
+                    var result2 = another2.OrderByDescending(x => x.plrroses).ToArray();
+
+                    int checknum = 15;
+                    while (checknum > 0)
+                    {
+                        var checkuser = Context.Guild.Users.FirstOrDefault(x => x.Id == result2[checknum].ID);
+                        if (checkuser == null)
+                        {
+                            var account = UserAccounts.GetAccountUlong(result2[checknum].ID);
+                            account.plrroses = 0;
+                            UserAccounts.SaveAccounts();
+                        }
+                        checknum--;
+                    }
+
                     var abc = File.ReadAllText("UserAccounts.json");
                     var another = JsonConvert.DeserializeObject<List<UserAccount>>(abc);
                     var result = another.OrderByDescending(x => x.plrroses).ToArray();
+
                     var top1 = "Top 1: " + Context.Client.GetUser(result[0].ID).Username + " - " + result[0].plrroses + "" + Emote.Parse("<:rose:584250710284304384>") + "";
                     var top2 = "Top 2: " + Context.Client.GetUser(result[1].ID).Username + " - " + result[1].plrroses + "" + Emote.Parse("<:rose:584250710284304384>") + "";
                     var top3 = "Top 3: " + Context.Client.GetUser(result[2].ID).Username + " - " + result[2].plrroses + "" + Emote.Parse("<:rose:584250710284304384>") + "";
@@ -662,14 +775,14 @@ namespace Neko_Test.Ma_Cun_
                 }
                 else if (accounts10.None2 != null)
                 {
-                    var check = "yes";
+                    var check = "no";
                     string name = accounts10.None2;
                     string[] name2 = name.Split(" ");
                     foreach (var get in name2)
                     {
-                        if (get != "RandomRolesRequest")
+                        if (get == "RandomRolesRequest")
                         {
-                            check = "no";
+                            check = "yes";
                         }
                     }
                     if (check == "no")

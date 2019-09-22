@@ -10,6 +10,7 @@ using Discord.WebSocket;
 using Discord.Addons.Interactive;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using Neko_Test.Modules;
 
 
 namespace Neko_Test
@@ -21,6 +22,7 @@ namespace Neko_Test
         private CommandService Commands;
         private InteractiveService Interact;
         private IServiceProvider services;
+        private SocketCommandContext Contexts;
         static void Main(string[] args)
        => new Program().MainAsync().GetAwaiter().GetResult();
 
@@ -51,7 +53,9 @@ namespace Neko_Test
             Client.Ready += Client_Ready;
             Client.Log += Client_Log;
 
-            string load = File.ReadAllText(@"C:\Users\nekocyan\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\TokenBot.txt");
+            Client.UserJoined += UserJoinedServer;
+
+            string load = File.ReadAllText($"{GlobalFunction.filelocal}TokenBot.txt");
 
             await Client.LoginAsync(TokenType.Bot, load);
             await Client.StartAsync();
@@ -65,6 +69,32 @@ namespace Neko_Test
         {
             //Console.WriteLine($"{DateTime.Now} at {Message.Source}] {Message.Message}");
             //Make Spam Console.
+        }
+
+        private async Task UserJoinedServer(SocketUser user)
+        {
+            //Start Lines.
+            if (Client.GetGuild(580555457983152149).Id == 580555457983152149)
+            {
+                //Give DJ role at Ma Cún - Game Server.
+                if (Client.GetGuild(530689610313891840).GetUser(user.Id).Roles.Any(x => x.Name == "DJ"))
+                {
+                    (Client.GetGuild(580555457983152149).GetUser(user.Id) as IGuildUser).AddRoleAsync(Client.GetGuild(580555457983152149).Roles.FirstOrDefault(x => x.Name == "DJ"));
+                }
+                //Give Quản Trò role at Ma Cún - Game Server.
+                if (Client.GetGuild(530689610313891840).GetUser(user.Id).Roles.Any(x => x.Id == 534583471704899585))
+                {
+                    (Client.GetGuild(580555457983152149).GetUser(user.Id) as IGuildUser).AddRoleAsync(Client.GetGuild(580555457983152149).Roles.FirstOrDefault(x => x.Id == 580556083932823552));
+                }
+            }
+            if (Client.GetGuild(472261911526768642).Id == 472261911526768642)
+            {
+                if (Client.GetGuild(465795320526274561).GetUser(user.Id).Roles.Any(x => x.Name == "DJ"))
+                {
+                    (Client.GetGuild(472261911526768642).GetUser(user.Id) as IGuildUser).AddRoleAsync(Client.GetGuild(472261911526768642).Roles.FirstOrDefault(x => x.Name == "DJ"));
+                }
+            }
+            //End Lines.
         }
 
 

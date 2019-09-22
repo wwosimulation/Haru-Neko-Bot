@@ -20,78 +20,7 @@ namespace Neko_Test.ModulesMaCunGame
     public class GlobalFunctionGame
     {
 
-        public static async Task rolegiaoxu(ulong id)
-        {
-            if (id == GlobalFunctionMaCun.giaoxu1)
-            {
-                GlobalFunctionMaCun.checkgiaoxu = 1;
-            }
-            else if (id == GlobalFunctionMaCun.giaoxu2)
-            {
-                GlobalFunctionMaCun.checkgiaoxu = 1;
-            }
-            else if (id == GlobalFunctionMaCun.giaoxu3)
-            {
-                GlobalFunctionMaCun.checkgiaoxu = 1;
-            }
-            else if (id == GlobalFunctionMaCun.giaoxu4)
-            {
-                GlobalFunctionMaCun.checkgiaoxu = 1;
-            }
-            else if (id == GlobalFunctionMaCun.giaoxu5)
-            {
-                GlobalFunctionMaCun.checkgiaoxu = 1;
-            }
-            else if (id == GlobalFunctionMaCun.giaoxu6)
-            {
-                GlobalFunctionMaCun.checkgiaoxu = 1;
-            }
-            else if (id == GlobalFunctionMaCun.giaoxu7)
-            {
-                GlobalFunctionMaCun.checkgiaoxu = 1;
-            }
-            else if (id == GlobalFunctionMaCun.giaoxu8)
-            {
-                GlobalFunctionMaCun.checkgiaoxu = 1;
-            }
-            else if (id == GlobalFunctionMaCun.giaoxu9)
-            {
-                GlobalFunctionMaCun.checkgiaoxu = 1;
-            }
-            else if (id == GlobalFunctionMaCun.giaoxu10)
-            {
-                GlobalFunctionMaCun.checkgiaoxu = 1;
-            }
-            else if (id == GlobalFunctionMaCun.giaoxu11)
-            {
-                GlobalFunctionMaCun.checkgiaoxu = 1;
-            }
-            else if (id == GlobalFunctionMaCun.giaoxu12)
-            {
-                GlobalFunctionMaCun.checkgiaoxu = 1;
-            }
-            else if (id == GlobalFunctionMaCun.giaoxu13)
-            {
-                GlobalFunctionMaCun.checkgiaoxu = 1;
-            }
-            else if (id == GlobalFunctionMaCun.giaoxu14)
-            {
-                GlobalFunctionMaCun.checkgiaoxu = 1;
-            }
-            else if (id == GlobalFunctionMaCun.giaoxu15)
-            {
-                GlobalFunctionMaCun.checkgiaoxu = 1;
-            }
-            else if (id == GlobalFunctionMaCun.giaoxu16)
-            {
-                GlobalFunctionMaCun.checkgiaoxu = 1;
-            }
-            else if (id == GlobalFunctionMaCun.giaoxu17)
-            {
-                GlobalFunctionMaCun.checkgiaoxu = 1;
-            }
-            else GlobalFunctionMaCun.checkgiaoxu = 0;
-        }
+    
 
         public static async Task showgameroles()
         {
@@ -283,6 +212,7 @@ namespace Neko_Test.ModulesMaCunGame
             GlobalFunctionMaCun.thayboi = 1;
             GlobalFunctionMaCun.tientri = 1;
             GlobalFunctionMaCun.soitri = 1;
+            GlobalFunctionMaCun.thamtu = 1;
             GlobalFunctionMaCun.votesong = 0;
             GlobalFunctionMaCun.votechet = 0;
             GlobalFunctionMaCun.pha = 1;

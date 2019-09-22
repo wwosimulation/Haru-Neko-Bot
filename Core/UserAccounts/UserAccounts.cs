@@ -81,6 +81,16 @@ namespace Neko_Test.Core.UserAccounts
 
 
 
+        public static UserAccount GetAccountUlong(ulong id)
+
+        {
+
+            return GetOrCreateAccount(id);
+
+        }
+
+
+
         private static UserAccount GetOrCreateAccount(ulong id)
 
         {

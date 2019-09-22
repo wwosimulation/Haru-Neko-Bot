@@ -11,6 +11,8 @@ namespace Neko_Test.ModulesMaCun
 
         public static bool blockcommand = false;
 
+        public static int sometest = 0;
+
         private static ulong guildids;
         public static ulong guildid
         {
@@ -544,6 +546,12 @@ namespace Neko_Test.ModulesMaCun
             get { return tientrisoi; }
             set { tientrisoi = value; }
         }
+        private static int thamtusoi;
+        public static int thamtu
+        {
+            get { return thamtusoi; }
+            set { thamtusoi = value; }
+        }
         private static ulong baovedibaove;
         public static ulong baoveplr
         {
@@ -684,109 +692,7 @@ namespace Neko_Test.ModulesMaCun
             get { return giaoxuss; }
             set { giaoxuss = value; }
         }
-        private static ulong giaoxuss1;
-        public static ulong giaoxu1
-        {
-            get { return giaoxuss1; }
-            set { giaoxuss1 = value; }
-        }
-        private static ulong giaoxuss2;
-        public static ulong giaoxu2
-        {
-            get { return giaoxuss2; }
-            set { giaoxuss2 = value; }
-        }
-        private static ulong giaoxuss3;
-        public static ulong giaoxu3
-        {
-            get { return giaoxuss3; }
-            set { giaoxuss3 = value; }
-        }
-        private static ulong giaoxuss4;
-        public static ulong giaoxu4
-        {
-            get { return giaoxuss4; }
-            set { giaoxuss4 = value; }
-        }
-        private static ulong giaoxuss5;
-        public static ulong giaoxu5
-        {
-            get { return giaoxuss5; }
-            set { giaoxuss5 = value; }
-        }
-        private static ulong giaoxuss6;
-        public static ulong giaoxu6
-        {
-            get { return giaoxuss6; }
-            set { giaoxuss6 = value; }
-        }
-        private static ulong giaoxuss7;
-        public static ulong giaoxu7
-        {
-            get { return giaoxuss7; }
-            set { giaoxuss7 = value; }
-        }
-        private static ulong giaoxuss8;
-        public static ulong giaoxu8
-        {
-            get { return giaoxuss8; }
-            set { giaoxuss8 = value; }
-        }
-        private static ulong giaoxuss9;
-        public static ulong giaoxu9
-        {
-            get { return giaoxuss9; }
-            set { giaoxuss9 = value; }
-        }
-        private static ulong giaoxuss10;
-        public static ulong giaoxu10
-        {
-            get { return giaoxuss10; }
-            set { giaoxuss10 = value; }
-        }
-        private static ulong giaoxuss11;
-        public static ulong giaoxu11
-        {
-            get { return giaoxuss11; }
-            set { giaoxuss11 = value; }
-        }
-        private static ulong giaoxuss12;
-        public static ulong giaoxu12
-        {
-            get { return giaoxuss12; }
-            set { giaoxuss12 = value; }
-        }
-        private static ulong giaoxuss13;
-        public static ulong giaoxu13
-        {
-            get { return giaoxuss13; }
-            set { giaoxuss13 = value; }
-        }
-        private static ulong giaoxuss14;
-        public static ulong giaoxu14
-        {
-            get { return giaoxuss14; }
-            set { giaoxuss14 = value; }
-        }
-        private static ulong giaoxuss15;
-        public static ulong giaoxu15
-        {
-            get { return giaoxuss15; }
-            set { giaoxuss15 = value; }
-        }
-        private static ulong giaoxuss16;
-        public static ulong giaoxu16
-        {
-            get { return giaoxuss16; }
-            set { giaoxuss16 = value; }
-        }
-        private static ulong giaoxuss17;
-        public static ulong giaoxu17
-        {
-            get { return giaoxuss17; }
-            set { giaoxuss17 = value; }
-        }
-
+        
         private static string giaoxusplrs;
         public static string giaoxuplr
         {
@@ -845,6 +751,31 @@ namespace Neko_Test.ModulesMaCun
             set { canchets = value; }
         }
 
+        //========================================= C H E C K ==========================================
+
+
+        private static int checkcaubehoangdas;
+        public static int checkcaubehoangda
+        {
+            get { return checkcaubehoangdas; }
+            set { checkcaubehoangdas = value; }
+        }
+
+        private static int checknmedonthans;
+        public static int checknmedonthan
+        {
+            get { return checknmedonthans; }
+            set { checknmedonthans = value; }
+        }
+
+        private static int checkgiaoxus2;
+        public static int checkgiaoxune
+        {
+            get { return checkgiaoxus2; }
+            set { checkgiaoxus2 = value; }
+        }
+
+
         //========================================== R O L E S ==========================================
 
 
@@ -889,6 +820,38 @@ namespace Neko_Test.ModulesMaCun
             get { return checkphupheps; }
             set { checkphupheps = value; }
         }
+
+        // =============================================== T A R G E T ======================================
+
+        private static int muctieucaubehoangdas;
+        public static int Muctieucaubehoangda
+        {
+            get { return muctieucaubehoangdas; }
+            set { muctieucaubehoangdas = value; }
+        }
+
+        private static int muctieugaidiem;
+        public static int Muctieugaidiem
+        {
+            get { return muctieugaidiem; }
+            set { muctieugaidiem = value; }
+        }
+
+        private static int thosanchet;
+        public static int Thosanchet
+        {
+            get { return thosanchet; }
+            set { thosanchet = value; }
+        }
+
+        private static int giaoxuchet;
+        public static int Giaoxuchet
+        {
+            get { return giaoxuchet; }
+            set { giaoxuchet = value; }
+        }
+
+        // =============================================== A N O T H E R ======================================
 
         public static async Task rolestring(string any, string request)
         {
@@ -972,7 +935,7 @@ namespace Neko_Test.ModulesMaCun
                 }
                 else if (any == "19" || any.ToLower() == "mẹ" || any.ToLower() == "mẹ-đơn-thân")
                 {
-                    GlobalFunctionMaCun.nameroles = "Mẹ Đơn Thân";
+                    GlobalFunctionMaCun.nameroles = "Thám Tử";
                 }
                 else if (any == "20" || any.ToLower() == "kẻ" || any.ToLower() == "kẻ-tài-lanh")
                 {
@@ -1334,7 +1297,7 @@ namespace Neko_Test.ModulesMaCun
                 }
                 else if (id == GlobalFunctionMaCun.plr19)
                 {
-                    GlobalFunctionMaCun.nameroles = "Mẹ Đơn Thân";
+                    GlobalFunctionMaCun.nameroles = "Thám Tử";
                 }
                 else if (id == GlobalFunctionMaCun.plr20)
                 {

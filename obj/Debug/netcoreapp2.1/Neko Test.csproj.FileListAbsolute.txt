@@ -42,3 +42,47 @@ C:\Users\nekocyan\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\n
 C:\Users\nekocyan\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.DirectoryServices.xml
 C:\Users\nekocyan\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Runtime.Remoting.xml
 C:\Users\nekocyan\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.EnterpriseServices.Wrapper.dll
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\Neko Test.deps.json
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\Neko Test.runtimeconfig.json
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\Neko Test.runtimeconfig.dev.json
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\Neko Test.dll
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\Neko Test.pdb
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\Accessibility.dll
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Data.DataSetExtensions.dll
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Data.Linq.dll
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Windows.Forms.DataVisualization.Design.dll
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Windows.Forms.DataVisualization.dll
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Windows.Forms.dll
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Xaml.dll
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Deployment.dll
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Runtime.Serialization.Formatters.Soap.dll
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Design.dll
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Drawing.Design.dll
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Data.OracleClient.dll
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Web.RegularExpressions.dll
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.EnterpriseServices.dll
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.DirectoryServices.dll
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Runtime.Remoting.dll
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\Accessibility.xml
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Data.DataSetExtensions.xml
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Data.Linq.xml
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Windows.Forms.xml
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Windows.Forms.DataVisualization.xml
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Xaml.xml
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Deployment.xml
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Runtime.Serialization.Formatters.Soap.xml
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Design.xml
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Drawing.Design.xml
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Data.OracleClient.xml
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Web.RegularExpressions.xml
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.EnterpriseServices.xml
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.DirectoryServices.xml
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.Runtime.Remoting.xml
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\bin\Debug\netcoreapp2.1\System.EnterpriseServices.Wrapper.dll
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\obj\Debug\netcoreapp2.1\Neko Test.csprojAssemblyReference.cache
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\obj\Debug\netcoreapp2.1\Neko Test.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\obj\Debug\netcoreapp2.1\Neko Test.AssemblyInfoInputs.cache
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\obj\Debug\netcoreapp2.1\Neko Test.AssemblyInfo.cs
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\obj\Debug\netcoreapp2.1\Neko Test.csproj.CopyComplete
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\obj\Debug\netcoreapp2.1\Neko Test.dll
+C:\Users\ADMIN\Desktop\Neko's Discord Bot\Neko's Test\Neko's Test\obj\Debug\netcoreapp2.1\Neko Test.pdb
