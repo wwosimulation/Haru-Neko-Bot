@@ -1,5 +1,5 @@
 const {AzurLane} = require("azurlane");
-const azurlane = new AzurLane();
+const azurlane = new AzurLane({});
 const Discord = require("discord.js");
 const func = require("../../function.js");
 module.exports = {
