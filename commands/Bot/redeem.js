@@ -9,7 +9,7 @@ module.exports = {
     run: async(_client, message, args) => {
         const prefix = db.GuildInfo(message.guild.id, "prefix");
         if(!args[0]){
-            const embed = new Discord.RichEmbed()
+            const embed = new Discord.MessageEmbed()
             .setAuthor("Command Help.")
             .setDescription("<> - Required | [] - Optional")
             .addField(""+prefix+"redeem <Code>", "\n**Guides:**\n- Code: Special Code that you got from Neko.")
@@ -20,7 +20,7 @@ module.exports = {
             var code = args.join(" ");
             var codes = await db.RedeemCode(code, "redeem");
             if (codes == "Error1") return func.Error(message, "Code `"+code+"` is Not Available or Had Been Redeemed.");
-            const embed = new Discord.RichEmbed();
+            const embed = new Discord.MessageEmbed();
 
             var names = await db.RedeemCode(code, "redeem", "1");
             var values = await db.RedeemCode(code, "redeem", "2");

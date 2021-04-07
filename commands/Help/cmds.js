@@ -7,7 +7,7 @@ module.exports = {
     description: "Returns Help Commands List.",
     run: async(_client, message, args) => {
         const prefix = await db.GuildInfo(message.guild.id, "prefix");
-        const embed = new Discord.RichEmbed();
+        const embed = new Discord.MessageEmbed();
         var a0 = args[0];
         if(!a0 || a0){
             embed

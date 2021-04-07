@@ -29,7 +29,7 @@ module.exports = {
             }
         }
 
-        const embed = new Discord.RichEmbed()
+        const embed = new Discord.MessageEmbed()
         .setAuthor("Guild Backgrounds List - ID.")
         .addField(`ID 1-5`, `${BGList}`)
         .addField(`ID 6-10`, `${BGList2}`)

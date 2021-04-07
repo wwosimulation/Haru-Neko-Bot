@@ -9,14 +9,14 @@ module.exports = {
     description: "Set Prefix for Guild.",
     run: async(_client, message, args) => {
         const prefix = db.GuildInfo(message.guild.id, "prefix");
-        if (!message.guild.members.get(message.author.id).hasPermission("MANAGE_GUILD")) return func.noPerm(message, "Manage Server");
-        const embed = new Discord.RichEmbed()
+        if (!message.guild.members.cache.get(message.author.id).hasPermission("MANAGE_GUILD")) return func.noPerm(message, "Manage Server");
+        const embed = new Discord.MessageEmbed()
         .addField("Prefix.", "My Prefix of this Server is `"+prefix+"`")
         .addField("Command Help.", "`"+prefix+"setprefix <New Prefix>` to set prefix to this Server.\n`"+prefix+"setprefix reset` to set default prefix to `-`")
         .setColor("#00FF00");
         if (!args[0]) return message.channel.send(embed);
         if (args[0].toLowerCase() == "reset") {
-            const embed = new Discord.RichEmbed()
+            const embed = new Discord.MessageEmbed()
             .addField("Prefix Change Successfully.", "New Prefix of this Server is `-`")
             .setColor("#00FFFF");
             message.channel.send(embed);
@@ -24,7 +24,7 @@ module.exports = {
             db.GuildInfo(message.guild.id, "prefix", "-");
         }
         else {
-            const embed = new Discord.RichEmbed()
+            const embed = new Discord.MessageEmbed()
             .addField("Prefix Change Successfully.", "New Prefix of this Server is `"+args.join(" ")+"`")
             .setColor("#00FFFF");
             message.channel.send(embed);

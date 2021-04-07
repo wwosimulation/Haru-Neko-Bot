@@ -11,7 +11,7 @@ module.exports = {
         if(db.GuildInfo(message.guild.id, "perm") != "Premium") return func.noPremium(message);
         var prefix = await db.GuildInfo(message.guild.id, "prefix");
         if(!args[0]){
-            const embed = new Discord.RichEmbed()
+            const embed = new Discord.MessageEmbed()
             .setAuthor("Command Help.")
             .setDescription("<> - Required | [] - Optional")
             .addField(""+prefix+"translate <Message>", "**Guides:**\n- Message: Write your Messages to Translate.\n**Note:** Input and Output Messages can't be longer than 1024 words.")
@@ -25,7 +25,7 @@ module.exports = {
             if(thelength.length >= 1024) return func.Error(message, "Message to Translate too Long.");
             if(inputlength.length >= 1024) return func.Error(message, "Message to Translate too Long.");
             
-            const embed = new Discord.RichEmbed()
+            const embed = new Discord.MessageEmbed()
             .setAuthor("Translation.")
             .setDescription(`Requested by ${message.author}`)
             .addField(`From ${translate.languages[res.from.language.iso]}`, `${args.join(" ")}`)

@@ -20,7 +20,7 @@ module.exports = {
             if (MSG.includes("{server.id}")) { MSG = MSG.replace("{server.id}", `${message.guild.id}`); }
 
             if (type.toLowerCase() == "embed"){
-                const embed = new Discord.RichEmbed();
+                const embed = new Discord.MessageEmbed();
                 if (MSG.includes("{pingwhenjoin}")) { MSG = MSG.replace("{pingwhenjoin}", ``); checkpingwhenjoin = true; }
                 if (MSG.includes("{color:random}")) { MSG = MSG.replace("{color:random}", ``); embed.setColor(`${func.randomHex(6)}`); }
                 if (MSG.includes("{time}")) { MSG = MSG.replace("{time}", ``); embed.setTimestamp(); }
@@ -73,7 +73,7 @@ module.exports = {
 
                 if (channel == "dm" & tocheck != "review") return message.send(embed);
 
-                if (channel!="dm"& tocheck != "review") {return _client.guilds.get(message.guild.id).channels.get(channel).send(`${forreview}${checkpingwhenjoin == true ? message : ""}`,embed);}
+                if (channel!="dm"& tocheck != "review") {return _client.guilds.cache.get(message.guild.id).channels.cache.get(channel).send(`${forreview}${checkpingwhenjoin == true ? message : ""}`,embed);}
                 else return _client2.channel.send(`${forreview}${checkpingwhenjoin == true ? message : ""}`, embed);
             }
 
@@ -88,7 +88,7 @@ module.exports = {
 
             if (channel == "dm" & tocheck != "review") return message.send(MSG);
 
-            if (channel!="dm" & tocheck != "review") {return message.guild.channels.get(channel).send(`${forreview}${MSG}`);}
+            if (channel!="dm" & tocheck != "review") {return message.guild.channels.cache.get(channel).send(`${forreview}${MSG}`);}
             else return _client2.channel.send(`${forreview}${MSG}`);
         }
 

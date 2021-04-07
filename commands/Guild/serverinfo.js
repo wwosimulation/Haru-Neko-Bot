@@ -26,11 +26,11 @@ module.exports = {
             const server = message.guild;
 
             var getmembers = message.guild.members.size;
-            var getusercount = message.guild.members.filter(member => !member.user.bot).size;
+            var getusercount = message.guild.members.cache.filter(member => !member.user.bot).size;
 
             const servercreatedon = `${message.guild.createdAt}`.replace("GMT+0000 (UTC)", " ");
 
-            const embed = new Discord.RichEmbed()
+            const embed = new Discord.MessageEmbed()
 
             .setAuthor(`${server.name}`, server.iconURL)
             .setThumbnail(server.iconURL)

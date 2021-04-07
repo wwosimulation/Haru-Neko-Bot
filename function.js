@@ -3,21 +3,21 @@ const crypto = require("crypto");
 
 module.exports = {
     noPerm: function(message, perm){
-        const embed = new Discord.RichEmbed()
+        const embed = new Discord.MessageEmbed()
         .addField("Error!", "This command require permissions: `"+perm+"`.")
         .setColor("#FF0000");
         return message.channel.send(embed);
     },
 
     Error: function(message, perm){
-        const embed = new Discord.RichEmbed()
+        const embed = new Discord.MessageEmbed()
         .addField("Error!", ""+perm+"")
         .setColor("#FF0000");
         return message.channel.send(embed);
     },
 
     noPremium: function(message){
-        const embed = new Discord.RichEmbed()
+        const embed = new Discord.MessageEmbed()
         .addField("Error!", "This command require: `Guild Premium`.")
         .setColor("#FF0000");
         return message.channel.send(embed);

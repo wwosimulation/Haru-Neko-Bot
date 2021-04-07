@@ -12,7 +12,7 @@ module.exports = {
             return func.Error(message, "Character Name `"+args.join(" ")+"` not Found.");
         });
 
-        const embed = new Discord.RichEmbed()
+        const embed = new Discord.MessageEmbed()
         .setAuthor(`Character Informations.`)
         .setThumbnail(c.thumbnail)
         .setDescription(`ID: ${c.id}\nNames: ${c.names.en}\nJP: ${c.names.jp}\nBuild Time: ${c.buildTime}\nRarity: ${c.rarity}\nStar(s): ${c.stars.value}\nClass: ${c.class}\nNationality: ${c.nationality}\nHull Type: ${c.hullType}`)

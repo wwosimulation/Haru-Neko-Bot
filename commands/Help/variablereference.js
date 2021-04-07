@@ -8,7 +8,7 @@ module.exports = {
         const prefix = db.GuildInfo(message.guild.id, "prefix");
         const max = 2;
         const page = args[0];
-        const embed = new Discord.RichEmbed();
+        const embed = new Discord.MessageEmbed();
         if(!page) {
             embed.setAuthor("Command Help.");
             embed.setDescription("<> - Required | [] - Optional\n\n**"+prefix+"variablereference <1-2/embed>**");

@@ -10,7 +10,7 @@ module.exports = {
     run: async(_client, message, args) => {
         const fox = await nekoslife.sfw.foxGirl();
 
-        const embed = new Discord.RichEmbed()
+        const embed = new Discord.MessageEmbed()
         .setTitle("**Fox （╹◡╹）♡**")
         .setImage(fox.url)
         .setTimestamp()

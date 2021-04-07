@@ -10,7 +10,7 @@ module.exports = {
     run: async(_client, message, args) => {
         const prefix = db.GuildInfo(message.guild.id, "prefix");
         if(!args[0]){
-            const embed = new Discord.RichEmbed()
+            const embed = new Discord.MessageEmbed()
             .setAuthor("Command Help.")
             .setDescription("<> - Required | [] - Optional")
             .addField(""+prefix+"emojilist <Image/Gif> <Page>", "**Note:** Only can use when you own that Emoji.")
@@ -18,7 +18,7 @@ module.exports = {
             return message.channel.send(embed);
         }
         if (args[0].toLowerCase() == "image"){
-            const embed = new Discord.RichEmbed();
+            const embed = new Discord.MessageEmbed();
             if (!args[1]) return func.Error(message, "Page is Missing.");
             var hasparse = parseInt(args[1])
             if(typeof hasparse != "number") return func.Error(message, "Page must be a Number.");
@@ -46,7 +46,7 @@ module.exports = {
             return message.channel.send(embed);
         }
         else if (args[0].toLowerCase() == "gif"){
-            const embed = new Discord.RichEmbed();
+            const embed = new Discord.MessageEmbed();
             if (!args[1]) return func.Error(message, "Page is Missing.");
             var hasparse = parseInt(args[1])
             if(typeof hasparse != "number") return func.Error(message, "Page must be a Number.");

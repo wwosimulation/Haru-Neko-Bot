@@ -10,7 +10,7 @@ module.exports = {
     run: async(_client, message, args) => {
         const neko = await nekoslife.sfw.neko();
 
-        const embed = new Discord.RichEmbed()
+        const embed = new Discord.MessageEmbed()
         .setTitle("**Neko ╰(´︶`)╯♡**")
         .setImage(neko.url)
         .setTimestamp()

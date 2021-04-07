@@ -10,7 +10,7 @@ module.exports = {
     run: async(_client, message, args) => {
         
         if(!args[0]){
-            const embed = new Discord.RichEmbed()
+            const embed = new Discord.MessageEmbed()
             .setAuthor("Command Help.")
             .setDescription("<> - Required | [] - Optional")
             .addField(""+prefix+"e <Emoji ID>", "\n**Guides:**\n- Emoji ID: ID of Emote\n`(ID in Command -emojilist)`\n**Note:** Only can use when you own that Emoji.")

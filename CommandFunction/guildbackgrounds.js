@@ -53,7 +53,7 @@ module.exports = {
             var mainY = 50;
             var CountY = Math.floor(510 / 6);
             var getmembers = message.guild.members.size;
-            var getusercount = message.guild.members.filter(member => !member.user.bot).size;
+            var getusercount = message.guild.members.cache.filter(member => !member.user.bot).size;
             
             print(575, mainY, `Server Name: ${message.guild.name}`);
             print(575, mainY+CountY, `Server Owner: ${message.guild.owner.user.tag}`);

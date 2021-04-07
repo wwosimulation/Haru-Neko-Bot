@@ -8,7 +8,7 @@ module.exports = {
     description: "Get Guild Help Command.",
     run: async(_client, message, args) => {
         const prefix = await db.GuildInfo(message.guild.id, "prefix");
-        const embed = new Discord.RichEmbed()
+        const embed = new Discord.MessageEmbed()
         .setAuthor("Guild Commands.")
         .addField(`${prefix}guildstatus`, "__Get Guild Status (Guild Premium, Premium Timeleft, Guild Money...)__.")
         .addField(`${prefix}guildsettings`, "__Settings this guild from Commands or Function available__.\n`Requirement: ManageServer permission.`")

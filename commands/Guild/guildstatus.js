@@ -9,7 +9,7 @@ module.exports = {
         var bg;
         if (db.GuildBackground(message.guild.id, "bg") != 0) { bg = `[Here](${db.GuildBackground(message.guild.id, "bg")})`}
         else bg = "Nothing";
-        const embed = new Discord.RichEmbed()
+        const embed = new Discord.MessageEmbed()
         .setAuthor(`${message.guild.name}'s Guild Status`, message.guild.iconURL)
         .setDescription(`Premium Status: ${db.GuildInfo(message.guild.id, "perm")}\nTime Left: ${db.GuildInfo(message.guild.id, "permtimeleft")}\nGuild Money: ${db.GuildInfo(message.guild.id, "money")}\nGuild Background: ${bg}\nGB-Color: ${db.GuildBackground(message.guild.id, "color")}`)
         .setTimestamp()
